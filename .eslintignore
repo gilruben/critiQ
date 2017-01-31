@@ -1,4 +1,6 @@
 bundle
-/backend/models/index.js
+/backend/models
+/backend/migrations
+/backend/seeders
 package.json
 webpack.config.js
