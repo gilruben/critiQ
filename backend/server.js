@@ -1,19 +1,20 @@
 const express = require('express');
-const app = express();
 const path = require('path');
 const db = require('./models');
 const router = require('./routes');
 const applyExpressMiddleware = require('./middleware');
 
-//Adds middleware to express
+const app = express();
+
+// Adds middleware to express
 applyExpressMiddleware(app);
 
 
 db.sequelize.sync().then(() => {
-  //API route
+  // API route
   app.use('/api', router);
 
-  //Front-End Route
+  // Front-End Route
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'frontend/index.html'));
   });
@@ -22,5 +23,5 @@ db.sequelize.sync().then(() => {
 
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
-  })
-})
+  });
+});
