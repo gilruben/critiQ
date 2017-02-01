@@ -34,6 +34,13 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         notNull: true
       }
+    },
+    active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+      validate: {
+        notNull: true
+      }
     }
   }, {
     classMethods: {
