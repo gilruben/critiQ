@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     active: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       defaultValue: true,
       validate: {
         notNull: true
