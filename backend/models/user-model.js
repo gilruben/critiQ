@@ -1,8 +1,9 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define('User', {
-    displayName: {
+    userName: {
       type: DataTypes.STRING,
+      unique: true,
       validate: {
         notNull: true
       }
@@ -16,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: { 
       type: DataTypes.STRING,
+      unique: true,
       validate: {
         isEmail: true,
         notNull: true
@@ -29,7 +31,10 @@ module.exports = function(sequelize, DataTypes) {
         min: 0
       }
     },
-    level: DataTypes.STRING
+    level: DataTypes.STRING,
+    validate: {
+      notNull: true
+    }
   }, {
     classMethods: {
       associate: function(models) {
