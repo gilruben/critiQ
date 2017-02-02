@@ -3,7 +3,6 @@ const Document = require('../models').Document;
 const Comment = require('../models').Comment;
 
 const getAllDocuments = (req, res) => {
-  console.log('eslint sucks');
   Document.findAll()
   .then((users) => {
     res.send(users);

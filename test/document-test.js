@@ -31,7 +31,7 @@ describe('document-api-test', () => {
   });
 
   // Test to create a new document
-  it('\'/api/documents\' should respond with the document created', (done) => {
+  xit('\'/api/documents\' should respond with the document created', (done) => {
     const newDocument = { title: 'Infinite Loooo-', body: { foo: 'bar' }, category: 'High School', privacy: 'private', deadline: new Date(Date.UTC(2017, 11, 20, 3, 0, 0)), active: true, UserId: 1 };
 
     supertest(server)
@@ -50,7 +50,7 @@ describe('document-api-test', () => {
   });
 
   // Test to get a specific document
-  it('\'/api/documents/:id\' should respond with a specific document', (done) => {
+  xit('\'/api/documents/:id\' should respond with a specific document', (done) => {
     supertest(server)
     .get('/api/documents/1')
     .end((err, res) => {
@@ -67,7 +67,7 @@ describe('document-api-test', () => {
   });
 
   // Test to create a new user with invalid EVERYTHING
-  it('\'/api/documents\' should respond with an error', (done) => {
+  xit('\'/api/documents\' should respond with an error', (done) => {
     const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foo: bar', category: 'Essay', privacy: 'pooblic', deadline: new Date(Date.UTC(2016, 11, 20, 3, 0, 0)), active: 'yes', UserId: 666 };
 
     supertest(server)
@@ -86,7 +86,7 @@ describe('document-api-test', () => {
   });
 
   // Test to create a new document with a title that already exists
-  it('\'/api/documents\' should respond with an error', (done) => {
+  xit('\'/api/documents\' should respond with an error', (done) => {
     const newDocument = { title: 'When Bad and Bourgeois Meets Good and Humble', body: { foo: 'bar' }, category: 'Resume', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 19, 3, 0, 0)), active: false, UserId: 3 };
 
     supertest(server)
