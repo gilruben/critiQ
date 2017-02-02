@@ -4,7 +4,7 @@ const server = require('../backend/server');
 const User = require('../backend/models').User;
 
 describe('user-api-test', () => {
-  // fake user data that we'll use for tests
+  // Fake user data that we'll use for tests
   const users = [
     { username: 'shakespeare_papi', email: 'cmart@gmail.com', password: 'password', bio: 'I\'m LIT!!!', rating: 350, level: 'other' },
     { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'post-grad' },
