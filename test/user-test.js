@@ -25,13 +25,14 @@ describe('user-api-test', () => {
         expect(res.body[0].username).equal(users[0].username);
         expect(res.body[1].username).equal(users[1].username);
         expect(res.body[2].username).equal(users[2].username);
+
         done();
       });
   });
 
   // Test to create a new user
-  xit('\'/api/users\' should respond with the user created', (done) => {
-    const newUser = { username: 'rgil', email: 'rgil@gmail.com', password: 'password', bio: 'Lover of cake' };
+  it('\'/api/users\' should respond with the user created', (done) => {
+    const newUser = { username: 'nate_dogg', email: 'ndogg@gmail.com', password: 'password', bio: 'I love scooby snacks', rating: 3522, level: 'professional' };
 
     supertest(server)
       .post('/api/users')
@@ -47,17 +48,51 @@ describe('user-api-test', () => {
   });
 
   // Test to get a specific user
-  xit('\'/api/users/:userId\' should respond with a specific user', (done) => {
+  it('\'/api/users/:id\' should respond with a specific user', (done) => {
     supertest(server)
-      .get('/api/users/1')
+    .get('/api/users/1')
+    .end((err, res) => {
+      expect(res.body.id).equal(1);
+      expect(res.body.username).equal(users[0].username);
+      expect(res.body.email).equal(users[0].email);
+      expect(res.body.bio).equal(users[0].bio);
+
+      done();
+    });
+  });
+
+  // Test to create a new user with invalid email and rating data
+  it('\'/api/users\' should respond with an error', (done) => {
+    const newUser = { username: 'captain_crunch', email: 'captaincgmail.com', password: 'password', bio: 'Try my cereal, or else >:[', rating: -1, level: 'professional' };
+
+    supertest(server)
+      .post('/api/users')
+      .send(newUser)
       .end((err, res) => {
-        expect(res.body.id).equal(1);
-        expect(res.body.username).equal(users[0].username);
-        expect(res.body.email).equal(users[0].email);
-        expect(res.body.password).equal(users[0].password);
-        expect(res.body.bio).equal(users[0].bio);
+        expect(res.body.username).equal(newUser.username);
+        expect(res.body.email).equal(newUser.email);
+        expect(res.body.password).equal(newUser.password);
+        expect(res.body.bio).equal(newUser.bio);
 
         done();
       });
   });
+
+  // Test to create a new user with username and email that already exist
+  it('\'/api/users\' should respond with an error', (done) => {
+    const newUser = { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'post-grad' };
+
+    supertest(server)
+      .post('/api/users')
+      .send(newUser)
+      .end((err, res) => {
+        expect(res.body.username).equal(newUser.username);
+        expect(res.body.email).equal(newUser.email);
+        expect(res.body.password).equal(newUser.password);
+        expect(res.body.bio).equal(newUser.bio);
+
+        done();
+      });
+  });
+
 });
