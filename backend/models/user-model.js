@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: { 
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
       validate: {
         isEmail: true,
         notNull: true
@@ -32,8 +32,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     level: DataTypes.STRING,
-      validate: {
-        notNull: true
+    validate: {
+      notNull: true
       }
   }, {
     classMethods: {
