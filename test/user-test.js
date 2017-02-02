@@ -8,9 +8,10 @@ describe('user-api-test', () => {
   const users = [
     { username: 'shakespeare_papi', email: 'cmart@gmail.com', password: 'password', bio: 'I\'m LIT!!!', rating: 350, level: 'other' },
     { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'post-grad' },
-    { username: 'j.pushw', email: 'jwu@gmail.com', password: 'password', bio: 'Graduated state Penn', rating: '9001', level: 'other' },
+    { username: 'j.pushw', email: 'jwu@gmail.com', password: 'password', bio: 'Graduated state Penn', rating: 9001, level: 'other' },
   ];
 
+  let newUser = { username: 'nate_dogg', email: 'ndogg@gmail.com', password: 'password', bio: 'I love scooby snacks', rating: 3522, level: 'professional' };
 
   before(() => User.sync({ force: true })
     .then(() => User.bulkCreate(users))
@@ -32,7 +33,6 @@ describe('user-api-test', () => {
 
   // Test to create a new user
   it('\'/api/users\' should respond with the user created', (done) => {
-    const newUser = { username: 'nate_dogg', email: 'ndogg@gmail.com', password: 'password', bio: 'I love scooby snacks', rating: 3522, level: 'professional' };
 
     supertest(server)
       .post('/api/users')
@@ -61,10 +61,27 @@ describe('user-api-test', () => {
     });
   });
 
+  // Test to edit a users info
+  it('\'/api/users/:id\' should respond with new user data', (done) => {
+    const newData =  { username: 'ndogg', bio: 'Let me school you'}
+    newUser['username'] = 'ndogg';
+    newUser['bio'] = 'Let me school you';
+
+    supertest(server)
+    .put('/api/users/4')
+    .send(newData)
+    .end((err, res) => {
+      expect(res.body.id).equal(4);
+      expect(res.body.username).equal(newUser.username);
+      expect(res.body.bio).equal(newUser.bio);
+
+      done();
+    });
+  });
+
   // Test to create a new user with invalid email and rating data
   it('\'/api/users\' should respond with an error', (done) => {
     const newUser = { username: 'captain_crunch', email: 'captaincgmail.com', password: 'password', bio: 'Try my cereal, or else >:[', rating: -1, level: 'professional' };
-
     supertest(server)
       .post('/api/users')
       .send(newUser)
