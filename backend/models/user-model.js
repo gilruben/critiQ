@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
     level: DataTypes.STRING,
     validate: {
       notNull: true
-      }
+    }
   }, {
     classMethods: {
       associate: function(models) {
