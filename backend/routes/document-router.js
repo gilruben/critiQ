@@ -10,7 +10,6 @@ const getAllDocuments = (req, res) => {
 };
 
 const documentCreate = (req, res) => {
-  // req.body will include userId
   const documentData = req.body;
   Document.create(documentData)
   .then((doc) => {

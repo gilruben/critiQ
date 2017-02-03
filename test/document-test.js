@@ -64,7 +64,7 @@ describe('document-api-test', () => {
     });
   });
 
-  // Test to create a new user with invalid EVERYTHING
+  // Test to create a new document with invalid EVERYTHING
   it('\'/api/documents\' should respond with an error', (done) => {
     const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foobar', category: 'Essay', privacy: 'public', deadline: new Date(Date.UTC(2016, 11, 20, 3, 0, 0)), active: true, UserId: 2 };
 
