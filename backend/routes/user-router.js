@@ -64,12 +64,24 @@ const editUserData = (req, res) => {
   });
 };
 
+const deleteUser = (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+  .then((delUser) => {
+    res.send({ usersDeleted: delUser });
+  });
+};
+
 router.route('/')
   .get(getAllUsers)
   .post(createUser);
 
 router.route('/:id')
   .get(getOneUser)
-  .put(editUserData);
+  .put(editUserData)
+  .delete(deleteUser);
 
 module.exports = router;
