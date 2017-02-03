@@ -14,8 +14,10 @@ const documentCreate = (req, res) => {
   const documentData = req.body;
   Document.create(documentData)
   .then((doc) => {
-    console.log(doc);
     res.send(doc);
+  })
+  .catch((err) => {
+    console.log(err.message);
   });
 };
 
@@ -25,7 +27,6 @@ const getOneDocument = (req, res) => {
     include: [Comment],
   })
   .then((user) => {
-    console.log('AYOOOOO', user);
     res.send(user);
   });
 };

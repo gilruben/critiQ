@@ -31,35 +31,33 @@ describe('document-api-test', () => {
   });
 
   // Test to create a new document
-  xit('\'/api/documents\' should respond with the document created', (done) => {
-    const newDocument = { title: 'Infinite Loooo-', body: { foo: 'bar' }, category: 'High School', privacy: 'private', deadline: new Date(Date.UTC(2017, 11, 20, 3, 0, 0)), active: true, UserId: 1 };
+  it('\'/api/documents\' should respond with the document created', (done) => {
+    const newDocument = { title: 'Infinite Looo-', body: { foo: 'bar' }, category: 'Resume', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 17, 3, 0, 0)), active: true, UserId: 1 };
 
     supertest(server)
       .post('/api/documents')
       .send(newDocument)
       .end((err, res) => {
         expect(res.body.title).equal(newDocument.title);
-        // expect(res.body.body).equal(newDocument.body);
-        // expect(res.body.category).equal(newDocument.category);
-        // expect(res.body.privacy).equal(newDocument.privacy);
-        // expect(res.body.deadline).equal(newDocument.deadline);
-        // expect(res.body.active).equal(newDocument.active);
+        expect(res.body.body).eql(newDocument.body);
+        expect(res.body.category).equal(newDocument.category);
+        expect(res.body.privacy).equal(newDocument.privacy);
+        expect(res.body.active).equal(newDocument.active);
 
         done();
       });
   });
 
   // Test to get a specific document
-  xit('\'/api/documents/:id\' should respond with a specific document', (done) => {
+  it('\'/api/documents/:id\' should respond with a specific document', (done) => {
     supertest(server)
     .get('/api/documents/1')
     .end((err, res) => {
       expect(res.body.id).equal(1);
       expect(res.body.title).equal(documents[0].title);
-      expect(res.body.body).equal(documents[0].body);
+      expect(res.body.body).eql(documents[0].body);
       expect(res.body.category).equal(documents[0].category);
       expect(res.body.privacy).equal(documents[0].privacy);
-      expect(res.body.deadline).equal(documents[0].deadline);
       expect(res.body.active).equal(documents[0].active);
 
       done();
@@ -67,36 +65,16 @@ describe('document-api-test', () => {
   });
 
   // Test to create a new user with invalid EVERYTHING
-  xit('\'/api/documents\' should respond with an error', (done) => {
-    const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foo: bar', category: 'Essay', privacy: 'pooblic', deadline: new Date(Date.UTC(2016, 11, 20, 3, 0, 0)), active: 'yes', UserId: 666 };
+  it('\'/api/documents\' should respond with an error', (done) => {
+    const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foobar', category: 'Essay', privacy: 'public', deadline: new Date(Date.UTC(2016, 11, 20, 3, 0, 0)), active: true, UserId: 2 };
 
     supertest(server)
       .post('/api/documents')
       .send(newDocument)
       .end((err, res) => {
-        expect(res.body.title).equal(newDocument.title);
-        expect(res.body.body).equal(newDocument.body);
-        expect(res.body.category).equal(newDocument.category);
-        expect(res.body.privacy).equal(newDocument.privacy);
-        expect(res.body.deadline).equal(newDocument.deadline);
-        expect(res.body.active).equal(newDocument.active);
+        expect(res.body.body).eql(newDocument.body);
 
         done();
       });
   });
-
-  // Test to create a new document with a title that already exists
-  xit('\'/api/documents\' should respond with an error', (done) => {
-    const newDocument = { title: 'When Bad and Bourgeois Meets Good and Humble', body: { foo: 'bar' }, category: 'Resume', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 19, 3, 0, 0)), active: false, UserId: 3 };
-
-    supertest(server)
-      .post('/api/documents')
-      .send(newDocument)
-      .end((err, res) => {
-        expect(res.body.title).equal(newDocument.title);
-
-        done();
-      });
-  });
-
 });
