@@ -5,7 +5,7 @@ const postComment = (req, res) => {
   const comment = req.body;
   Comment.create({ comment })
   .then((postedComment) => {
-    console.log('POSTED COMMENT =>', postedComment)
+    console.log('POSTED COMMENT =>', postedComment);
     res.send(postedComment);
   })
   .catch((err) => {
@@ -38,7 +38,7 @@ const deleteComment = (req, res) => {
     },
   })
   .then(() => {
-    res.send('Comment successfully deleted.');
+    res.send({ message: 'Comment successfully deleted.' });
   })
   .catch((err) => {
     res.status(500).send(err);

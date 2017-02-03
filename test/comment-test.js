@@ -4,18 +4,18 @@ const server = require('../backend/server');
 const Comment = require('../backend/models').Comment;
 
 describe('comment-api-test', () => {
-  const comments = [
-    { comment: 'Check your grammar.', textLocation: { 24: 'CRITIQ IS LITT' }, UserId: 1, DocumentId: 1 },
-    { comment: "I'm confused. What does this mean?", textLocation: { 24: 'I love mocha, java and coffeescript. Best drinks ever!' }, UserId: 2, DocumentId: 2 },
-  ];
+  // const comments = [
+  //   { comment: 'Check your grammar.', textLocation: { 24: 'CRITIQ IS LITT' }, UserId: 1, DocumentId: 1 },
+  //   { comment: "I'm confused. What does this mean?", textLocation: { 24: 'I love mocha, java and coffeescript. Best drinks ever!' }, UserId: 2, DocumentId: 2 },
+  // ];
+  const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 2 };
 
   before(() => Comment.sync({ force: true })
-    .then(() => Comment.bulkCreate(comments))
+    .then(() => Comment.bulkCreate(postComment))
     .catch(err => console.log('DB Err!', err)));
 
 // Test to create a new comment
   it('/api/comments should respond with new data', (done) => {
-    const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 2 };
 
     supertest(server)
       .put('/api/comments/')
@@ -55,7 +55,7 @@ describe('comment-api-test', () => {
   //     .delete('api/comments/1')
   //     .send('Successfully deleted!')
   //     .end((err, res) => {
-  //       expect(res.body).to.be.a('object');
+  //       expect(res.message).to.equal('Comment successfully deleted');
 
   //       done();
   //     });

@@ -3,45 +3,46 @@ module.exports = function(sequelize, DataTypes) {
   const Document = sequelize.define('Document', {
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: true,
-        notNull: true
-      }
+      },
     },
     body: {
       type: DataTypes.JSON,
+      allowNull: false,
       validate: {
-        notNull: true
-      }
+        isObject: (val) => {
+          if (typeof val !== 'object' || Array.isArray(val)) {
+            throw new TypeError('body field must be an object!');
+          }
+        },
+      },
     },
     category: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: true,
-        notNull: true
-      }
+      },
     },
     privacy: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: true,
-        notNull: true,
-        isIn: [['public', 'private']]
-      }
+        isIn: [['public', 'private']],
+      },
     },
     deadline: {
       type: DataTypes.DATEONLY,
-      validate: {
-        notNull: true
-      }
+      allowNull: false,
     },
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      validate: {
-        notNull: true
-      }
-    }
+      allowNull: false,
+    },
   }, {
     classMethods: {
       associate: function(models) {
