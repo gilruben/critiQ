@@ -79,6 +79,18 @@ describe('user-api-test', () => {
     });
   });
 
+
+  // Test to delete a user
+  it('\'/api/users/:id\' should respond an object', (done) => {
+    supertest(server)
+      .delete('/api/users/4')
+      .end((err, res) => {
+        expect(res.body).eql({ usersDeleted: 1 });
+
+        done();
+      });
+  });
+
   // Test to create a new user with invalid email and rating data
   it('\'/api/users\' should respond with an error', (done) => {
     const newUser = { username: 'captain_crunch', email: 'captaincgmail.com', password: 'password', bio: 'Try my cereal, or else >:[', rating: -1, level: 'professional' };
