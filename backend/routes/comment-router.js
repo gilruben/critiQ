@@ -3,9 +3,8 @@ const Comment = require('../models').Comment;
 
 const postComment = (req, res) => {
   const comment = req.body;
-  Comment.create({ comment })
+  Comment.create(comment)
   .then((postedComment) => {
-    console.log('POSTED COMMENT =>', postedComment);
     res.send(postedComment);
   })
   .catch((err) => {

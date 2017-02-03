@@ -4,29 +4,30 @@ const server = require('../backend/server');
 const Comment = require('../backend/models').Comment;
 
 describe('comment-api-test', () => {
-  // const comments = [
-  //   { comment: 'Check your grammar.', textLocation: { 24: 'CRITIQ IS LITT' }, UserId: 1, DocumentId: 1 },
-  //   { comment: "I'm confused. What does this mean?", textLocation: { 24: 'I love mocha, java and coffeescript. Best drinks ever!' }, UserId: 2, DocumentId: 2 },
-  // ];
-  const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 2 };
+  const comments = [
+    { comment: 'Check your grammar.', textLocation: { 24: 'CRITIQ IS LITT' }, UserId: 1, DocumentId: 1 },
+    { comment: "I'm confused. What does this mean?", textLocation: { 24: 'I love mocha, java and coffeescript. Best drinks ever!' }, UserId: 2, DocumentId: 1 },
+  ];
+  const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 1 };
 
   before(() => Comment.sync({ force: true })
-    .then(() => Comment.bulkCreate(postComment))
+    .then(() => Comment.bulkCreate(comments))
     .catch(err => console.log('DB Err!', err)));
 
 // Test to create a new comment
   it('/api/comments should respond with new data', (done) => {
 
     supertest(server)
-      .put('/api/comments/')
+      .post('/api/comments/')
       .send(postComment)
       .end((err, res) => {
         expect(res.body).to.be.a('object');
-        expect(res.body).to.have.key(['comment', 'textLocation', 'UserId', 'DocumentId']);
         expect(res.body.comment).equal(postComment.comment);
-        expect(res.body.textLocation).equal(postComment.textLocation);
+        expect(res.body.textLocation).eql(postComment.textLocation);
         expect(res.body.UserId).equal(postComment.UserId);
         expect(res.body.DocumentId).equal(postComment.DocumentId);
+
+        done();
       });
   });
 
