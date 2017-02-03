@@ -3,6 +3,7 @@ const Comment = require('../models').Comment;
 
 const postComment = (req, res) => {
   const comment = req.body;
+
   Comment.create(comment)
   .then((postedComment) => {
     res.send(postedComment);
@@ -14,15 +15,19 @@ const postComment = (req, res) => {
 
 const updateComment = (req, res) => {
   const commentId = req.params.id;
-  const commentInfo = req.body.comment;
-  Comment.findById(commentId)
-  .then(() => {
-    Comment.update({
-      comment: commentInfo,
-    });
+  const commentInfo = req.body;
+
+  Comment.update(commentInfo, {
+    where: {
+      id: commentId,
+    },
+    returning: true,
   })
   .then((updatedComment) => {
-    res.send(updatedComment);
+    const updatedCommentArray = updatedComment[1];
+    const commentData = updatedCommentArray[0];
+
+    res.send(commentData);
   })
   .catch((err) => {
     res.status(500).send(err);
@@ -31,6 +36,7 @@ const updateComment = (req, res) => {
 
 const deleteComment = (req, res) => {
   const commentId = req.params.id;
+
   Comment.destroy({
     where: {
       id: commentId,

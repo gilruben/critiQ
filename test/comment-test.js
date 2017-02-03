@@ -8,7 +8,6 @@ describe('comment-api-test', () => {
     { comment: 'Check your grammar.', textLocation: { 24: 'CRITIQ IS LITT' }, UserId: 1, DocumentId: 1 },
     { comment: "I'm confused. What does this mean?", textLocation: { 24: 'I love mocha, java and coffeescript. Best drinks ever!' }, UserId: 2, DocumentId: 1 },
   ];
-  const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 1 };
 
   before(() => Comment.sync({ force: true })
     .then(() => Comment.bulkCreate(comments))
@@ -16,6 +15,7 @@ describe('comment-api-test', () => {
 
 // Test to create a new comment
   it('/api/comments should respond with new data', (done) => {
+  const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 1 };
 
     supertest(server)
       .post('/api/comments/')
@@ -32,33 +32,30 @@ describe('comment-api-test', () => {
   });
 
 // Test to update comment
-  // it('/api/comments should respond with updated comments', (done) => {
-  //   const updatedComment = { comment: "The 'b' shouldn't be capitalized here and that isn't an actual word." };
-  //   const comment = "The 'b' shouldn't be capitalized here and that isn't an actual word.";
+  it('/api/comments should respond with updated comments', (done) => {
+    const updatedComment = { comment: "The 'b' shouldn't be capitalized here and that isn't an actual word." };
 
-  //   supertest(server)
-  //     .put('api/comments/1')
-  //     .send(updatedComment)
-  //     .end((err, res) => {
-  //       expect(res.body).to.be.a('object');
-  //       expect(res.body).to.have.key('comment');
-  //       expect(res.body.comment).equal(updatedComment.comment);
-  //       expect(res.body.comment).equal(comment);
+    supertest(server)
+      .put('/api/comments/1')
+      .send(updatedComment)
+      .end((err, res) => {
+        console.log(res.body);
+        expect(res.body).to.be.a('object');
+        expect(res.body.comment).equal(updatedComment.comment);
 
-  //       done();
-  //     });
-  // });
+        done();
+      });
+  });
 
   // Test to delete comment
-  // it('/api/comments should respond with a deletion message', (done) => {
+  it('/api/comments should respond with a deletion message', (done) => {
 
-  //   supertest(server)
-  //     .delete('api/comments/1')
-  //     .send('Successfully deleted!')
-  //     .end((err, res) => {
-  //       expect(res.message).to.equal('Comment successfully deleted');
+    supertest(server)
+      .delete('/api/comments/1')
+      .end((err, res) => {
+        expect(res.body).to.eql({ message: 'Comment successfully deleted.' });
 
-  //       done();
-  //     });
-  // });
+        done();
+      });
+  });
 });
