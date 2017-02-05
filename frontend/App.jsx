@@ -1,10 +1,14 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 
-const App = (props) => (
+import LandingPage from './components/landingPage/LandingPage';
+
+import './css/main.css';
+
+const App = props => (
   <div>
-    CRITIQ ME! LIT CLUB!!
+    <LandingPage />
   </div>
-)
+);
 
 render(<App />, document.getElementById('app'));
