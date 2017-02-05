@@ -10,6 +10,7 @@ const SignIn = React.createClass({
           <input type="password" placeholder="password" />
           <input type="submit" />
         </form>
+        <p>Don{"'"}t have account? <span>Sign up</span></p>
       </div>
     );
   },
