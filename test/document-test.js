@@ -77,4 +77,30 @@ describe('document-api-test', () => {
         done();
       });
   });
+
+  // Test to delete single document by id.
+  it('\'/api/documents/:id\' should respond an object', (done) => {
+
+    supertest(server)
+      .delete('/api/documents/4')
+      .end((err, res) => {
+        expect(res.body).eql({ documentsDeleted: 1 });
+
+        done();
+      });
+  });
+
+  // Test to update single document by id.
+  it('\'/api/documents/:id\' should respond with new body data', (done) => {
+    const newData = { body: { foo: 'bar2' } };
+
+    supertest(server)
+    .put('/api/documents/1')
+    .send(newData)
+    .end((err, res) => {
+      expect(res.body).eql(newData.body);
+
+      done();
+    });
+  });
 });
