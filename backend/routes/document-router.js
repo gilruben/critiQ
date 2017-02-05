@@ -47,6 +47,7 @@ const editSingleDocument = (req, res) => {
     const documentBody = doc[1];
     const documentArray = documentBody[0];
     const documentData = documentArray.dataValues;
+
     res.send(documentData.body);
   })
   .catch((err) => {
