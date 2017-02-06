@@ -12,7 +12,7 @@ const App = props => (
   <div>
     <Navbar />
     <LandingPage />
-    <Footer /
+    <Footer />
   </div>
 );
 
