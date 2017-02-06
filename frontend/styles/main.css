@@ -1,0 +1,86 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/*-------Navbar--------*/
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav ul {
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+  padding: 0;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+/*-------/Navbar--------*/
+
+
+
+/*-------Landing page--------*/
+
+.landing-page {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  background-color: #efefef;
+  height: 300px;
+  width: 400px;
+  padding: 0 20px 0 20px;
+}
+
+.sign-in form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.sign-in span {
+  color: firebrick;
+}
+
+/*-------Landing page--------*/
+
+
+
+/*-------Signup page--------*/
+.sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fafafa;
+}
+
+.sign-up form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  width: 600px;
+  background-color: #efefef;
+}
+
+.student {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/*-------/Signup page--------*/

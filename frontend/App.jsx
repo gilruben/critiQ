@@ -1,10 +1,7 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import Routes from './components/Routes';
+import './styles/main.css';
 
-const App = (props) => (
-  <div>
-    CRITIQ ME! LIT CLUB!!
-  </div>
-)
 
-render(<App />, document.getElementById('app'));
+render(<Routes />, document.getElementById('app'));
