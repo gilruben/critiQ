@@ -7,6 +7,7 @@ module.exports = {
     ],
     "rules": {
       "indent": ["error", 2],
-      "no-console": "off"
+      "no-console": "off",
+      "react/prefer-es6-class": 0
     }
 };
