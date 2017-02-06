@@ -39,7 +39,6 @@ describe('comment-api-test', () => {
       .put('/api/comments/1')
       .send(updatedComment)
       .end((err, res) => {
-        console.log(res.body);
         expect(res.body).to.be.a('object');
         expect(res.body.comment).equal(updatedComment.comment);
 
