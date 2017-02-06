@@ -10,6 +10,11 @@ const Routes = () => (
       <Route component={LandingPage} path="/signin" />
       <Route path="/">
         <IndexRoute component={Navbar} />
+        {/* <Route component={} path="account" /> */}
+        {/* <Route component={} path="browse" /> */}
+        {/* <Route component={} path="create" /> */}
+        {/* <Route component={} path="document/:id" /> */}
+        {/* <Route component={} path=":id" /> */}
       </Route>
     </Router>
   </Provider>
