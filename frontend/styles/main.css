@@ -15,7 +15,6 @@ nav ul {
   display: flex;
   width: 150px;
   justify-content: space-between;
-  /*background-color: purple;*/
   padding: 0;
 }
 
