@@ -1,6 +1,6 @@
 import { GET_DOCUMENTS_DATA } from '../actions/browse-actions';
 
-const defaultState = { documents: [], category: ''};
+const defaultState = { documents: [], category: '' };
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
