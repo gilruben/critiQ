@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getDocumentsAsync } from '../../actions/browse-actions';
-import Categories from './Categories';
+import Categories from './CategoriesContainer';
 import IndividualWork from './IndividualWork';
 
 const BrowseContainer = React.createClass({
