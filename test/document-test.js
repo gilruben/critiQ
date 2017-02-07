@@ -6,10 +6,10 @@ const Document = require('../backend/models').Document;
 describe('document-api-test', () => {
   // Fake document data that we'll use for tests
   const documents = [
-    { title: 'No Spear, Just Shake', body: { foo: 'bar' }, category: 'jr-high', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 20, 3, 0, 0)), active: true, UserId: 1 },
-    { title: 'Dude, I Lost My For-Loop', body: { foo: 'bar' }, category: 'dissertation', privacy: 'private', deadline: new Date(Date.UTC(2017, 3, 20, 3, 0, 0)), active: true, UserId: 2 },
+    { title: 'No Spear, Just Shake', body: { foo: 'bar' }, category: 'essay', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 20, 3, 0, 0)), active: true, UserId: 1 },
+    { title: 'Dude, I Lost My For-Loop', body: { foo: 'bar' }, category: 'essay', privacy: 'private', deadline: new Date(Date.UTC(2017, 3, 20, 3, 0, 0)), active: true, UserId: 2 },
     { title: 'When Bad and Bourgeois Meets Good and Humble', body: { foo: 'bar' }, category: 'resume', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 17, 3, 0, 0)), active: false, UserId: 3 },
-    { title: 'Did Tom Brady Make A Deal With Darth Pence?!', body: { foo: 'bar' }, category: 'jr-high', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 13, 3, 0, 0)), active: true, UserId: 1 },
+    { title: 'Did Tom Brady Make A Deal With Darth Pence?!', body: { foo: 'bar' }, category: 'essay', privacy: 'public', deadline: new Date(Date.UTC(2017, 4, 13, 3, 0, 0)), active: true, UserId: 1 },
   ];
 
 
@@ -28,16 +28,6 @@ describe('document-api-test', () => {
       });
   });
 
-    it('\'/api/documents\' should respond with category query', (done) => {
-    supertest(server)
-      .get('/api/documents?category=resume')
-      .end((err, res) => {
-        expect(res.body.length).equal(1);
-        expect(res.body.id).equal(5);
-
-        done();
-      });
-  });
 
   // Test to create a new document
   it('\'/api/documents\' should respond with the document created', (done) => {
@@ -52,6 +42,18 @@ describe('document-api-test', () => {
         expect(res.body.category).equal(newDocument.category);
         expect(res.body.privacy).equal(newDocument.privacy);
         expect(res.body.active).equal(newDocument.active);
+
+        done();
+      });
+  });
+
+  // Test GET query with category
+    it('\'/api/documents\' should respond with category query', (done) => {
+    supertest(server)
+      .get('/api/documents?category=resume')
+      .end((err, res) => {
+        expect(res.body.length).equal(1);
+        expect(res.body[0].id).equal(5);
 
         done();
       });
@@ -75,7 +77,7 @@ describe('document-api-test', () => {
 
   // Test to create a new document with validation error for body.
   it('\'/api/documents\' should respond with an error', (done) => {
-    const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foobar', category: 'Essay', privacy: 'public', deadline: new Date(Date.UTC(2016, 11, 20, 3, 0, 0)), active: true, UserId: 2 };
+    const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foobar', category: 'essay', privacy: 'public', deadline: new Date(Date.UTC(2016, 11, 20, 3, 0, 0)), active: true, UserId: 2 };
 
     supertest(server)
       .post('/api/documents')
