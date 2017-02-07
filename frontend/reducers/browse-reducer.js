@@ -5,7 +5,7 @@ const defaultState = { documents: [], category: ''};
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case GET_DOCUMENTS_DATA:
-      return Object.assign({}, state, action.data);
+      return Object.assign({}, state, { documents: action.data });
     default:
       return state;
   }

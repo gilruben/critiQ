@@ -2,7 +2,7 @@ import { ajax } from 'jquery';
 
 export const GET_DOCUMENTS_DATA = 'GET_DOCUMENTS_DATA';
 
-const getDocumentsData = payload => ({
+const getDocuments = payload => ({
   type: GET_DOCUMENTS_DATA,
   data: payload,
 });
@@ -12,7 +12,7 @@ export const getDocumentsAsync = () => (dispatch) => {
     url: '/api/documents',
     type: 'GET',
   })
-  .done((userData) => {
-    dispatch(getDocumentsData(userData));
+  .done((documentsData) => {
+    dispatch(getDocuments(documentsData));
   });
 };
