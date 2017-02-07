@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, Modifier, convertToRaw, convertFromRaw } from 'draft-js';
 import { Record } from 'immutable';
 import '../styles/text-editor.css';
 
@@ -27,6 +27,35 @@ const TextEditor = React.createClass({
     console.log(editorState);
     this.setState({ editorState });
   },
+  createCommentEntity() {
+    const editorState = this.state.editorState;
+    const selectionState = editorState.getSelection();
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+
+    const contentStateWithComment = Modifier.applyEntity(
+      contentState,
+      selectionState,
+      entityKey,
+    );
+
+    const newEditorState = EditorState.push(
+      editorState,
+      contentStateWithComment,
+      'apply-entity',
+    );
+
+    this.setState({ editorState: newEditorState });
+
+    console.log(convertToRaw(newEditorState.getCurrentContent()));
+  },
+  logState() {
+    const editorState = this.state.editorState;
+
+    console.log(convertToRaw(editorState.getCurrentContent()));
+  },
   render() {
     return (
       <div id="content">
@@ -37,6 +66,8 @@ const TextEditor = React.createClass({
         </div>
         <button onClick={this.boldClick}>Bold</button>
         <button onClick={this.getSelectionState}>Log Selection State</button>
+        <button onClick={this.createCommentEntity}>Comment</button>
+        <button onClick={this.logState}>Log State</button>
       </div>
     );
   },

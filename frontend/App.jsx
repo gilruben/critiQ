@@ -1,10 +1,11 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import TextEditor from './containers/TextEditor';
 
-const App = (props) => (
+const App = () => (
   <div>
-    CRITIQ ME! LIT CLUB!!
+    <TextEditor />
   </div>
-)
+);
 
 render(<App />, document.getElementById('app'));
