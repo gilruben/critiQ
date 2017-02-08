@@ -1,5 +1,11 @@
 const router = require('express').Router();
 const User = require('../models').User;
+const passport = require('passport');
+const authentication = require('../controller/authentication');
+const passportFile = require('../passport-files/passport');
+const reqAuth = passport.authenticate('jwt', { sessions: false });
+const reqSignIn = passport.authenticate('local', { sessions: false });
+
 
 const getAllUsers = (req, res) => {
   User.findAll({
@@ -75,13 +81,19 @@ const deleteUser = (req, res) => {
   });
 };
 
+router.route('/auth')
+  .post(reqSignIn, authentication.signIn);
+
+router.route('/signup')
+  .post(authentication.signUp);
+
 router.route('/')
   .get(getAllUsers)
   .post(createUser);
 
-router.route('/:id')
-  .get(getOneUser)
-  .put(editUserData)
-  .delete(deleteUser);
+// router.route('/:id')
+//   .get(getOneUser)
+//   .put(editUserData)
+//   .delete(deleteUser);
 
 module.exports = router;
