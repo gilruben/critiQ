@@ -1,11 +1,40 @@
 const router = require('express').Router();
 const Document = require('../models').Document;
 const Comment = require('../models').Comment;
+const User = require('../models').User;
 
 const getAllDocuments = (req, res) => {
-  Document.findAll()
-  .then((users) => {
-    res.send(users);
+  const query = req.query;
+  const category = query.category;
+  const level = query.level;
+  const sequelizeQuery = {
+    where: {
+      active: true,
+      privacy: 'public',
+    },
+    include: [
+      {
+        model: User,
+        attributes: {
+          exclude: ['password', 'email'],
+        },
+      },
+    ],
+  };
+
+  // if category exists in URL query it will place category:category directly into query.
+  if (category) {
+    sequelizeQuery.where.category = category;
+  }
+ // if level exists in URL query it will place level:level directly into query.
+  if (level) {
+    sequelizeQuery.include[0].where = {};
+    sequelizeQuery.include[0].where.level = level;
+  }
+
+  Document.findAll(sequelizeQuery)
+  .then((docs) => {
+    res.send(docs);
   })
   .catch((err) => {
     console.log(err.message);

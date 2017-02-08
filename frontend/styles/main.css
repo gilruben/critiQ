@@ -36,6 +36,8 @@ nav ul li {
   height: 100vh;
 }
 
+
+
 .sign-in {
   display: flex;
   flex-direction: column;
@@ -84,3 +86,34 @@ nav ul li {
   align-items: center;
 }
 /*-------/Signup page--------*/
+
+
+
+/*-------Browse page--------*/
+
+.categories ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: inherit;
+  background-color: #efefef;
+  padding-left: 0;
+  margin: 0;
+}
+
+.categories ul li {
+  list-style: none;
+}
+
+.documents-list-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.individual-work {
+  height: 375px;
+  width: 250px;
+  background-color: #fafafa;
+}
+
+/*-------/Browse page--------*/

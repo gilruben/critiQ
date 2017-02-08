@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from '../store/store';
-import { LandingPage, Navbar } from './index';
+import { LandingPage, Navbar, BrowsePage } from './index';
 
 const Routes = () => (
   <Provider store={store}>
@@ -11,7 +11,7 @@ const Routes = () => (
       <Route path="/">
         <IndexRoute component={Navbar} />
         {/* <Route component={} path="account" /> */}
-        {/* <Route component={} path="browse" /> */}
+        <Route component={BrowsePage} path="browse" />
         {/* <Route component={} path="create" /> */}
         {/* <Route component={} path="document/:id" /> */}
         {/* <Route component={} path=":id" /> */}
