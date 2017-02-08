@@ -28,6 +28,7 @@ const getAllDocuments = (req, res) => {
   }
  // if level exists in URL query it will place level:level directly into query.
   if (level) {
+    sequelizeQuery.include[0].where = {};
     sequelizeQuery.include[0].where.level = level;
   }
 
