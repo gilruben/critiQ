@@ -43,18 +43,30 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: true,
       allowNull: false,
     },
+    reviewerList: {
+      type: DataTypes.JSON,
+      validate: {
+        isObject: (val) => {
+          if (typeof val !== 'object') {
+            throw new TypeError('body field must be an object/array!');
+          }
+        },
+      },
+    },
   }, {
     classMethods: {
       associate: function(models) {
         Document.belongsTo(models.User, {
-          onDelete: "CASCADE",
+          onDelete: 'CASCADE',
           foreignKey: {
-            allowNull: false
-          }
-        })
-        Document.hasMany(models.Comment)
-      }
-    }
+            allowNull: false,
+          },
+        });
+        Document.hasMany(models.Comment);
+        Document.belongsTo(models.User);
+        Document.belongsToMany(models.User, { through: 'Reviewer' });
+      },
+    },
   });
   return Document;
 };
