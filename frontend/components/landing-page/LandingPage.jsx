@@ -5,7 +5,7 @@ const LandingPage = React.createClass({
   render() {
     return (
       <div className="landing-page">
-        <div>
+        <div className="title-div">
           <h1>critiQ</h1>
           <h3>Make your first draft, your final</h3>
         </div>
