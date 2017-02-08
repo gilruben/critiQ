@@ -13,7 +13,6 @@ const BrowseContainer = React.createClass({
     return (
       <div>
         <Categories />
-        {console.log(this.props.browse.documents)}
         <div className="documents-list-div">
           {
             this.props.browse.documents.map((docs, idx) => {
