@@ -5,7 +5,7 @@ import '../../styles/create.css';
 
 const CreatePage = React.createClass({
   getInitialState() {
-    return { title: '', body: false, category: 'paper', privacy: 'public', deadline: new Date().toJSON().slice(0, 10), userId: 1, active: true, editorState: EditorState.createEmpty() };
+    return { title: '', body: null, category: 'paper', privacy: 'public', deadline: new Date().toJSON().slice(0, 10), userId: 1, active: true, editorState: EditorState.createEmpty() };
   },
   onChange(editorState) {
     return this.setState({ editorState });
