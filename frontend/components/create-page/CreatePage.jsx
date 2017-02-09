@@ -5,7 +5,7 @@ import '../../styles/create.css';
 
 const CreatePage = React.createClass({
   getInitialState() {
-    return { title: '', body: null, category: 'essay', privacy: 'public', deadline: new Date().toJSON().slice(0, 10), userId: 1, active: true, editorState: EditorState.createEmpty() };
+    return { title: '', category: 'essay', privacy: 'public', deadline: new Date().toJSON().slice(0, 10), userId: 1, active: true, editorState: EditorState.createEmpty() };
   },
   onChange(editorState) {
     return this.setState({ editorState });
@@ -18,21 +18,12 @@ const CreatePage = React.createClass({
       ));
   },
   onClick() {
-    const savedContent = this.state.editorState.getCurrentContent();
-    const documentBody = convertToRaw(savedContent);
-    this.setState({ body: documentBody });
-
-    if (this.state.body) {
-      this.postDocument();
-    }
-  },
-  postDocument() {
     ajax({
       url: '/api/documents/',
       type: 'POST',
       data: {
         title: this.state.title,
-        body: this.state.body,
+        body: convertToRaw(this.state.editorState.getCurrentContent()),
         category: this.state.category,
         privacy: this.state.privacy,
         deadline: this.state.deadline,
