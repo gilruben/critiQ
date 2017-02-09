@@ -3,11 +3,16 @@
 }
 
 #content {
- width: 480px;
  margin: 0 auto;
+ height: 1048px;
 }
 
-.editor {
- border: 1px solid grey;
- padding: 6px;
+
+.editor .public-DraftEditor-content {
+  max-height: 1048px;
+  overflow: auto;
+  border: 1px solid grey;
+  padding: 37px;
+  width: 810px;
+  height: 1048px;
 }
