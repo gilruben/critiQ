@@ -1,41 +1,47 @@
 import React from 'react';
+import { ajax } from 'jquery';
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import '../../styles/create.css';
 
 const CreatePage = React.createClass({
   getInitialState() {
-    return { title: '', body: {}, category: 'paper', privacy: '', deadline: '', editorState: EditorState.createEmpty() };
+    return { title: '', body: false, category: 'paper', privacy: 'public', deadline: new Date().toJSON().slice(0, 10), userId: 1, active: true, editorState: EditorState.createEmpty() };
   },
   onChange(editorState) {
     return this.setState({ editorState });
   },
-  onDecorationClick(input) {
-    if (input === 'BOLD') {
-      this.onChange(
+  onDecorationClick(style) {
+    this.onChange(
       RichUtils.toggleInlineStyle(
         this.state.editorState,
-        'BOLD',
+        style,
       ));
-    } else if (input === 'ITALIC') {
-      this.onChange(
-      RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        'ITALIC',
-      ));
-    } else if (input === 'UNDERLINE') {
-      this.onChange(
-      RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        'UNDERLINE',
-      ));
+  },
+  onClick() {
+    const savedContent = this.state.editorState.getCurrentContent();
+    const documentBody = convertToRaw(savedContent);
+    this.setState({ body: documentBody });
+
+    if (this.state.body) {
+      this.postDocument();
     }
   },
-  onUploadClick() {
-    const document = this.state.editorState.getCurrentContent();
-    const rawData = convertToRaw(document);
-    console.log('rawData =>', rawData);
+  postDocument() {
+    ajax({
+      url: '/api/documents/',
+      type: 'POST',
+      data: {
+        title: this.state.title,
+        body: this.state.body,
+        category: this.state.category,
+        privacy: this.state.privacy,
+        deadline: this.state.deadline,
+        UserId: this.state.userId,
+        active: this.state.active,
+      },
+    });
   },
-  addTempState(inputName, event) {
+  addUploadState(inputName, event) {
     this.setState({ [inputName]: event.target.value });
   },
   render() {
@@ -44,29 +50,28 @@ const CreatePage = React.createClass({
     { name: 'Italic', style: 'ITALIC' },
     { name: 'Underline', style: 'UNDERLINE' },
     ];
-
     return (
       <div>
         <h1>Uploads</h1>
         <div>
           <form>
             <h3>Title:</h3>
-            <input type="text" placeholder="Enter a title" onChange={this.addTempState.bind(this, 'title')} />
+            <input type="text" placeholder="Enter a title" onChange={this.addUploadState.bind(this, 'title')} />
             <h3>Privacy Setting:</h3>
-            <select onChange={this.addTempState.bind(this, 'privacy')}>
+            <select onChange={this.addUploadState.bind(this, 'privacy')}>
               <option value="public">public</option>
               <option value="semi-private">semi-private</option>
               <option value="private">private</option>
             </select>
             <h3>Category</h3>
-            <select onChange={this.addTempState.bind(this, 'category')}>
+            <select onChange={this.addUploadState.bind(this, 'category')}>
               <option value="paper">paper</option>
               <option value="cover letter">cover letter</option>
               <option value="resume">resume</option>
               <option value="other writings">other writings</option>
             </select>
             <h3>Deadline:</h3>
-            <input name="date" type="date" onChange={this.addTempState.bind(this, 'deadline')} />
+            <input name="date" type="date" onChange={this.addUploadState.bind(this, 'deadline')} />
           </form>
           {decoration.map((val, idx) => {
             return (
@@ -83,7 +88,7 @@ const CreatePage = React.createClass({
             />
           </div>
         </div>
-        <button onClick={this.onUploadClick}>Upload</button>
+        <button onClick={this.onClick}>Upload</button>
       </div>
     );
   },

@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from '../store/store';
-import { LandingPage, Navbar, CreatePage } from './index';
+import { LandingPage, Navbar, BrowsePage, CreatePage } from './index';
 
 const Routes = () => (
   <Provider store={store}>
