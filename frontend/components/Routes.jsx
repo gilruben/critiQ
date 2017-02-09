@@ -12,7 +12,7 @@ const Routes = () => (
         <IndexRoute component={Navbar} />
         {/* <Route component={} path="account" /> */}
         <Route component={BrowsePage} path="browse" />
-        { <Route component={CreatePage} path="create" /> }
+        <Route component={CreatePage} path="create" /> 
         {/* <Route component={} path="document/:id" /> */}
         {/* <Route component={} path=":id" /> */}
       </Route>

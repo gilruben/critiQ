@@ -10,7 +10,7 @@ const CreatePage = React.createClass({
   onChange(editorState) {
     return this.setState({ editorState });
   },
-  onDecorationClick(style) {
+  onInlineStyleClick(style) {
     this.onChange(
       RichUtils.toggleInlineStyle(
         this.state.editorState,
@@ -45,7 +45,7 @@ const CreatePage = React.createClass({
     this.setState({ [inputName]: event.target.value });
   },
   render() {
-    const decoration = [
+    const inlineStyles = [
     { name: 'Bold', style: 'BOLD' },
     { name: 'Italic', style: 'ITALIC' },
     { name: 'Underline', style: 'UNDERLINE' },
@@ -65,19 +65,19 @@ const CreatePage = React.createClass({
             </select>
             <h3>Category</h3>
             <select onChange={this.addUploadState.bind(this, 'category')}>
-              <option value="paper">paper</option>
+              <option value="essay">essay</option>
               <option value="cover letter">cover letter</option>
               <option value="resume">resume</option>
-              <option value="other writings">other writings</option>
+              <option value="other">other</option>
             </select>
             <h3>Deadline:</h3>
             <input name="date" type="date" onChange={this.addUploadState.bind(this, 'deadline')} />
           </form>
-          {decoration.map((val, idx) => {
+          {inlineStyles.map((val, idx) => {
             return (
               <button
                 key={idx} 
-                onClick={this.onDecorationClick.bind(this, val.style)}>
+                onClick={this.onInlineStyleClick.bind(this, val.style)}>
                 { val.name }
               </button>
             )})}
