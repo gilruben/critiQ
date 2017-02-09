@@ -8,13 +8,23 @@ const CategoryContainer = React.createClass({
     this.props.getCategory();
   },
   render() {
-    const categories = ['essays', 'resume', 'cover letters', 'upcoming deadlines', 'other writing'];
+    const categories = ['resume', 'cover letters', 'upcoming deadlines', 'other writing'];
     return (
       <div className="categories">
         <ul>
-          {categories.map((ele, idx) => {
-            return <li key={idx}>{ele}</li>;
-          })}
+          <li className="dropdown">
+            <a href="javascript:void(0)" className="dropbutton">essays</a>
+            <div className="dropdown-content">
+              <a href="#">Jr. High</a>
+              <a href="#">Highschool</a>
+              <a href="#">College</a>
+            </div>
+          </li>
+          {
+            categories.map((ele, idx) => {
+              return <li key={idx}>{ele}</li>;
+            })
+          }
         </ul>
       </div>
     );

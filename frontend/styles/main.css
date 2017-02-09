@@ -90,6 +90,22 @@ nav ul li {
 
 
 /*-------Browse page--------*/
+.documents-list-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.individual-work {
+  height: 375px;
+  width: 250px;
+  background-color: #fafafa;
+}
+
+/*-------/Browse page--------*/
+
+
+
+/*-------Category component--------*/
 
 .categories ul {
   display: flex;
@@ -105,15 +121,36 @@ nav ul li {
   list-style: none;
 }
 
-.documents-list-div {
-  display: flex;
-  justify-content: space-around;
+.dropbutton {
+    color: black;
+    cursor: pointer;
 }
 
-.individual-work {
-  height: 375px;
-  width: 250px;
-  background-color: #fafafa;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #efefef;
+    box-shadow: 0px 8px 17px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-/*-------/Browse page--------*/
+.dropdown-content a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbutton {
+    background-color: white;
+}
+/*-------/Category component--------*/
