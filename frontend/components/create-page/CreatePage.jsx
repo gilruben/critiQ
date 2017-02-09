@@ -18,12 +18,14 @@ const CreatePage = React.createClass({
       ));
   },
   onClick() {
+    const savedContent = this.state.editorState.getCurrentContent();
+    const documentBody = convertToRaw(savedContent);
     ajax({
       url: '/api/documents/',
       type: 'POST',
       data: {
         title: this.state.title,
-        body: convertToRaw(this.state.editorState.getCurrentContent()),
+        body: documentBody,
         category: this.state.category,
         privacy: this.state.privacy,
         deadline: this.state.deadline,
