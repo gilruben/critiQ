@@ -1,10 +1,10 @@
 import React from 'react';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator, convertToRaw, convertFromRaw } from 'draft-js';
 import { Record } from 'immutable';
-import SelectedText from '../components/SelectedText';
-import '../styles/text-editor.css';
+import SelectedText from './SelectedText';
+import '../../styles/text-editor.css';
 
-const TextEditor = React.createClass({
+const DocumentContainer = React.createClass({
   getInitialState() {
     // Applies the SelectedText component to text that has been highlighted
     // and labeled as a COMMENT entity
@@ -55,7 +55,6 @@ const TextEditor = React.createClass({
     );
 
     this.setState({ editorState: newEditorState });
-    console.log(this.state.editorState);
   },
   resolveComment() {
     const editorState = this.state.editorState;
@@ -108,7 +107,7 @@ const TextEditor = React.createClass({
         <button onClick={this.createCommentEntity}>Comment</button>
         <button onClick={this.resolveComment}>Resolve</button>
         <button onClick={this.logState}>Log State</button>
-        <div className="editor" onClick={this.focus}>
+        <div className="editor-view" onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.handleChange}
@@ -120,4 +119,4 @@ const TextEditor = React.createClass({
   },
 });
 
-module.exports = TextEditor;
+module.exports = DocumentContainer;

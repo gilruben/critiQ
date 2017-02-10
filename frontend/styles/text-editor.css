@@ -8,7 +8,7 @@
 }
 
 
-.editor .public-DraftEditor-content {
+.editor-view .public-DraftEditor-content {
   max-height: 1048px;
   overflow: auto;
   border: 1px solid grey;
