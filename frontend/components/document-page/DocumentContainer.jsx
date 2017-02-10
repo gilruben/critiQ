@@ -100,6 +100,35 @@ const DocumentContainer = React.createClass({
   focus() {
     return this.editor.focus();
   },
+  handleReturn(e) {
+    const { editorState } = this.state;
+    const selectionState = editorState.getSelection();
+    const contentState = editorState.getCurrentContent();
+    const block = contentState.getBlockForKey(selectionState.getAnchorKey());
+
+    // If block type is a regular unstyled block, add a newline when enter is
+    // pressed
+    if (block.type === 'unstyled') {
+      // New contentState with newline added
+      const newContentState = Modifier.insertText(
+        contentState,
+        selectionState,
+        '\n',
+      );
+
+      // New editorState with newline added
+      const newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        'insert-characters',
+      );
+
+      this.handleChange(newEditorState);
+      return true;
+    }
+
+    return false;
+  },
   render() {
     return (
       <div id="document-page">
@@ -107,10 +136,10 @@ const DocumentContainer = React.createClass({
           <h1>Title</h1>
 
           <div className="editor-buttons">
-            <button onClick={this.getSelectionState}>Log Selection State</button>
+            {/* <button onClick={this.getSelectionState}>Log Selection State</button> */}
             <button onClick={this.createCommentEntity}>Comment</button>
             <button onClick={this.resolveComment}>Resolve</button>
-            <button onClick={this.logState}>Log State</button>
+            {/* <button onClick={this.logState}>Log State</button> */}
           </div>
 
           <div className="editor-view" onClick={this.focus}>
@@ -118,6 +147,7 @@ const DocumentContainer = React.createClass({
               editorState={this.state.editorState}
               onChange={this.handleChange}
               ref={ref => this.editor = ref}
+              handleReturn={this.handleReturn}
             />
           </div>
         </div>
