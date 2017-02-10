@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+#editor-content {
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  /*height: 1048px;*/
+}
+
+#editor-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.editor-view .public-DraftEditor-content {
+  max-height: 1048px;
+  overflow: auto;
+  border: 1px solid grey;
+  padding: 37px;
+  width: 810px;
+  height: 1048px;
+}
