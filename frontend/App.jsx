@@ -1,11 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import TextEditor from './containers/TextEditor';
+import Routes from './components/Routes';
+import './styles/main.css';
 
-const App = () => (
-  <div>
-    <TextEditor />
-  </div>
-);
-
-render(<App />, document.getElementById('app'));
+render(<Routes />, document.getElementById('app'));
