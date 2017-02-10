@@ -3,6 +3,7 @@ import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator, convertTo
 import { Record } from 'immutable';
 import SelectedText from './SelectedText';
 import '../../styles/text-editor.css';
+import '../../styles/document-page.css';
 
 const DocumentContainer = React.createClass({
   getInitialState() {
@@ -24,6 +25,7 @@ const DocumentContainer = React.createClass({
     const rawState = convertToRaw(contentState);
     const selectionState = editorState.getSelection();
 
+    // For testing pursposes
     console.log('RAW:', rawState);
     console.log('NON-RAW: ', convertFromRaw(rawState));
     console.log(editorState.getSelection());
@@ -100,19 +102,24 @@ const DocumentContainer = React.createClass({
   },
   render() {
     return (
-      <div id="content">
-        <h1>Draft.js Editor</h1>
+      <div id="document-page">
+        <div id="editor-content">
+          <h1>Title</h1>
 
-        <button onClick={this.getSelectionState}>Log Selection State</button>
-        <button onClick={this.createCommentEntity}>Comment</button>
-        <button onClick={this.resolveComment}>Resolve</button>
-        <button onClick={this.logState}>Log State</button>
-        <div className="editor-view" onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.handleChange}
-            ref={ref => this.editor = ref}
-          />
+          <div className="editor-buttons">
+            <button onClick={this.getSelectionState}>Log Selection State</button>
+            <button onClick={this.createCommentEntity}>Comment</button>
+            <button onClick={this.resolveComment}>Resolve</button>
+            <button onClick={this.logState}>Log State</button>
+          </div>
+
+          <div className="editor-view" onClick={this.focus}>
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.handleChange}
+              ref={ref => this.editor = ref}
+            />
+          </div>
         </div>
       </div>
     );
