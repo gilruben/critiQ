@@ -21,7 +21,7 @@ const MyAccount = React.createClass({
     });
   },
   render() {
-    console.log(this.state.documents.body);
+    console.log(this.state);
     return (
       <div>
         <div>

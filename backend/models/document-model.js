@@ -42,16 +42,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
       allowNull: false,
-    },
-    reviewerList: {
-      type: DataTypes.JSON,
-      validate: {
-        isObject: (val) => {
-          if (typeof val !== 'object') {
-            throw new TypeError('body field must be an object/array!');
-          }
-        },
-      },
+    // },
+    // reviewerList: {
+    //   type: DataTypes.JSON,
+    //   validate: {
+    //     isObject: (val) => {
+    //       if (typeof val !== 'object') {
+    //         throw new TypeError('body field must be an object/array!');
+    //       }
+    //     },
+    //   },
     },
   }, {
     classMethods: {
