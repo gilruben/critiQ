@@ -100,7 +100,7 @@ const DocumentContainer = React.createClass({
   focus() {
     return this.editor.focus();
   },
-  handleReturn(e) {
+  handleReturn() {
     const { editorState } = this.state;
     const selectionState = editorState.getSelection();
     const contentState = editorState.getCurrentContent();
