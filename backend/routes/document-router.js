@@ -54,6 +54,7 @@ const documentCreate = (req, res) => {
 
 const getSingleDocument = (req, res) => {
   const id = req.params.id;
+
   Document.findById(id, {
     include: [Comment],
   })
