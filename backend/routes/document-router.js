@@ -43,6 +43,7 @@ const getAllDocuments = (req, res) => {
 
 const documentCreate = (req, res) => {
   const documentData = req.body;
+
   Document.create(documentData)
   .then((doc) => {
     res.send(doc);
