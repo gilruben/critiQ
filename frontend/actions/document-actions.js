@@ -9,7 +9,7 @@ const getDocument = payload => ({
 
 export const getDocumentAsync = id => (dispatch) => {
   ajax({
-    url: `/api/document/${id}`,
+    url: `/api/documents/${id}`,
     type: 'GET'
   })
   .done((data) => {
