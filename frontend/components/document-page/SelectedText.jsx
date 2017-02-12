@@ -11,4 +11,4 @@ const SelectedText = (props) => {
   return <span style={style}>{props.children}</span>;
 };
 
-module.exports = SelectedText;
+export default SelectedText;
