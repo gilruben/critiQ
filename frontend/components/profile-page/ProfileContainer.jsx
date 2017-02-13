@@ -1,15 +1,9 @@
 import React from 'react';
-import { ajax } from 'jquery';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const ProfilePage = React.createClass({
+const ProfileContainer = React.createClass({
   componentDidMount() {
-    ajax({
-      url: `/api/`,
-      type: 'GET',
-      success: (() => {
-
-      }),
-    });
   },
   render() {
     return (
@@ -18,4 +12,12 @@ const ProfilePage = React.createClass({
   },
 });
 
-export default ProfilePage;
+const mapState = state => (
+  { profile: state.profile }
+);
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getUser: getProfileData }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
