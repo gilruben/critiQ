@@ -155,8 +155,6 @@ const DocumentContainer = React.createClass({
     return false;
   },
   render() {
-    // console.log(this.props.document.body);
-    // console.log((this.props.document.body) ? convertFromRaw(this.props.document.body) : 'error');
     return (
       <div id="document-page">
         <div id="editor-content">
@@ -166,7 +164,6 @@ const DocumentContainer = React.createClass({
             {/* <button onClick={this.getSelectionState}>Log Selection State</button> */}
             <button onClick={this.createCommentEntity}>Comment</button>
             <button onClick={this.resolveComment}>Resolve</button>
-            {/* <button onClick={this.logState}>Log State</button> */}
           </div>
 
           <div className="editor-view" onClick={this.focus}>
