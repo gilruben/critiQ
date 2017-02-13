@@ -1,22 +1,52 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator, convertToRaw, convertFromRaw } from 'draft-js';
 import { Record } from 'immutable';
+import { getDocumentAsync } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
 import '../../styles/text-editor.css';
 import '../../styles/document-page.css';
 
 const DocumentContainer = React.createClass({
   getInitialState() {
+    const decorator = this.getDecorator();
+
+    // Body of document in state
+    const body = this.props.document.body;
+
+    // Create editorState with document body in state, if it exist, else
+    // create empty editorState
+    const editorState = body ? EditorState.createWithContent(convertFromRaw(body), decorator) :
+      EditorState.createEmpty(decorator);
+
+    return { editorState };
+  },
+  componentDidMount() {
+    const id = this.props.params.id;
+
+    // dispatches a thunk which performs an ajax call to get the proper document
+    this.props.getDocument(id);
+  },
+  componentWillReceiveProps(props) {
+    if (props.document.body) {
+      const decorator = this.getDecorator();
+      const body = props.document.body;
+      const contentState = convertFromRaw(body);
+      const editorState = EditorState.createWithContent(contentState, decorator);
+
+      this.setState({ editorState });
+    }
+  },
+  getDecorator() {
     // Applies the SelectedText component to text that has been highlighted
     // and labeled as a COMMENT entity
-    const decorator = new CompositeDecorator([
+    return new CompositeDecorator([
       {
         strategy: this.findCommentStrategy,
-        component: SelectedText,
-      },
+        component: SelectedText
+      }
     ]);
-
-    return { editorState: EditorState.createEmpty(decorator) };
   },
   getSelectionState() {
     const state = this.state;
@@ -80,11 +110,6 @@ const DocumentContainer = React.createClass({
 
     this.setState({ editorState: newEditorState });
   },
-  logState() {
-    const editorState = this.state.editorState;
-
-    console.log(convertToRaw(editorState.getCurrentContent()));
-  },
   findCommentStrategy(contentBlock, callback, contentState) {
     contentBlock.findEntityRanges((character) => {
       const entityKey = character.getEntity();
@@ -130,6 +155,8 @@ const DocumentContainer = React.createClass({
     return false;
   },
   render() {
+    // console.log(this.props.document.body);
+    // console.log((this.props.document.body) ? convertFromRaw(this.props.document.body) : 'error');
     return (
       <div id="document-page">
         <div id="editor-content">
@@ -153,7 +180,15 @@ const DocumentContainer = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 });
 
-module.exports = DocumentContainer;
+const mapStateToProps = state => ({
+  document: state.document
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getDocument: getDocumentAsync }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DocumentContainer);
