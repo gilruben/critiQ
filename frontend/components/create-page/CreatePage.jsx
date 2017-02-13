@@ -5,9 +5,9 @@ import '../../styles/create.css';
 
 const CreatePage = React.createClass({
   getInitialState() {
-    // The date variable holds the current date in the format required for the document model.
-    const date = new Date().toJSON().slice(0, 10);
-    return { title: '', category: 'essay', privacy: 'public', deadline: date, userId: 1, active: true, editorState: EditorState.createEmpty() };
+    // Today's date in the format required for the document model.
+    const dateToday = new Date().toJSON().slice(0, 10);
+    return { title: '', category: 'essay', privacy: 'public', deadline: dateToday, userId: 1, active: true, editorState: EditorState.createEmpty() };
   },
   onChange(editorState) {
     return this.setState({ editorState });
