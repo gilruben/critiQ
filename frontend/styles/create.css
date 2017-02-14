@@ -1,13 +1,110 @@
 .page-container{
 	display: flex;
 	flex-direction: row-reverse;
-	margin-top: 50px;
+	padding-top: 50px;
+  background-color: #efefef;
+}
+
+.upload-container{
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  width: 155px;
+}
+
+.upload-container button{
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #fd2e30;
+  box-shadow: 4px 4px 5px #cecece;
+  color: white;
+  border: 0; 
+}
+
+.modal{
+  position: absolute;
+  /*background-color: rgba(253, 70, 72, 0.15);*/
+  height: 100%;
+  width: 100%;
+  border: 1px solid #ccc;
+  overflow: auto;
+  WebkitOverflowScrolling: touch;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
 }
 
 .form-container{
-	margin-right: 40px;
-	padding-right: 40px;
-	padding-left: 60px;
+  justify-content: center;
+  margin-top: 10%;
+	padding-left: 40%;
+  color: #fd2e30;
+}
+
+.form-container h3{
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.inputBox{
+  height: 50px;
+  width: 200px;
+  border-color: transparent;
+  border-bottom: 3px solid darkgrey;
+  font-size: 20px;
+}
+
+.inputBox:focus{
+  outline: none;
+  color: darkgrey;
+}
+
+.selectButton{
+  background-color: white;
+}
+
+.selectButton:focus{
+  outline: none;
+}
+
+.formButton-container{
+  margin-top: 10px;
+  margin-right: 60px;
+  display:inline-block;
+}
+
+.form-button{
+  font-size: 20px;
+  border: 1px darkgrey;
+  border-radius: 5px;
+  color: white;
+  hieght: 50px;
+  width: 150px;
+  padding: 5px;
+  background-color: #fd2e30;
+}
+
+.instyleButtons-container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 810px;
+  background-color: #fafafa;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding: 10px 0 10px 0;
+}
+
+.instyleButton{
+  outline: none;
+  background-color: #fafafa;
+  border: 1px #e4e4e4;
+  font-size: 15px;
+  color: #747474;
+}
+
+.instyleButton:hover{
+  cursor: pointer;
 }
 
 .editor-container{
@@ -20,32 +117,10 @@
 .editor{
 	max-height: 1048px;
   overflow: auto;
-  border: 1px solid grey;
+  background-color: white;
+  box-shadow: 10px 10px 5px #cecece;
   padding: 37px;
   width: 810px;
   height: 1048px;
-}
-
-.uploadButton-container{
-	display: flex;
-  flex-direction: row;
-	justify-content: center;
-	margin-bottom: 5px;
-}
-
-.instyleButtons-container{
-	display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
-
-.instyleButton{
-	outline: none;
-	background-color: white;
-	border: 1px solid grey;
-}
-
-.instyleButton:hover{
-	cursor: pointer;
 }
 
