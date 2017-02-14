@@ -1,6 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 /*-------Navbar--------*/
@@ -32,30 +33,62 @@ nav ul li {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #fafafa;
+  background-color: #F55D4B;
   height: 100vh;
 }
 
+.landing-header {
+  font-family: 'Amatic SC', cursive;
+  font-size: 10rem;
+  margin: 0;
+  color: white;
+}
 
+.landing-motto {
+  color: white;
+}
 
 .sign-in {
   display: flex;
   flex-direction: column;
-  background-color: #efefef;
-  height: 300px;
-  width: 400px;
-  padding: 0 20px 0 20px;
+  justify-content: space-between;
+  background-color: #fafafa;
+  width: 500px;
+  border-radius: 3px;
+}
+
+.sign-in h1 {
+}
+
+.please-login {
+  font-weight: 300;
+  font-size: .9em;
 }
 
 .sign-in form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 150px;
+  justify-content: space-between;
+  height: 200px;
+}
+
+.sign-in-bottom {
+  display: flex;
+  justify-content: space-between;
+  background-color: #efefef;
+}
+
+.sign-in-bottom .sign-in-button {
+  height: inherit;
+  width: 100px;
+  background-color: #4ED99C;
+  color: white;
+  border: none;
+  font-size: 1.2em;
 }
 
 .sign-in span {
-  color: firebrick;
+  color: #F55D4B;
 }
 
 /*-------Landing page--------*/
@@ -65,25 +98,71 @@ nav ul li {
 /*-------Signup page--------*/
 .sign-up {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: #fafafa;
 }
 
+.sign-up-header {
+  font-weight: 300;
+  font-size: 2.5em;
+  color: #F55D4B;
+}
+
 .sign-up form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 300px;
-  width: 600px;
-  background-color: #efefef;
+  height: 400px;
+  width: 400px;
+  margin-top: 30px;
+}
+
+.sign-up-input {
+  border: none;
+  border-bottom: 3px solid #6D7982;
+  background-color: #fafafa;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  font-size: 1.75em;
+  font-weight: 300;
+  color: #6D7982;
+  transition-duration: .5s;
+}
+
+.sign-up-input:focus {
+  border-bottom: 3px solid #4ED99C;
+  outline: none;
 }
 
 .student {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.student-question {
+  font-size: 1.2em;
+  color: #505a61;
+}
+
+.sign-up .sign-up-button {
+  align-self: flex-end;
+  margin-top: 20px;
+  padding: 12px 0 15px 0;
+  width: 125px;
+  font-size: 1.75em;
+  font-weight: 300;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  background-color: #4ED99C;
+  cursor: pointer;
+}
+.sign-up .sign-up-button:focus {
+  outline: none;
 }
 /*-------/Signup page--------*/
 
@@ -99,6 +178,7 @@ nav ul li {
   height: 375px;
   width: 250px;
   background-color: #fafafa;
+  cursor: pointer;
 }
 
 /*-------/Browse page--------*/
@@ -134,14 +214,14 @@ nav ul li {
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content .category-div {
     color: black;
     padding: 10px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown-content a:hover {
+.dropdown-content .category-div:hover {
   background-color: white;
 }
 
