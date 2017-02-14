@@ -10,16 +10,16 @@ const getAllDocuments = (req, res) => {
   const sequelizeQuery = {
     where: {
       active: true,
-      privacy: 'public',
+      privacy: 'public'
     },
     include: [
       {
         model: User,
         attributes: {
-          exclude: ['password', 'email'],
-        },
-      },
-    ],
+          exclude: ['password', 'email']
+        }
+      }
+    ]
   };
 
   // if category exists in URL query it will place category:category directly into query.
@@ -57,7 +57,7 @@ const getSingleDocument = (req, res) => {
   const id = req.params.id;
 
   Document.findById(id, {
-    include: [Comment],
+    include: [Comment]
   })
   .then((user) => {
     res.send(user);
@@ -70,9 +70,9 @@ const getSingleDocument = (req, res) => {
 const editSingleDocument = (req, res) => {
   Document.update(req.body, {
     where: {
-      id: req.params.id,
+      id: req.params.id
     },
-    returning: true,
+    returning: true
   })
   .then((doc) => {
     const documentBody = doc[1];
@@ -89,8 +89,8 @@ const editSingleDocument = (req, res) => {
 const deleteSingleDocument = (req, res) => {
   Document.destroy({
     where: {
-      id: req.params.id,
-    },
+      id: req.params.id
+    }
   })
   .then((doc) => {
     res.send({ documentsDeleted: doc });
