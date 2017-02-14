@@ -10,6 +10,16 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #F55D4B;
+  color: white;
+}
+
+.brand {
+  font-size: 2.5em;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
+  padding-bottom: 8px;
+  margin-left: 50px;
 }
 
 nav ul {
@@ -17,10 +27,12 @@ nav ul {
   width: 150px;
   justify-content: space-between;
   padding: 0;
+  margin-right: 50px;
 }
 
 nav ul li {
   list-style: none;
+  font-size: 1.2em;
 }
 
 /*-------/Navbar--------*/
@@ -69,13 +81,25 @@ nav ul li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 200px;
+  height: 300px;
 }
 
 .sign-in-bottom {
   display: flex;
+  align-items: center;
+  height: 80px;
   justify-content: space-between;
   background-color: #efefef;
+}
+
+.sign-in-bottom p {
+  padding-left: 20px;
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+.sign-in-bottom span {
+  font-weight: 600;
 }
 
 .sign-in-bottom .sign-in-button {
@@ -84,11 +108,13 @@ nav ul li {
   background-color: #4ED99C;
   color: white;
   border: none;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  font-weight: 300;
 }
 
-.sign-in span {
+.sign-in p span {
   color: #F55D4B;
+  font-size: 1.4em;
 }
 
 /*-------Landing page--------*/
@@ -169,16 +195,76 @@ nav ul li {
 
 
 /*-------Browse page--------*/
+.browse-container {
+  background-color: #F6F6F6;
+  height: 100vh;
+}
+
 .documents-list-div {
   display: flex;
   justify-content: space-around;
 }
 
 .individual-work {
-  height: 375px;
-  width: 250px;
-  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+  width: 275px;
+  background-color: white;
   cursor: pointer;
+  padding: 15px 15px 0 15px;
+  box-shadow: 0 1px 4px rgba(1,1,1,.15);
+}
+
+.individual-work:hover {
+  box-shadow: 0 1px 5px rgba(1,1,1,.3)
+}
+
+.individual-work h2 {
+  margin-top: 0;
+  line-height: 1.1;
+  color: #333333;
+}
+
+.individual-work-header-div {
+  height: 100px;
+  border-bottom: 1px solid #efefef;
+}
+
+.cat-user {
+  display: flex;
+  align-items: center;
+  color: #b2b2b2;
+  font-size: 1.1em;
+}
+
+.cat-user span{
+  margin: 0 5px 0 5px;
+}
+
+.individual-work-name {
+  font-weight: 300;
+}
+
+.snippet {
+  height: 175px;
+  margin: 0;
+  color: #747474;
+}
+
+.dead-rev {
+  display: flex;
+  border-top: 1px solid #efefef;
+}
+
+.dead-rev p {
+  margin: 0;
+}
+
+
+.rev {
+  border-left: 1px solid #efefef;
 }
 
 /*-------/Browse page--------*/
@@ -194,7 +280,7 @@ nav ul li {
   width: inherit;
   background-color: #efefef;
   padding-left: 0;
-  margin: 0;
+  margin: 0 0 50px 0;
 }
 
 .categories ul li {
@@ -229,8 +315,7 @@ nav ul li {
     display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbutton {
-    background-color: white;
+    /*background-color: white;*/
 }
 /*-------/Category component--------*/
