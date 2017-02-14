@@ -10,8 +10,9 @@ const BrowseContainer = React.createClass({
     this.props.getDocuments();
   },
   render() {
+    console.log(this.props)
     return (
-      <div>
+      <div className="browse-container">
         <Categories getDocuments={this.props.getDocuments} />
         <div className="documents-list-div">
           {
