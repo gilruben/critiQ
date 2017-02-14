@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator, convertToRaw, convertFromRaw } from 'draft-js';
-import { Record } from 'immutable';
+import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
+  SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
 import { getDocumentAsync } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
 import '../../styles/text-editor.css';
@@ -72,7 +72,14 @@ const DocumentContainer = React.createClass({
     const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
-    // New contentstate with comment entitiy attached
+    console.log('ANCHOR_KEY:', selectionState.getAnchorKey());
+    console.log('ANCHOR_OFFSET:', selectionState.getAnchorOffset());
+    console.log('FOCUS_KEY:', selectionState.getFocusKey());
+    console.log('FOCUS_OFFSET:', selectionState.getFocusOffset());
+    console.log('IS_BACKWARD:', selectionState.getIsBackward());
+    console.log('HAS_FOCUS', selectionState.getHasFocus());
+
+    // New contentstate with comment entity attached
     const contentStateWithComment = Modifier.applyEntity(
       contentState,
       selectionState,
@@ -154,6 +161,45 @@ const DocumentContainer = React.createClass({
 
     return false;
   },
+  commentTest() {
+    const anchorKey = '329t8';
+    const anchorOffset = 379;
+    const focusKey = '329t8';
+    const focusOffset = 410;
+    const isBackward = false;
+    const hasFocus = true;
+    const editorState = this.state.editorState;
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+    const CommentSelectionState = new SelectionState({
+      anchorKey,
+      anchorOffset,
+      focusKey,
+      focusOffset,
+      isBackward,
+      hasFocus
+    });
+
+    console.log(CommentSelectionState.getFocusKey());
+
+    // New contentstate with comment entity attached
+    const contentStateWithComment = Modifier.applyEntity(
+      contentState,
+      CommentSelectionState,
+      entityKey,
+    );
+
+    // New editorstate with comment entity attached
+    const newEditorState = EditorState.push(
+      editorState,
+      contentStateWithComment,
+      'apply-entity',
+    );
+
+    this.setState({ editorState: newEditorState });
+  },
   render() {
     return (
       <div id="document-page">
@@ -164,6 +210,7 @@ const DocumentContainer = React.createClass({
             {/* <button onClick={this.getSelectionState}>Log Selection State</button> */}
             <button onClick={this.createCommentEntity}>Comment</button>
             <button onClick={this.resolveComment}>Resolve</button>
+            <button onClick={this.commentTest}>Comment Test</button>
           </div>
 
           <div className="editor-view" onClick={this.focus}>
