@@ -1,22 +1,52 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator, convertToRaw, convertFromRaw } from 'draft-js';
-import { Record } from 'immutable';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
+  SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
+import { getDocumentAsync } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
 import '../../styles/text-editor.css';
 import '../../styles/document-page.css';
 
 const DocumentContainer = React.createClass({
   getInitialState() {
+    const decorator = this.getDecorator();
+
+    // Body of document in state
+    const body = this.props.document.body;
+
+    // Create editorState with document body in state, if it exist, else
+    // create empty editorState
+    const editorState = body ? EditorState.createWithContent(convertFromRaw(body), decorator) :
+      EditorState.createEmpty(decorator);
+
+    return { editorState };
+  },
+  componentDidMount() {
+    const id = this.props.params.id;
+
+    // dispatches a thunk which performs an ajax call to get the proper document
+    this.props.getDocument(id);
+  },
+  componentWillReceiveProps(props) {
+    if (props.document.body) {
+      const decorator = this.getDecorator();
+      const body = props.document.body;
+      const contentState = convertFromRaw(body);
+      const editorState = EditorState.createWithContent(contentState, decorator);
+
+      this.setState({ editorState });
+    }
+  },
+  getDecorator() {
     // Applies the SelectedText component to text that has been highlighted
     // and labeled as a COMMENT entity
-    const decorator = new CompositeDecorator([
+    return new CompositeDecorator([
       {
         strategy: this.findCommentStrategy,
-        component: SelectedText,
-      },
+        component: SelectedText
+      }
     ]);
-
-    return { editorState: EditorState.createEmpty(decorator) };
   },
   getSelectionState() {
     const state = this.state;
@@ -42,7 +72,14 @@ const DocumentContainer = React.createClass({
     const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
-    // New contentstate with comment entitiy attached
+    console.log('ANCHOR_KEY:', selectionState.getAnchorKey());
+    console.log('ANCHOR_OFFSET:', selectionState.getAnchorOffset());
+    console.log('FOCUS_KEY:', selectionState.getFocusKey());
+    console.log('FOCUS_OFFSET:', selectionState.getFocusOffset());
+    console.log('IS_BACKWARD:', selectionState.getIsBackward());
+    console.log('HAS_FOCUS', selectionState.getHasFocus());
+
+    // New contentstate with comment entity attached
     const contentStateWithComment = Modifier.applyEntity(
       contentState,
       selectionState,
@@ -79,11 +116,6 @@ const DocumentContainer = React.createClass({
     );
 
     this.setState({ editorState: newEditorState });
-  },
-  logState() {
-    const editorState = this.state.editorState;
-
-    console.log(convertToRaw(editorState.getCurrentContent()));
   },
   findCommentStrategy(contentBlock, callback, contentState) {
     contentBlock.findEntityRanges((character) => {
@@ -129,6 +161,45 @@ const DocumentContainer = React.createClass({
 
     return false;
   },
+  commentTest() {
+    const anchorKey = '329t8';
+    const anchorOffset = 379;
+    const focusKey = '329t8';
+    const focusOffset = 410;
+    const isBackward = false;
+    const hasFocus = true;
+    const editorState = this.state.editorState;
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+    const CommentSelectionState = new SelectionState({
+      anchorKey,
+      anchorOffset,
+      focusKey,
+      focusOffset,
+      isBackward,
+      hasFocus
+    });
+
+    console.log(CommentSelectionState.getFocusKey());
+
+    // New contentstate with comment entity attached
+    const contentStateWithComment = Modifier.applyEntity(
+      contentState,
+      CommentSelectionState,
+      entityKey,
+    );
+
+    // New editorstate with comment entity attached
+    const newEditorState = EditorState.push(
+      editorState,
+      contentStateWithComment,
+      'apply-entity',
+    );
+
+    this.setState({ editorState: newEditorState });
+  },
   render() {
     return (
       <div id="document-page">
@@ -139,7 +210,7 @@ const DocumentContainer = React.createClass({
             {/* <button onClick={this.getSelectionState}>Log Selection State</button> */}
             <button onClick={this.createCommentEntity}>Comment</button>
             <button onClick={this.resolveComment}>Resolve</button>
-            {/* <button onClick={this.logState}>Log State</button> */}
+            <button onClick={this.commentTest}>Comment Test</button>
           </div>
 
           <div className="editor-view" onClick={this.focus}>
@@ -153,7 +224,15 @@ const DocumentContainer = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 });
 
-module.exports = DocumentContainer;
+const mapStateToProps = state => ({
+  document: state.document
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getDocument: getDocumentAsync }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DocumentContainer);

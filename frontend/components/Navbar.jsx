@@ -8,15 +8,18 @@ const Navbar = React.createClass({
   },
   render() {
     return (
-      <nav>
-        <div className="brand">Critiq</div>
-        <ul>
-          <li onClick={this.handleClick}>Browse</li>
-          <li onClick={this.handleClick}>Account</li>
-        </ul>
-      </nav>
+      <div>
+        <nav>
+          <div className="brand">Critiq</div>
+          <ul>
+            <li onClick={this.handleClick}>Browse</li>
+            <li onClick={this.handleClick}>Account</li>
+          </ul>
+        </nav>
+        {this.props.children}
+      </div>
     );
-  },
+  }
 });
 
 export default withRouter(Navbar);

@@ -5,8 +5,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
-      },
+        notEmpty: true
+      }
     },
     body: {
       type: DataTypes.JSON,
@@ -16,33 +16,33 @@ module.exports = function(sequelize, DataTypes) {
           if (typeof val !== 'object' || Array.isArray(val)) {
             throw new TypeError('body field must be an object!');
           }
-        },
-      },
+        }
+      }
     },
     category: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
-      },
+        notEmpty: true
+      }
     },
     privacy: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
-        isIn: [['public', 'private']],
-      },
+        isIn: [['public', 'private']]
+      }
     },
     deadline: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
+      allowNull: false
     },
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   }, {
     classMethods: {
       associate: function(models) {
