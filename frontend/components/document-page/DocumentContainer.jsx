@@ -11,16 +11,17 @@ import '../../styles/document-page.css';
 const DocumentContainer = React.createClass({
   getInitialState() {
     const decorator = this.getDecorator();
+    const document = this.props.document;
 
     // Body of document in state
-    const body = this.props.document.body;
+    const { title, body } = document;
 
     // Create editorState with document body in state, if it exist, else
     // create empty editorState
     const editorState = body ? EditorState.createWithContent(convertFromRaw(body), decorator) :
       EditorState.createEmpty(decorator);
 
-    return { editorState };
+    return { title, editorState };
   },
   componentDidMount() {
     const id = this.props.params.id;
@@ -29,13 +30,14 @@ const DocumentContainer = React.createClass({
     this.props.getDocument(id);
   },
   componentWillReceiveProps(props) {
-    if (props.document.body) {
+    const document = props.document
+    if (document.body) {
       const decorator = this.getDecorator();
-      const body = props.document.body;
+      const { title, body } = document;
       const contentState = convertFromRaw(body);
       const editorState = EditorState.createWithContent(contentState, decorator);
 
-      this.setState({ editorState });
+      this.setState({ title, editorState });
     }
   },
   getDecorator() {
@@ -201,10 +203,13 @@ const DocumentContainer = React.createClass({
     this.setState({ editorState: newEditorState });
   },
   render() {
+    const state = this.state;
+    const { title } = state;
+
     return (
       <div id="document-page">
         <div id="editor-content">
-          <h1>Title</h1>
+          <h1>{title}</h1>
 
           <div className="editor-buttons">
             {/* <button onClick={this.getSelectionState}>Log Selection State</button> */}
