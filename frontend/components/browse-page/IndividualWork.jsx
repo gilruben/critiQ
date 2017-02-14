@@ -8,14 +8,21 @@ const IndividualWork = React.createClass({
     this.props.router.push(`/document/${id}`);
   },
   render() {
-    console.log(this.props)
     return (
       <div className="individual-work" onClick={this.handleClick}>
-        <h2>{this.props.document.title}</h2>
-        <h3>{this.props.document.User.username}</h3>
-        <p>{this.props.document.deadline}</p>
-        <p># of reviewers</p>
-        {/* <p>snippet goes here: {console.log(this.props.document)}</p> */}
+        <div className="individual-work-header-div">
+          <h2>{this.props.document.title}</h2>
+        </div>
+        <div className="cat-user">
+          <p className="individual-work-category">{this.props.document.category}</p>
+          <span>•</span>
+          <p className="individual-work-name">{this.props.document.User.username}</p>
+        </div>
+        <p className="snippet">snippet goes here: </p>
+        <div className="dead-rev">
+          <p className="deadline">deadline: {this.props.document.deadline}</p>
+          <p className="rev"># of reviewers</p>
+        </div>
       </div>
     );
   },
