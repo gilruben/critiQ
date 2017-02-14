@@ -14,7 +14,7 @@ const Navbar = React.createClass({
         {this.props.children}
       </div>
     );
-  },
+  }
 });
 
 export default Navbar;
