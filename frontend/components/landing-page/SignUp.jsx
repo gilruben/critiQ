@@ -12,9 +12,9 @@ const SignUp = React.createClass({
           <div className="student">
             <p className="student-question" >Are you a student?</p>
             <input type="radio" name="student" id="yes" value="yes" />
-            <label for="yes">Yes</label>
+            <label htmlFor="yes">Yes</label>
             <input type="radio" name="student" id="no" value="no" />
-            <label for="no">No</label>
+            <label htmlFor="no">No</label>
             <select>
               <option value="middle">Middle school</option>
               <option value="high">High school</option>
