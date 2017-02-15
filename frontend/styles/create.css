@@ -23,7 +23,6 @@
 
 .modal{
   position: absolute;
-  /*background-color: rgba(253, 70, 72, 0.15);*/
   height: 100%;
   width: 100%;
   border: 1px solid #ccc;
