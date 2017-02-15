@@ -363,8 +363,4 @@ nav ul li {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
-.dropdown:hover .dropbutton {
-    /*background-color: white;*/
-}
 /*-------/Category component--------*/
