@@ -22,7 +22,7 @@ const deleteUserAccount = payload => ({
 export const getUserAccountAsync = () => (dispatch) => {
   ajax({
     url: '/api/users/:id',
-    type: 'GET',
+    type: 'GET'
   })
   .done((userData) => {
     dispatch(getUserAccount(userData));
@@ -32,7 +32,7 @@ export const getUserAccountAsync = () => (dispatch) => {
 export const editUserAccountAsync = data => (dispatch) => {
   ajax({
     url: '/api/users/:id',
-    type: 'PUT',
+    type: 'PUT'
     data,
   })
   .done((userData) => {
@@ -43,7 +43,7 @@ export const editUserAccountAsync = data => (dispatch) => {
 export const deleteUserAccountAsync = () => (dispatch) => {
   ajax({
     url: '/api/users/:id',
-    type: 'DELETE',
+    type: 'DELETE'
   })
   .done((userData) => {
     dispatch(deleteUserAccount(userData));
