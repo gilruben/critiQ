@@ -6,17 +6,17 @@ export const DELETE_USER_ACCOUNT = 'DELETE_USER_ACCOUNT';
 
 const getUserAccount = payload => ({
   type: GET_USER_ACCOUNT,
-  data: payload,
+  data: payload
 });
 
 const editUserAccount = payload => ({
   type: EDIT_USER_ACCOUNT,
-  data: payload,
+  data: payload
 });
 
 const deleteUserAccount = payload => ({
-  type: DELETE_USER_ACCOUNT,
-  data: payload,
+  type: DELETE_USER_ACCOUNT
+  data: payload
 });
 
 export const getUserAccountAsync = () => (dispatch) => {
@@ -29,10 +29,11 @@ export const getUserAccountAsync = () => (dispatch) => {
   });
 };
 
-export const editUserAccountAsync = () => (dispatch) => {
+export const editUserAccountAsync = data => (dispatch) => {
   ajax({
     url: '/api/users/:id',
     type: 'PUT',
+    data,
   })
   .done((userData) => {
     dispatch(editUserAccount(userData));
