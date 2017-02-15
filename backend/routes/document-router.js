@@ -57,7 +57,17 @@ const getSingleDocument = (req, res) => {
   const id = req.params.id;
 
   Document.findById(id, {
-    include: [Comment]
+    include: [
+      {
+        model: Comment,
+        include: {
+          model: User,
+          attributes: {
+            exclude: ['password', 'email', 'level']
+          }
+        }
+      }
+    ]
   })
   .then((user) => {
     res.send(user);
