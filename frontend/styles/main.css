@@ -49,6 +49,10 @@ nav ul li {
   height: 100vh;
 }
 
+.landing-page img {
+  width: 700px;
+}
+
 .landing-header {
   font-family: 'Amatic SC', cursive;
   font-size: 10rem;

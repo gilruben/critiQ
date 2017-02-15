@@ -6,7 +6,7 @@ const LandingPage = React.createClass({
     return (
       <div className="landing-page">
         <div className="title-div">
-          <h1 className="landing-header">Critiq</h1>
+          <img src="http://i.imgur.com/M1mRZc5.png" />
           <h3 className="landing-motto">Make your first draft, your final</h3>
         </div>
         <SignIn />
