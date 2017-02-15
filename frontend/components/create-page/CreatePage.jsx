@@ -138,7 +138,8 @@ const CreatePage = React.createClass({
               return (
                 <button
                   key={idx}
-                  className="instyleButton"
+                  id="instyleButton"
+                  className={`indiv-instyle-button-${val.name}`}
                   onClick={this.onInlineStyleClick.bind(this, val.style)}
                 >
                   { val.name }
@@ -150,7 +151,8 @@ const CreatePage = React.createClass({
               return (
                 <button
                   key={idx} 
-                  className="instyleButton"
+                  id="instyleButton"
+                  className={`indiv-blocktype-button-${val.name}`}
                   onClick={this.onBlockTypeClick.bind(this, val.style)}
                 >
                   { val.name }
