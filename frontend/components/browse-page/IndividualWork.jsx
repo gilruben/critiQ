@@ -18,7 +18,7 @@ const IndividualWork = React.createClass({
           <span>•</span>
           <p className="individual-work-name">{this.props.document.User.username}</p>
         </div>
-        <p className="snippet">snippet goes here: </p>
+        <p className="snippet">{this.props.document.body.blocks[0].text}</p>
         <div className="dead-rev">
           <p className="deadline">deadline: {this.props.document.deadline}</p>
           <p className="rev"># of reviewers</p>
