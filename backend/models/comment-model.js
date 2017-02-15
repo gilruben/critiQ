@@ -8,33 +8,33 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    anchor_key: {
+    anchorKey: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    anchor_offset: {
+    anchorOffset: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    focus_key: {
+    focusKey: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    focus_offset: {
+    focusOffset: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    is_backward: {
+    isBackward: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },
-    has_focus: {
+    hasFocus: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }

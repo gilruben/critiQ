@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 const Navbar = React.createClass({
   handleClick(e) {
     const link = e.target.innerHTML;
+    
     this.props.router.push(`/${link}`);
   },
   render() {
