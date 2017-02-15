@@ -97,31 +97,33 @@ const CreatePage = React.createClass({
               <input className="inputBox" type="text" placeholder="Enter a title" onChange={this.addUploadState.bind(this, 'title')} />
               <h3>Privacy Setting</h3>
               <select className="selectButton" onChange={this.addUploadState.bind(this, 'privacy')}>
-                {privacyLevels.map((val, idx) => {
-                  return (
-                    <option
-                      key={idx}
-                      value={val.value}
-                    >
-                      {val.value}
-                    </option>
-                  );
-                },
-              )}
+                {
+                  privacyLevels.map((val) => {
+                    return (
+                      <option
+                        key={val.value}
+                        value={val.value}
+                      >
+                        {val.value}
+                      </option>
+                    );
+                  })
+                }
               </select>
               <h3>Category</h3>
               <select className="selectButton" onChange={this.addUploadState.bind(this, 'category')}>
-                {categories.map((val, idx) => {
-                  return (
-                    <option
-                      key={idx}
-                      value={val.value}
-                    >
-                      {val.value}
-                    </option>
-                  );
-                },
-              )}
+                {
+                  categories.map((val) => {
+                    return (
+                      <option
+                        key={val.value}
+                        value={val.value}
+                      >
+                        {val.value}
+                      </option>
+                    );
+                  })
+                }
               </select>
               <h3>Deadline</h3>
               <input className="inputBox" name="date" type="date" onChange={this.addUploadState.bind(this, 'deadline')} />
@@ -134,32 +136,34 @@ const CreatePage = React.createClass({
         </ReactModal>
         <div className="editor-container">
           <div className="instyleButtons-container">
-            {inlineStyles.map((val, idx) => {
-              return (
-                <button
-                  key={idx}
-                  id="instyleButton"
-                  className={`indiv-instyle-button-${val.name}`}
-                  onClick={this.onInlineStyleClick.bind(this, val.style)}
-                >
-                  { val.name }
-                </button>
-              );
-            },
-          )}
-            {blockTypes.map((val, idx) => {
-              return (
-                <button
-                  key={idx} 
-                  id="instyleButton"
-                  className={`indiv-blocktype-button-${val.name}`}
-                  onClick={this.onBlockTypeClick.bind(this, val.style)}
-                >
-                  { val.name }
-                </button>
-              );
-            },
-          )}
+            {
+              inlineStyles.map((val) => {
+                return (
+                  <button
+                    key={val.name}
+                    id="instyleButton"
+                    className={`indiv-instyle-button-${val.name}`}
+                    onClick={this.onInlineStyleClick.bind(this, val.style)}
+                  >
+                    {val.name}
+                  </button>
+                );
+              })
+            }
+            {
+              blockTypes.map((val) => {
+                return (
+                  <button
+                    key={val.name}
+                    id="instyleButton"
+                    className={`indiv-blocktype-button-${val.name}`}
+                    onClick={this.onBlockTypeClick.bind(this, val.style)}
+                  >
+                    {val.name}
+                  </button>
+                );
+              })
+            }
           </div>
           <div className="editor">
             <Editor
