@@ -5,26 +5,50 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: true
       }
     },
-    textLocation: {
-      type: DataTypes.JSON,
+    anchor_key: {
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notEmpty: true
       }
+    },
+    anchor_offset: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    focus_key: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
+    focus_offset: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    is_backward: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    has_focus: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   }, {
     classMethods: {
       associate: function(models) {
         Comment.belongsTo(models.User, {
-          onDelete: "CASCADE", 
+          onDelete: "CASCADE",
           foreignKey: {
             allowNull: false
           }
         })
         Comment.belongsTo(models.Document, {
-          onDelete: "CASCADE", 
+          onDelete: "CASCADE",
           foreignKey: {
             allowNull: false
           }

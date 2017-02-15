@@ -9,10 +9,9 @@ const Routes = () => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={LandingPage} path="/signin" />
-      <Route path="/">
-        <IndexRoute component={Navbar} />
-        <Route component={MyAccount} path="account" />
-        <Route component={BrowsePage} path="browse" />
+      <Route path="/" component={Navbar}>
+        <IndexRoute component={BrowsePage} />
+        {/* <Route component={} path="account" /> */}
         <Route component={CreatePage} path="create" />
         <Route component={SignUp} path="signup" />
         {/* <Route component={} path="document/:id" /> */}
