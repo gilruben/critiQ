@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 const ProfileContainer = React.createClass({
   componentDidMount() {
@@ -12,12 +10,4 @@ const ProfileContainer = React.createClass({
   },
 });
 
-const mapState = state => (
-  { profile: state.profile }
-);
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getUser: getProfileData }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default ProfileContainer;
