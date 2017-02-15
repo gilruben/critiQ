@@ -16,10 +16,10 @@ const CategoryContainer = React.createClass({
           <li className="dropdown">
             <div className="dropbutton">Essays</div>
               <div className="dropdown-content">
-                <div className="category-div" onClick={this.handleEssay}>Middle School</div>
-                <div className="category-div" onClick={this.handleEssay}>High School</div>
-                <div className="category-div" onClick={this.handleEssay}>College</div>
-                <div className="category-div" onClick={this.handleEssay}>Other</div>
+                <div className="level-div" onClick={this.handleEssay}>Middle School</div>
+                <div className="level-div" onClick={this.handleEssay}>High School</div>
+                <div className="level-div" onClick={this.handleEssay}>College</div>
+                <div className="level-div" onClick={this.handleEssay}>Other</div>
               </div>
           </li>
           {
