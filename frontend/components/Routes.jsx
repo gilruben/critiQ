@@ -13,7 +13,6 @@ const Routes = () => (
         {/* <Route component={} path="account" /> */}
         <Route component={CreatePage} path="create" />
         <Route component={SignUp} path="signup" />
-        {/* <Route component={} path="document/:id" /> */}
         <Route component={DocumentPage} path="document/:id" />
         {/* <Route component={} path=":id" /> */}
       </Route>

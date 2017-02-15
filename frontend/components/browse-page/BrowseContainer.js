@@ -11,8 +11,8 @@ const BrowseContainer = React.createClass({
   },
   render() {
     return (
-      <div>
-        <Categories />
+      <div className="browse-container">
+        <Categories getDocuments={this.props.getDocuments} />
         <div className="documents-list-div">
           {
             this.props.browse.documents.map((docs, idx) => {

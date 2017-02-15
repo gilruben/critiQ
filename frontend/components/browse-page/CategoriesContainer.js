@@ -1,28 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getCategoryAsync } from '../../actions/category-actions';
 
 const CategoryContainer = React.createClass({
-  componentDidMount() {
-    this.props.getCategory();
+  handleEssay(e) {
+    const level = e.target.innerHTML.toLowerCase().split(' ').join('_');
+
+    const category = 'essays';
+
+    this.props.getDocuments(category, level);
   },
   render() {
-    const categories = ['resume', 'cover letters', 'upcoming deadlines', 'other writing'];
+    const categories = ['Resume', 'Cover letters', 'Upcoming Deadlines', 'Other writings'];
     return (
       <div className="categories">
         <ul>
           <li className="dropdown">
-            <a href="javascript:void(0)" className="dropbutton">essays</a>
-            <div className="dropdown-content">
-              <a href="#">Jr. High</a>
-              <a href="#">Highschool</a>
-              <a href="#">College</a>
-            </div>
+            <div className="dropbutton">Essays</div>
+              <div className="dropdown-content">
+                <div className="level-div" onClick={this.handleEssay}>Middle School</div>
+                <div className="level-div" onClick={this.handleEssay}>High School</div>
+                <div className="level-div" onClick={this.handleEssay}>College</div>
+                <div className="level-div" onClick={this.handleEssay}>Other</div>
+              </div>
           </li>
           {
             categories.map((ele, idx) => {
-              return <li key={idx}>{ele}</li>;
+              return <li onClick={this.handleEssay} key={idx}>{ele}</li>;
             })
           }
         </ul>
@@ -31,12 +33,4 @@ const CategoryContainer = React.createClass({
   },
 });
 
-const mapStateToProps = (state) => {
-  return { category: state.category };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getCategory: getCategoryAsync }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryContainer);
+export default CategoryContainer;

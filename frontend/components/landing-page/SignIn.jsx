@@ -7,16 +7,18 @@ const SignIn = React.createClass({
   render() {
     return (
       <div className="sign-in">
-        <h1>Sign in</h1>
+        <h1>Welcome. <span className="please-login">Please login.</span></h1>
         <form>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <input type="submit" />
+          <input className="sign-in-input" type="email" placeholder="Email" />
+          <input className="sign-in-input" type="password" placeholder="Password" />
+          <div className="sign-in-bottom">
+            <p>Don{"'"}t have account? <span>Sign up</span></p>
+            <input className="sign-in-button" type="submit" />
+          </div>
         </form>
-        <p>Don{"'"}t have account? <span>Sign up</span></p>
       </div>
     );
-  },
+  }
 });
 
 export default SignIn;
