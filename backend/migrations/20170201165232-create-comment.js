@@ -9,10 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       comment: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
       },
       textLocation: {
-        type: Sequelize.OBJECT
+        type: Sequelize.JSON,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
