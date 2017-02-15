@@ -40,8 +40,8 @@ const CreatePage = React.createClass({
         privacy: this.state.privacy,
         deadline: this.state.deadline,
         UserId: this.state.userId,
-        active: this.state.active,
-      },
+        active: this.state.active
+      }
     });
     this.props.router.push('/account');
   },
@@ -58,18 +58,18 @@ const CreatePage = React.createClass({
     const privacyLevels = [
       { value: 'public' },
       { value: 'semi-private' },
-      { value: 'private' },
+      { value: 'private' }
     ];
     const categories = [
       { value: 'essay' },
       { value: 'cover letter' },
       { value: 'resume' },
-      { value: 'other' },
+      { value: 'other' }
     ];
     const inlineStyles = [
       { name: 'Bold', style: 'BOLD' },
       { name: 'Italic', style: 'ITALIC' },
-      { name: 'Underline', style: 'UNDERLINE' },
+      { name: 'Underline', style: 'UNDERLINE' }
     ];
     const blockTypes = [
       { name: 'H1', style: 'header-one' },
@@ -79,11 +79,11 @@ const CreatePage = React.createClass({
       { name: 'H5', style: 'header-five' },
       { name: 'H6', style: 'header-six' },
       { name: 'UL', style: 'unordered-list-item' },
-      { name: 'OL', style: 'ordered-list-item' },
+      { name: 'OL', style: 'ordered-list-item' }
     ];
     return (
       <div className="page-container">
-        <div className='upload-container'>
+        <div className="upload-container">
           <button onClick={this.handleOpenModal}>Upload</button>
         </div>
         <ReactModal
@@ -110,7 +110,7 @@ const CreatePage = React.createClass({
               )}
               </select>
               <h3>Category</h3>
-              <select  className="selectButton" onChange={this.addUploadState.bind(this, 'category')}>
+              <select className="selectButton" onChange={this.addUploadState.bind(this, 'category')}>
                 {categories.map((val, idx) => {
                   return (
                     <option
@@ -129,7 +129,7 @@ const CreatePage = React.createClass({
             <div className="formButton-container">
               <button className="form-button" onClick={this.onClick}>Upload</button>
               <button className="form-button" onClick={this.handleCloseModal}>Cancel</button>
-            </div> 
+            </div>
           </div>
         </ReactModal>
         <div className="editor-container">
@@ -170,7 +170,7 @@ const CreatePage = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 });
 
 export default CreatePage;
