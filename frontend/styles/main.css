@@ -19,7 +19,7 @@ nav {
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
   padding-bottom: 8px;
-  margin-left: 50px;
+  margin-left: 100px;
 }
 
 nav ul {
@@ -27,7 +27,7 @@ nav ul {
   width: 150px;
   justify-content: space-between;
   padding: 0;
-  margin-right: 50px;
+  margin-right: 100px;
 }
 
 nav ul li {
@@ -53,6 +53,11 @@ nav ul li {
   width: 700px;
 }
 
+.title-div {
+  height: inherit;
+  padding-top: 50px;
+}
+
 .landing-header {
   font-family: 'Amatic SC', cursive;
   font-size: 10rem;
@@ -62,18 +67,21 @@ nav ul li {
 
 .landing-motto {
   color: white;
+  font-size: 2.5em;
+  font-weight: 300;
 }
 
 .sign-in {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fafafa;
+  background-color: rgba(255,255,255, 0.7);
   width: 500px;
   border-radius: 3px;
 }
 
 .sign-in h1 {
+  align-self: center;
 }
 
 .please-login {
@@ -86,6 +94,29 @@ nav ul li {
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
+  margin-top: 20px;
+}
+
+.sign-in-input {
+  width: 400px;
+  align-self: center;
+  border: none;
+  border-bottom: 3px solid #6D7982;
+  background-color: #FCCFC9;
+  padding: 5px 0 7px 10px;
+  margin-bottom: 30px;
+  font-size: 1.75em;
+  font-weight: 300;
+  color: #6D7982;
+  transition-duration: .5s;
+}
+.sign-in-input:focus {
+  border-bottom: 3px solid #4ED99C;
+  outline: none;
+}
+
+.sign-in-input::-webkit-input-placeholder {
+  color: rgba(#777b80, 0.93);
 }
 
 .sign-in-bottom {
@@ -94,6 +125,8 @@ nav ul li {
   height: 80px;
   justify-content: space-between;
   background-color: #efefef;
+  border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
 }
 
 .sign-in-bottom p {
@@ -114,6 +147,7 @@ nav ul li {
   border: none;
   font-size: 1.5em;
   font-weight: 300;
+  border-bottom-right-radius: 3px;
 }
 
 .sign-in p span {
@@ -279,18 +313,27 @@ nav ul li {
 
 /*-------Category component--------*/
 
+.categories {
+  display: flex;
+  justify-content: center;
+  background-color: #efefef;
+  margin: 0 0 50px 0;
+}
+
 .categories ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: inherit;
+  height: 40px;
+  width: 1200px;
   background-color: #efefef;
   padding-left: 0;
-  margin: 0 0 50px 0;
+  margin: 0;
 }
 
 .categories ul li {
   list-style: none;
+  width: 140px;
 }
 
 .dropbutton {
