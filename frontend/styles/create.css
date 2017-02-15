@@ -95,16 +95,62 @@
   padding: 10px 0 10px 0;
 }
 
-.instyleButton{
+#instyleButton{
   outline: none;
   background-color: #fafafa;
   border: 1px #e4e4e4;
-  font-size: 15px;
   color: #747474;
 }
 
-.instyleButton:hover{
+#instyleButton:hover{
   cursor: pointer;
+}
+
+.indiv-instyle-button-Bold{
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.indiv-instyle-button-Italic{
+  font-style: italic;
+  font-size: 15px;
+}
+
+.indiv-instyle-button-Underline{
+  text-decoration: underline;
+  font-size: 15px;
+}
+
+.indiv-blocktype-button-H1{
+  font-size: 1.3em;
+}
+
+.indiv-blocktype-button-H2{
+  font-size: 1.1em;
+}
+
+.indiv-blocktype-button-H3{
+  font-size: 1.0em;
+}
+
+.indiv-blocktype-button-H4{
+  font-size: .9em;
+}
+
+.indiv-blocktype-button-H5{
+  font-size: .8em;
+}
+
+.indiv-blocktype-button-H6{
+  font-size: .7em;
+}
+
+.indiv-blocktype-button-OL{
+  font-size: 15px;
+}
+
+.indiv-blocktype-button-UL{
+  font-size: 15px;
 }
 
 .editor-container{
