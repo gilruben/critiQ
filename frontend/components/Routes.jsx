@@ -14,7 +14,7 @@ const Routes = () => (
         <Route component={CreatePage} path="create" />
         <Route component={SignUp} path="signup" />
         <Route component={DocumentPage} path="document/:id" />
-        <Route component={ProfilePage} path=":id" />
+        <Route component={ProfilePage} path="profile/:id" />
       </Route>
     </Router>
   </Provider>
