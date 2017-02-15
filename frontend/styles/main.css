@@ -363,4 +363,8 @@ nav ul li {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.indiv-category:hover {
+  color: #747474;
+}
 /*-------/Category component--------*/

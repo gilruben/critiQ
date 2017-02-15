@@ -14,7 +14,7 @@ const CategoryContainer = React.createClass({
       <div className="categories">
         <ul>
           <li className="dropdown">
-            <div className="dropbutton">Essays</div>
+            <div className="dropbutton indiv-category">Essays</div>
               <div className="dropdown-content">
                 <div className="level-div" onClick={this.handleEssay}>Middle School</div>
                 <div className="level-div" onClick={this.handleEssay}>High School</div>
@@ -24,7 +24,7 @@ const CategoryContainer = React.createClass({
           </li>
           {
             categories.map((ele, idx) => {
-              return <li onClick={this.handleEssay} key={idx}>{ele}</li>;
+              return <li className="indiv-category" onClick={this.handleEssay} key={idx}>{ele}</li>;
             })
           }
         </ul>
