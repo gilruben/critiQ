@@ -181,6 +181,11 @@ nav ul li {
   background-color: rgba(250, 250, 250, .7);
 }
 
+.sign-up-modal {
+  /*transition-delay: 2s;
+  transition-duration: 2s;*/
+}
+
 .sign-up-header {
   font-weight: 300;
   font-size: 2.5em;
