@@ -5,6 +5,7 @@ import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
   SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
 import { getDocumentAsync } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
+import ReviewerListContainer from './ReviewerListContainer';
 import '../../styles/text-editor.css';
 import '../../styles/document-page.css';
 
@@ -199,15 +200,32 @@ const DocumentContainer = React.createClass({
     });
 
     newEditorState = EditorState.forceSelection(newEditorState, startSelectionState);
-    console.log(newEditorState);
 
     this.setState({ editorState: newEditorState });
   },
+  getListOfReviewers(comments) {
+    const reviewers = {};
+
+    comments.forEach((comment) => {
+      const username = comment.User.username;
+
+      if (!reviewers[username]) {
+        reviewers[username] = true;
+      }
+    });
+
+    return reviewers;
+  },
   render() {
     const { title } = this.props.document;
+    const comments = this.props.document.comments;
 
     return (
       <div id="document-page">
+        <div className="reviewer-list-div">
+          <ReviewerListContainer reviewers={this.getListOfReviewers(comments)} />
+        </div>
+
         <div id="editor-content">
           <h1>{title}</h1>
 
