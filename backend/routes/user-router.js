@@ -5,8 +5,8 @@ const Document = require('../models').Document;
 const getAllUsers = (req, res) => {
   User.findAll({
     attributes: {
-      exclude: ['password'],
-    },
+      exclude: ['password']
+    }
   })
   .then((users) => {
     res.send(users);
@@ -27,9 +27,9 @@ const getOneUser = (req, res) => {
 
   User.findById(id, {
     attributes: {
-      exclude: ['password'],
+      exclude: ['password']
     },
-    include: [Document],
+    include: [Document]
   })
   .then((user) => {
     res.send(user);
@@ -52,9 +52,9 @@ const editUserData = (req, res) => {
 
   User.update(dataUsedForUpdate, {
     where: {
-      id: userId,
+      id: userId
     },
-    returning: true,
+    returning: true
   })
   .then((user) => {
     const userArray = user[1];
@@ -69,8 +69,8 @@ const editUserData = (req, res) => {
 const deleteUser = (req, res) => {
   User.destroy({
     where: {
-      id: req.params.id,
-    },
+      id: req.params.id
+    }
   })
   .then((delUser) => {
     res.send({ usersDeleted: delUser });
