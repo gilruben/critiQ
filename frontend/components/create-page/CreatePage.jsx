@@ -49,9 +49,11 @@ const CreatePage = React.createClass({
     // Document model requires underscore for categories.
     // Add underscore for any categories with spaces. (Example: cover letter = cover_letter)
     let value = event.target.value;
+
     if (inputName !== 'title') {
       value = value.split(' ').join('_');
     }
+
     this.setState({ [inputName]: value });
   },
   handleOpenModal() {
