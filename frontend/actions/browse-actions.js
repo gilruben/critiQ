@@ -18,7 +18,7 @@ export const GET_DOCUMENTS_DATA = 'GET_DOCUMENTS_DATA';
 
 const getDocuments = payload => ({
   type: GET_DOCUMENTS_DATA,
-  data: payload,
+  data: payload
 });
 
 export const getDocumentsAsync = (category, level) => (dispatch) => {
