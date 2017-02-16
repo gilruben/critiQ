@@ -8,7 +8,8 @@ const defaultState = {
   deadline: new Date(),
   active: '',
   createdAt: new Date(),
-  comments: []
+  comments: [],
+  target: ''
 };
 
 const reducer = (state = defaultState, action) => {
