@@ -14,6 +14,9 @@ db.sequelize.sync().then(() => {
   // API route
   app.use('/api', router);
 
+  // Authentication Route
+  app.use('/auth', router);
+
   // Front-End Route
   app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'frontend/index.html'));
