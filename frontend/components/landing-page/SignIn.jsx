@@ -1,4 +1,5 @@
 import React from 'react';
+import SignUp from './SignUp';
 
 const SignIn = React.createClass({
   getInitialState() {
@@ -12,7 +13,10 @@ const SignIn = React.createClass({
           <input className="sign-in-input" type="email" placeholder="Email" />
           <input className="sign-in-input" type="password" placeholder="Password" />
           <div className="sign-in-bottom">
-            <p>Don{"'"}t have account? <span>Sign up</span></p>
+            <div className="sign-up-div">
+              <p>Don{"'"}t have account?</p>
+              <SignUp />
+            </div>
             <input className="sign-in-button" type="submit" />
           </div>
         </form>
