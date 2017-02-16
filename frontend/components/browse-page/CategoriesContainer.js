@@ -10,11 +10,10 @@ const CategoryContainer = React.createClass({
   },
   handleCategory(e) {
     const category = e.target.innerHTML.toLowerCase().split(' ').join('_');
-
     this.props.getDocuments(category)
   },
   render() {
-    const categories = ['Resume', 'Cover letters', 'Upcoming Deadlines', 'Other writings'];
+    const categories = ['Resumes', 'Cover letters', 'Upcoming Deadlines', 'Other writings'];
     return (
       <div className="categories">
         <ul>
