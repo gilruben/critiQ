@@ -31,7 +31,7 @@ const DocumentContainer = React.createClass({
   },
   componentWillReceiveProps(props) {
     const document = props.document;
-    console.log(document.body)
+
     if (document.body) {
       const decorator = this.getDecorator();
       const { title, body, comments } = document;
