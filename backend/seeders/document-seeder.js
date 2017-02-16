@@ -14,7 +14,7 @@ const documents = [
   {
     title: 'My Diary',
     body: documentSeeds[1],
-    category: 'other',
+    category: 'other_writing',
     privacy: 'public',
     active: true,
     deadline: new Date('2017-03-14').toISOString().slice(0, 10),
