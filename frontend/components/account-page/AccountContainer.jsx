@@ -22,6 +22,7 @@ const AccountContainer = React.createClass({
     this.props.editDocumentStatus(newStatus, id);
   },
   render() {
+    // Separate active and inactive documents
     const activeList = [];
     const inactiveList = [];
     this.props.user.documents.forEach(docs=> {
