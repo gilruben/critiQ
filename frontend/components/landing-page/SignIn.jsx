@@ -14,7 +14,7 @@ const SignIn = React.createClass({
           <input className="sign-in-input" type="password" placeholder="Password" />
           <div className="sign-in-bottom">
             <div className="sign-up-div">
-              <p>Don{"'"}t have account?</p>
+              <p>Don{"'"}t have an account?</p>
               <SignUp />
             </div>
             <input className="sign-in-button" type="submit" />
