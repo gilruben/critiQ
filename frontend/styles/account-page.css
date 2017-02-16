@@ -1,0 +1,38 @@
+/*account user info*/
+.account-page-div{
+	display: flex;
+	flex-direction: column;
+}
+
+.account-section{
+	display:flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
+}
+
+.account-user-info {
+	font-size: 18px;
+	display: flex;
+	flex-direction : column;
+	width: 800px;
+	margin: 15px;
+}
+
+.account-user-info button{
+	width:50px;
+}
+
+#create-btn{
+	height:50px;
+	margin: 180px 150px 0px 0px;
+}
+
+/*.true{
+	box-shadow: 10px 10px 5px #cecece;
+	border: 1px solid black;
+}
+
+.false{
+	box-shadow: 10px 10px 5px #cecece;
+	border: 1px solid black;
+}*/

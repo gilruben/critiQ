@@ -1,9 +1,14 @@
+// dependancies
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
+// css
+import '../../styles/account-page.css';
+// actions
 import { getUserDataAsync, editUserDataAsync } from '../../actions/user-actions';
 import { editDocumentStatusAsync } from '../../actions/document-actions';
-
+// components
 import AccountProfile from './AccountProfile';
 import IndividualWork from '../browse-page/IndividualWork';
 
@@ -21,26 +26,37 @@ const AccountContainer = React.createClass({
     const newStatus = { active: false };
     this.props.editDocumentStatus(newStatus, id);
   },
+  handleClick() {
+    this.props.router.push('/create');
+  },
   render() {
-    // Separate active and inactive documents
+    // Separate active and inactive documents to map over active/inactive divs
     const activeList = [];
     const inactiveList = [];
     this.props.user.documents.forEach(docs=> {
       docs.active ? activeList.push(docs) : inactiveList.push(docs);
     });
     return (
-      <div>
-        <div className="account-main-div">
-          <AccountProfile account={this.props.user} editUserData={this.props.editUserData} />
+      <div className="account-page-div">
+        <div className="account-section">
+          <button id="create-btn" onClick={this.handleClick}>
+            Create Document
+          </button>
+          <div className="account-main-div">
+            <AccountProfile
+              account={this.props.user}
+              editUserData={this.props.editUserData} 
+            />
+          </div>
         </div>
-        <div className="user-documents-list-div">
+        <div className="user-documents-list">
           <div className="active-doc">
             {
-              activeList.map((docs, idx) => {
+              activeList.map((doc, idx) => {
                 return (
-                  <div className={docs.id} key={idx}>
-                    <button key={idx} onClick={this.makeInactive.bind(this, docs)}>Make Inactive</button>
-                    <IndividualWork document={docs} />
+                  <div className={doc.active} key={idx}>
+                    <button key={doc.id} onClick={this.makeInactive.bind(this, doc)}>Make Inactive</button>
+                    <IndividualWork document={doc} username={this.props.user.username}/>
                   </div>
                 );
               })
@@ -48,14 +64,14 @@ const AccountContainer = React.createClass({
           </div>
           <div className="inactive-doc">
             {
-              inactiveList.map((docs, idx) => {
-                return (
-                  <div className={docs.id} key={idx}>
-                    <button key={idx} onClick={this.makeActive.bind(this, docs)}>Make Active </button>
-                    <IndividualWork document={docs} />
-                  </div>
-                );
-              })
+             inactiveList.map((doc, idx) => {
+               return (
+                 <div className={doc.active} key={idx}>
+                   <button key={doc.id} onClick={this.makeActive.bind(this, doc)}>Make Active </button>
+                   <IndividualWork document={doc} username={this.props.user.username} />
+                 </div>
+               );
+             })
             }
           </div>
         </div>
