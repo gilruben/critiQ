@@ -25,7 +25,7 @@ const IndividualWork = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 });
 
 export default withRouter(IndividualWork);
