@@ -45,3 +45,5 @@ router.route('/logout')
 
 router.route('/verify')
   .get(checkLoginStatus);
+
+module.exports = router;
