@@ -146,13 +146,12 @@ nav ul li {
   color: white;
   border: none;
   font-size: 1.5em;
-  font-weight: 300;
+  font-weight: 400;
   border-bottom-right-radius: 3px;
 }
 
-.sign-in p span {
-  color: #F55D4B;
-  font-size: 1.4em;
+.sign-in-bottom .sign-in-button:focus {
+  outline: none;
 }
 
 /*-------Landing page--------*/
@@ -160,13 +159,26 @@ nav ul li {
 
 
 /*-------Signup page--------*/
+.main-sign-up-div .sign-up-link {
+  margin: 0;
+  color: #F55D4B;
+  font-size: 1.7em;
+  font-weight: 400;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.main-sign-up-div .sign-up-link:hover {
+  color: #f58d81;
+}
+
 .sign-up {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #fafafa;
+  background-color: rgba(250, 250, 250, .7);
 }
 
 .sign-up-header {
@@ -187,7 +199,7 @@ nav ul li {
 .sign-up-input {
   border: none;
   border-bottom: 3px solid #6D7982;
-  background-color: #fafafa;
+  background-color: #FAEFEE;
   padding-bottom: 10px;
   margin-bottom: 30px;
   font-size: 1.75em;
@@ -212,6 +224,11 @@ nav ul li {
   color: #505a61;
 }
 
+.sign-up-div {
+  display: flex;
+  align-items: center;
+}
+
 .sign-up .sign-up-button {
   align-self: flex-end;
   margin-top: 20px;
@@ -225,6 +242,7 @@ nav ul li {
   background-color: #4ED99C;
   cursor: pointer;
 }
+
 .sign-up .sign-up-button:focus {
   outline: none;
 }
