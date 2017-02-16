@@ -46,7 +46,13 @@ const CreatePage = React.createClass({
     this.props.router.push('/account');
   },
   addUploadState(inputName, event) {
-    this.setState({ [inputName]: event.target.value });
+    // Document model requires underscore for categories.
+    // Add underscore for any categories with spaces. (Example: cover letter = cover_letter)
+    let value = event.target.value;
+    if (inputName !== 'title') {
+      value = value.split(' ').join('_');
+    }
+    this.setState({ [inputName]: value });
   },
   handleOpenModal() {
     this.setState({ showModal: true });
