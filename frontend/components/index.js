@@ -4,6 +4,6 @@ import Navbar from './Navbar';
 import BrowsePage from './browse-page/BrowseContainer';
 import SignUp from './landing-page/SignUp';
 import DocumentPage from './document-page/DocumentContainer';
-import MyAccount from './my-account-page/MyAccount';
+import AccountPage from './account-page/AccountContainer';
 
-export { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, MyAccount, SignUp };
+export { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, AccountPage, SignUp };
