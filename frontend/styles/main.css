@@ -172,11 +172,6 @@ nav ul li {
   color: #f58d81;
 }
 
-.sign-up-modal {
-  /*transition-delay: 2s;
-  transition-duration: 2s;*/
-}
-
 .sign-up {
   display: flex;
   flex-direction: column;
@@ -232,7 +227,7 @@ nav ul li {
 
 .student {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -244,6 +239,17 @@ nav ul li {
 .sign-up-div {
   display: flex;
   align-items: center;
+}
+
+.sign-up select {
+  width: 175px;
+  font-size: 1.3em;
+  border: 1px solid #6D7982;
+  color: #505a61;
+}
+
+.sign-up select:focus {
+  outline: none;
 }
 
 .sign-up .sign-up-button {
