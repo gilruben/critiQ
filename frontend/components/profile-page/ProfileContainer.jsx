@@ -26,7 +26,10 @@ const ProfileContainer = React.createClass({
       return (
         <div>
           <UserInfo account={this.state.account} />
-          <ActiveDocs username={this.state.account.username} activeList={this.state.account.Documents} />
+          <ActiveDocs
+            username={this.state.account.username}
+            activeList={this.state.account.Documents}
+          />
         </div>
       );
     }
