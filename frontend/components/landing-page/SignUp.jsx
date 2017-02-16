@@ -21,6 +21,7 @@ const SignUp = React.createClass({
           className="sign-up-modal"
         >
           <div className="sign-up">
+            <div className="second-sign-up-div">
             <i className="fa fa-window-close" onClick={this.handleCloseModal} />
             <h1 className="sign-up-header">Hello! Let{"'"}s get to know you.</h1>
             <form>
@@ -43,6 +44,7 @@ const SignUp = React.createClass({
               </div>
               <button className="sign-up-button" type="submit">Create</button>
             </form>
+            </div>
           </div>
         </ReactModal>
       </div>
