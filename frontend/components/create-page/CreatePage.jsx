@@ -64,7 +64,7 @@ const CreatePage = React.createClass({
       { value: 'essay' },
       { value: 'cover letter' },
       { value: 'resume' },
-      { value: 'other' }
+      { value: 'other writing' }
     ];
     const inlineStyles = [
       { name: 'Bold', style: 'BOLD' },
