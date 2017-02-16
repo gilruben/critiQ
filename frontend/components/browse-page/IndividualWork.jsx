@@ -16,7 +16,12 @@ const IndividualWork = React.createClass({
         <div className="cat-user">
           <p className="individual-work-category">{this.props.document.category}</p>
           <span>•</span>
-          <p className="individual-work-name">{this.props.document.User.username}</p>
+          <p className="individual-work-name">{
+            // ternary made for reusability from document state in browse documents page and user state in account page
+            this.props.document.User ?
+            this.props.document.User.username :
+            this.props.username }
+          </p>
         </div>
         <p className="snippet">{this.props.document.body.blocks[0].text}</p>
         <div className="dead-rev">
@@ -25,7 +30,7 @@ const IndividualWork = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 });
 
 export default withRouter(IndividualWork);
