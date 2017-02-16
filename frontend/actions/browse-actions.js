@@ -18,7 +18,7 @@ export const GET_DOCUMENTS_DATA = 'GET_DOCUMENTS_DATA';
 
 const getDocuments = payload => ({
   type: GET_DOCUMENTS_DATA,
-  data: payload,
+  data: payload
 });
 
 export const getDocumentsAsync = (category, level) => (dispatch) => {
@@ -27,7 +27,7 @@ export const getDocumentsAsync = (category, level) => (dispatch) => {
   url += levels[level] ? `&level=${levels[level]}` : '';
 
   ajax({
-    url,
+    url: '/api/documents',
     type: 'GET'
   })
   .done((data) => {

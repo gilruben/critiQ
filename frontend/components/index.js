@@ -7,5 +7,5 @@ import DocumentPage from './document-page/DocumentContainer';
 import AccountPage from './my-account-page/MyAccount';
 import ProfilePage from './profile-page/ProfileContainer';
 
-export { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, SignUp, ProfilePage };
+export { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, SignUp, ProfilePage, AccountPage };
 

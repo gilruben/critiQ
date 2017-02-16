@@ -6,33 +6,34 @@ export const DELETE_USER_ACCOUNT = 'DELETE_USER_ACCOUNT';
 
 const getUserAccount = payload => ({
   type: GET_USER_ACCOUNT,
-  data: payload,
+  data: payload
 });
 
 const editUserAccount = payload => ({
   type: EDIT_USER_ACCOUNT,
-  data: payload,
+  data: payload
 });
 
 const deleteUserAccount = payload => ({
-  type: DELETE_USER_ACCOUNT,
-  data: payload,
+  type: DELETE_USER_ACCOUNT
+  data: payload
 });
 
 export const getUserAccountAsync = () => (dispatch) => {
   ajax({
     url: '/api/users/:id',
-    type: 'GET',
+    type: 'GET'
   })
   .done((userData) => {
     dispatch(getUserAccount(userData));
   });
 };
 
-export const editUserAccountAsync = () => (dispatch) => {
+export const editUserAccountAsync = data => (dispatch) => {
   ajax({
     url: '/api/users/:id',
-    type: 'PUT',
+    type: 'PUT'
+    data,
   })
   .done((userData) => {
     dispatch(editUserAccount(userData));
@@ -42,7 +43,7 @@ export const editUserAccountAsync = () => (dispatch) => {
 export const deleteUserAccountAsync = () => (dispatch) => {
   ajax({
     url: '/api/users/:id',
-    type: 'DELETE',
+    type: 'DELETE'
   })
   .done((userData) => {
     dispatch(deleteUserAccount(userData));
