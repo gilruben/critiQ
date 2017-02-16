@@ -16,14 +16,9 @@ const AccountContainer = React.createClass({
   componentDidMount() {
     this.props.getUserData(3);
   },
-  makeActive(doc) {
+  docActiveSwitch(doc) {
     const id = doc.id;
-    const newStatus = { active: true };
-    this.props.editDocumentStatus(newStatus, id);
-  },
-  makeInactive(doc) {
-    const id = doc.id;
-    const newStatus = { active: false };
+    const newStatus = doc.active ? { active: false } : { active: true };
     this.props.editDocumentStatus(newStatus, id);
   },
   handleClick() {
@@ -55,7 +50,7 @@ const AccountContainer = React.createClass({
               activeList.map((doc, idx) => {
                 return (
                   <div className={doc.active} key={idx}>
-                    <button key={doc.id} onClick={this.makeInactive.bind(this, doc)}>Make Inactive</button>
+                    <button key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)}>Make Inactive</button>
                     <IndividualWork document={doc} username={this.props.user.username}/>
                   </div>
                 );
@@ -67,7 +62,7 @@ const AccountContainer = React.createClass({
              inactiveList.map((doc, idx) => {
                return (
                  <div className={doc.active} key={idx}>
-                   <button key={doc.id} onClick={this.makeActive.bind(this, doc)}>Make Active </button>
+                   <button key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)}>Make Active </button>
                    <IndividualWork document={doc} username={this.props.user.username} />
                  </div>
                );
