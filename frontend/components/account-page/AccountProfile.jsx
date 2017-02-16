@@ -1,8 +1,9 @@
 import React from 'react';
+import UserInfo from './UserInfo';
 
 const AccountProfile = React.createClass({
   getInitialState() {
-    return { account: this.props.account, edit: false };
+    return { account: this.props.account, edit: false, owner: true };
   },
   componentWillReceiveProps(props) {
     this.setState({ account: props.account });
@@ -15,9 +16,9 @@ const AccountProfile = React.createClass({
     });
   },
   allowEdit() {
-    this.setState({ account: this.props.account, edit: true });
+    this.setState({ edit: true });
   },
-  finishEdit(event) {
+  submitEdit(event) {
     event.preventDefault();
 
     const accountState = this.state.account;
@@ -29,21 +30,16 @@ const AccountProfile = React.createClass({
   render() {
     if (this.state.edit === false) {
       return (
-        <div>
-          <div className="account-user-info">
-            <h3>Username: {this.state.account.username}</h3>
-            <h3>Email: {this.state.account.email}</h3>
-            <h3>Level: {this.state.account.level}</h3>
-            <h3>Rating: {this.state.account.rating}</h3>
-            <h3>Biography: {this.state.account.bio}</h3>
-            <button className="account-edit-button"
-              onClick={this.allowEdit}>Edit</button>
-          </div>
-        </div>);
+        <UserInfo
+          allowEdit={this.allowEdit}
+          account={this.props.account}
+          owner={this.state.owner}
+        />
+      );
     }
     return (
       <div className="account-user-info">
-        <form onSubmit={this.finishEdit}>
+        <form onSubmit={this.submitEdit}>
           <h3>Username: <input value={this.state.account.username}
             onChange={this.handleChange.bind(this, 'username')} />
           </h3>
@@ -51,11 +47,10 @@ const AccountProfile = React.createClass({
             onChange={this.handleChange.bind(this, 'email')} /></h3>
           <h3>Level: <select onChange={this.handleChange.bind(this, 'level')}>
             <option value={this.state.account.level}>{this.state.account.level}</option>
-            <option value={'jr-high'}>Jr-High</option>
-            <option value={'high-school'}>High-School</option>
-            <option value={'college'}>College</option>
-            <option value={'professional'}>Professional</option>
-            <option value={'other'}>Other</option>
+            <option value={'middle_school'}>middle school</option>
+            <option value={'high_school'}>high school</option>
+            <option value={'college'}>college</option>
+            <option value={'other'}>other</option>
           </select>
           </h3>
           <h3>Rating: {this.state.account.rating}</h3>
