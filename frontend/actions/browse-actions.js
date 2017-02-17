@@ -27,7 +27,7 @@ export const getDocumentsAsync = (category, level) => (dispatch) => {
   url += levels[level] ? `&level=${levels[level]}` : '';
 
   ajax({
-    url: '/api/documents',
+    url,
     type: 'GET'
   })
   .done((data) => {
