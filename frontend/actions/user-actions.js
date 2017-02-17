@@ -18,6 +18,22 @@ export const getUserDataAsync = id => (dispatch) => {
   });
 };
 
+export const postUserDataAsync = () => (dispatch) => {
+  ajax({
+    url: '/api/users/',
+    type: 'POST',
+    data: {
+      username: '',
+      password: '',
+      email: '',
+      level: ''
+    }
+  })
+  .done((userData) => {
+    dispatch(getUserData(userData));
+  });
+};
+
 const editUserData = payload => ({
   type: EDIT_USER_DATA,
   data: payload
