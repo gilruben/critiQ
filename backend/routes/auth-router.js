@@ -8,7 +8,6 @@ const userLogin = (req, res) => {
   })
   .then((user) => {
     if (user) {
-      req.session.username = user.username;
       req.session.userId = user.id;
       req.session.save;
     }
@@ -18,20 +17,22 @@ const userLogin = (req, res) => {
   });
 };
 
+//useraccount add session 
+
 const userLogout = (req, res) => {
   req.session.destroy();
   res.send('Logout successful.');
 };
 
 const checkLoginStatus = (req, res) => {
-  const username = req.session.username;
-  if (username) {
-    User.findOne({
-      where: {
-        username
+  const userId = req.session.userId;
+  if (userId) {
+    User.findById(userId)
+    .then((user) => {
+      if (user) {
+        res.sendStatus(200);
       }
     });
-    res.sendStatus(200);
   } else {
     res.sendStatus(401).send('Verification failed.');
   }
