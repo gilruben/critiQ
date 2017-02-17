@@ -1,4 +1,4 @@
-import { GET_DOCUMENT } from '../actions/document-actions';
+import { GET_DOCUMENT, SELECT_REVIEWER } from '../actions/document-actions';
 
 const defaultState = {
   title: '',
@@ -9,7 +9,7 @@ const defaultState = {
   active: '',
   createdAt: new Date(),
   comments: [],
-  target: ''
+  selectedReviewer: ''
 };
 
 const reducer = (state = defaultState, action) => {
@@ -36,6 +36,10 @@ const reducer = (state = defaultState, action) => {
         createdAt,
         comments
       });
+    case SELECT_REVIEWER:
+      const selectedReviewer = action.data;
+
+      return Object.assign({}, state, { selectedReviewer });
     default:
       return state;
   }
