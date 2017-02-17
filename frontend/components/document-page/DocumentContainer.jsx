@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
   SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
-import { getDocumentAsync } from '../../actions/document-actions';
+import { getDocumentAsync, selectReviewer } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
 import ReviewerListContainer from './ReviewerListContainer';
 import '../../styles/text-editor.css';
@@ -217,13 +217,15 @@ const DocumentContainer = React.createClass({
     return reviewers;
   },
   render() {
-    const { title } = this.props.document;
-    const comments = this.props.document.comments;
+    const { title, comments } = this.props.document;
 
     return (
       <div id="document-page">
         <div className="reviewer-list-div">
-          <ReviewerListContainer reviewers={this.getListOfReviewers(comments)} />
+          <ReviewerListContainer
+            reviewers={this.getListOfReviewers(comments)}
+            selectReviewer={this.props.selectReviewer}
+          />
         </div>
 
         <div id="editor-content">
@@ -253,7 +255,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getDocument: getDocumentAsync }, dispatch);
+  return bindActionCreators(
+    {
+      getDocument: getDocumentAsync,
+      selectReviewer
+    },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DocumentContainer);
