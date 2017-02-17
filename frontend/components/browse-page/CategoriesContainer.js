@@ -8,23 +8,27 @@ const CategoryContainer = React.createClass({
 
     this.props.getDocuments(category, level);
   },
+  handleCategory(e) {
+    const category = e.target.innerHTML.toLowerCase().split(' ').join('_');
+    this.props.getDocuments(category)
+  },
   render() {
-    const categories = ['Resume', 'Cover letters', 'Upcoming Deadlines', 'Other writings'];
+    const categories = ['Resumes', 'Cover letters', 'Upcoming Deadlines', 'Other writings'];
     return (
       <div className="categories">
         <ul>
           <li className="dropdown">
-            <div className="dropbutton">Essays</div>
-              <div className="dropdown-content">
-                <div className="level-div" onClick={this.handleEssay}>Middle School</div>
-                <div className="level-div" onClick={this.handleEssay}>High School</div>
-                <div className="level-div" onClick={this.handleEssay}>College</div>
-                <div className="level-div" onClick={this.handleEssay}>Other</div>
-              </div>
+            <div className="dropbutton indiv-category">Essays</div>
+            <div className="dropdown-content">
+              <div className="level-div" onClick={this.handleEssay}>Middle School</div>
+              <div className="level-div" onClick={this.handleEssay}>High School</div>
+              <div className="level-div" onClick={this.handleEssay}>College</div>
+              <div className="level-div" onClick={this.handleEssay}>Other</div>
+            </div>
           </li>
           {
             categories.map((ele, idx) => {
-              return <li onClick={this.handleEssay} key={idx}>{ele}</li>;
+              return <li className="indiv-category" onClick={this.handleCategory} key={idx}>{ele}</li>;
             })
           }
         </ul>
