@@ -6,6 +6,7 @@ import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
 import { getDocumentAsync, selectReviewer } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
 import ReviewerListContainer from './ReviewerListContainer';
+import CommentListContainer from './CommentListContainer';
 import '../../styles/text-editor.css';
 import '../../styles/document-page.css';
 
@@ -244,6 +245,10 @@ const DocumentContainer = React.createClass({
               handleReturn={this.handleReturn}
             />
           </div>
+        </div>
+
+        <div className="comment-list-div">
+          <CommentListContainer comments={comments} />
         </div>
       </div>
     );
