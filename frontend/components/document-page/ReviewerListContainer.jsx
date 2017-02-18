@@ -9,7 +9,7 @@ const ReviewerListContainer = React.createClass({
     const reviewers = Object.keys(this.props.reviewers);
 
     return (
-      <ul>
+      <ul className="reviewer-list-ul">
         {
           reviewers.map(reviewer => (
             <li key={reviewer} onClick={this.handleClick.bind(this, reviewer)}>
