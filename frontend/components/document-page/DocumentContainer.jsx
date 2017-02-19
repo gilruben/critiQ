@@ -218,7 +218,7 @@ const DocumentContainer = React.createClass({
     return reviewers;
   },
   render() {
-    const { title, comments } = this.props.document;
+    const { title, comments, selectedReviewer } = this.props.document;
 
     return (
       <div id="document-page">
@@ -248,7 +248,10 @@ const DocumentContainer = React.createClass({
         </div>
 
         <div className="comment-list-div">
-          <CommentListContainer comments={comments} />
+          <CommentListContainer
+            comments={comments}
+            selectedReviewer={selectedReviewer}
+          />
         </div>
       </div>
     );
