@@ -10,11 +10,13 @@ const SignUpContainer = React.createClass({
       username: '',
       password: '',
       email: '',
-      level: '',
+      level: 'other',
       showModal: false
     };
   },
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
     this.props.createUser({
       username: this.state.username,
       password: this.state.password,
@@ -46,21 +48,20 @@ const SignUpContainer = React.createClass({
             <div className="second-sign-up-div">
               <i className="fa fa-window-close" onClick={this.handleCloseModal} />
               <h1 className="sign-up-header">Hello! Let{"'"}s get to know you.</h1>
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <input className="sign-up-input" value={this.state.username} onChange={this.handleChange.bind(this, 'username') } type="text" placeholder="Pick a username" />
                 <input className="sign-up-input" value={this.state.email} onChange={this.handleChange.bind(this, 'email') } type="email" placeholder="Your email" />
                 <input className="sign-up-input" value={this.state.password} onChange={this.handleChange.bind(this, 'password') } type="password" placeholder="A password" />
                 <div className="student">
                   <p className="student-question" >Are you a student?</p>
-                  <select>
-                    <option selected="true" disabled >choose one</option>
+                  <select value={this.state.level} onChange={this.handleChange.bind(this, "level")}>
+                    <option value="other">other</option>
                     <option value="middle_school">middle school</option>
                     <option value="high_school">high school</option>
                     <option value="college">college</option>
-                    <option value="other">other</option>
                   </select>
                 </div>
-                <input className="sign-up-button" onSubmit={this.handleSubmit} value="create" type="submit" />
+                <input className="sign-up-button" value="create" type="submit" />
               </form>
             </div>
           </div>
@@ -70,12 +71,8 @@ const SignUpContainer = React.createClass({
   }
 });
 
-// const mapStateToProps = (state) => {
-//   return { user: state.user };
-// };
-
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ createUser: createUserAsync });
+  return bindActionCreators({ createUser: createUserAsync }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(SignUpContainer);
