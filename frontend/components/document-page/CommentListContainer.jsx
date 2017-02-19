@@ -3,14 +3,25 @@ import CommentContainer from './CommentContainer';
 
 const CommentListContainer = React.createClass({
   render() {
-    const comments = this.props.comments;
+    const { comments, selectedReviewer } = this.props;
 
     return (
       <ul className="comment-list-ul">
         {
-          comments.map(comment => (
-            <li key={comment.id}><CommentContainer comment={comment} /></li>
-          ))
+          comments.reduce((filtrdComments, comment) => {
+            const user = comment.User;
+            const username = user ? user.username : '';
+
+            // filters out all the comments that belong to the selected reviewer
+            if (username === selectedReviewer) {
+              return ([
+                ...filtrdComments,
+                (<li key={comment.id}><CommentContainer comment={comment} /></li>)
+              ]);
+            }
+
+            return filtrdComments;
+          }, [])
         }
       </ul>
     );
