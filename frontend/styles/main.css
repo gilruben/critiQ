@@ -142,7 +142,6 @@ nav ul li {
   color: white;
   border: none;
   font-size: 1.5em;
-  font-weight: 400;
   border-bottom-right-radius: 3px;
 }
 
@@ -254,7 +253,6 @@ nav ul li {
   padding: 12px 0 15px 0;
   width: 125px;
   font-size: 1.75em;
-  /*font-weight: 300;*/
   border: none;
   border-radius: 3px;
   color: white;
@@ -311,6 +309,10 @@ nav ul li {
   border-bottom: 1px solid #efefef;
 }
 
+.individual-work-header-div h2 {
+  margin: 0;
+}
+
 .individual-work-header-div p {
   align-self: flex-end;
   color: #747474;
@@ -342,6 +344,8 @@ nav ul li {
 
 .dead-rev {
   display: flex;
+  justify-content: space-between;
+  height: 30px;
   border-top: 1px solid #efefef;
 }
 
@@ -415,7 +419,3 @@ nav ul li {
   color: #747474;
 }
 /*-------/Category component--------*/
-
-/*-------create doc modal--------*/
-
-/*-------/create doc modal--------*/
