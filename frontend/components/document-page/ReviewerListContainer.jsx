@@ -2,7 +2,7 @@ import React from 'react';
 import Reviewer from './Reviewer';
 
 const ReviewerListContainer = React.createClass({
-  handleClick(reviewer, e) {
+  handleClick(reviewer) {
     this.props.selectReviewer(reviewer);
   },
   render() {
