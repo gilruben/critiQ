@@ -33,16 +33,26 @@ const DocumentContainer = React.createClass({
   },
   componentWillReceiveProps(props) {
     const { document } = props;
-    const { title, body, comments } = document;
+    const { title, body, comments, selectedReviewer } = document;
 
     if (document.body) {
       const decorator = this.getDecorator();
       const contentState = convertFromRaw(body);
       const editorState = EditorState.createWithContent(contentState, decorator);
+      const { selectReviewer } = this.props;
 
-      // If comments exist, apply them to the text editor
-      if (comments.length) this.applyEntities(document, editorState, title);
-      else this.setState({ title, editorState });
+      // If there are comments and a reviewer has not been selected, use the
+      // first comments owner as the default selected reviewer.
+      // Else if comments exist, apply them to the text editor(this assumes a
+      // reviewer has been selected)
+      // Else set the state of the editor with not comments applied
+      if (comments.length && !selectedReviewer) {
+        selectReviewer(comments[0].User.username);
+      } else if (comments.length) {
+        this.applyEntities(document, editorState, title);
+      } else {
+        this.setState({ title, editorState });
+      }
     }
   },
   getDecorator() {
@@ -161,6 +171,8 @@ const DocumentContainer = React.createClass({
     const firstReviewer = entityData[0].User.username;
     const filterBy = selectedReviewer || firstReviewer;
 
+    // Add all the comments, that belong to the selected user, to the new editor
+    // state
     entityData.forEach((data) => {
       const username = data.User.username;
 
