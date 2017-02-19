@@ -39,7 +39,7 @@ module.exports = {
         password: 'password',
         bio: 'Try my cereal, or else >:[',
         rating: 734,
-        level: 'high-school',
+        level: 'high_school',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -49,7 +49,7 @@ module.exports = {
         password: 'password',
         bio: 'cache me outside, how bouh dat?',
         rating: 848,
-        level: 'middle-school',
+        level: 'middle_school',
         createdAt: new Date(),
         updatedAt: new Date()
       }
