@@ -17,7 +17,7 @@ export const getUserDataAsync = () => (dispatch) => {
   });
 };
 
-export const createUserDataAsync = () => (dispatch) => {
+export const createUserAsync = () => (dispatch) => {
   ajax({
     url: '/api/users/',
     type: 'POST',
