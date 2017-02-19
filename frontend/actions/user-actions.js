@@ -17,18 +17,15 @@ export const getUserDataAsync = () => (dispatch) => {
   });
 };
 
-export const createUserAsync = () => (dispatch) => {
+export const createUserAsync = userInfo => (dispatch) => {
+  console.log(userInfo);
   ajax({
-    url: '/api/users/',
+    url: '/api/users',
     type: 'POST',
-    data: {
-      username: '',
-      password: '',
-      email: '',
-      level: ''
-    }
+    data: userInfo
   })
   .done((userData) => {
+    console.log(userData);
     dispatch(getUserData(userData));
   });
 };
