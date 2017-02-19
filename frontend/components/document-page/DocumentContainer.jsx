@@ -217,6 +217,28 @@ const DocumentContainer = React.createClass({
 
     return reviewers;
   },
+  resolve(commentData, id) {
+    let editorState = this.state.editorState;
+    const contentState = editorState.getCurrentContent();
+    const selectionState = new SelectionState(commentData);
+    const entityKey = null;
+
+    // Removes a specific comment entity from the contentstate
+    const newContentState = Modifier.applyEntity(
+      contentState,
+      selectionState,
+      entityKey,
+    );
+
+    // New editorstate with the entity removed
+    editorState = EditorState.push(
+      editorState,
+      newContentState,
+      'apply-entity',
+    );
+
+    this.setState({ editorState });
+  },
   render() {
     const { title, comments, selectedReviewer } = this.props.document;
 
@@ -251,6 +273,7 @@ const DocumentContainer = React.createClass({
           <CommentListContainer
             comments={comments}
             selectedReviewer={selectedReviewer}
+            resolver={this.resolve}
           />
         </div>
       </div>
