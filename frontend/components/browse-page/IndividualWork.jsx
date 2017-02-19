@@ -23,8 +23,8 @@ const IndividualWork = React.createClass({
         </div>
         <p className="snippet">{this.props.document.body.blocks[0].text}</p>
         <div className="dead-rev">
-          <p className="deadline">deadline: { deadline(this.props.document.deadline) }</p>
-          <p className="rev"># of reviewers</p>
+          <p className="deadline">ends {deadline(this.props.document.deadline)}</p>
+          <p className="rev"># <i className="fa fa-user" /></p>
         </div>
       </div>
     );
