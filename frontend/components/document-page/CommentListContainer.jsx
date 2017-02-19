@@ -3,7 +3,7 @@ import CommentContainer from './CommentContainer';
 
 const CommentListContainer = React.createClass({
   render() {
-    const { comments, selectedReviewer } = this.props;
+    const { comments, selectedReviewer, resolver } = this.props;
 
     return (
       <ul className="comment-list-ul">
@@ -16,7 +16,9 @@ const CommentListContainer = React.createClass({
             if (username === selectedReviewer) {
               return ([
                 ...filtrdComments,
-                (<li key={comment.id}><CommentContainer comment={comment} /></li>)
+                (<li key={comment.id}>
+                  <CommentContainer comment={comment} resolver={resolver} />
+                </li>)
               ]);
             }
 
