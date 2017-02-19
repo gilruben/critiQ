@@ -32,14 +32,15 @@ const DocumentContainer = React.createClass({
     this.props.getDocument(id);
   },
   componentWillReceiveProps(props) {
-    const document = props.document;
+    const { document } = props;
+    const { title, body, comments } = document;
 
     if (document.body) {
       const decorator = this.getDecorator();
-      const { title, body, comments } = document;
       const contentState = convertFromRaw(body);
       const editorState = EditorState.createWithContent(contentState, decorator);
 
+      // If comments exist, apply them to the text editor
       if (comments.length) this.applyEntities(document, editorState, title);
       else this.setState({ title, editorState });
     }
@@ -156,34 +157,41 @@ const DocumentContainer = React.createClass({
   applyEntities(documentData, editorState) {
     let newEditorState = editorState;
     const entityData = documentData.comments;
+    const { selectedReviewer } = documentData;
+    const firstReviewer = entityData[0].User.username;
+    const filterBy = selectedReviewer || firstReviewer;
 
     entityData.forEach((data) => {
-      const { anchorKey, anchorOffset, focusKey, focusOffset, isBackward, hasFocus } = data;
-      const contentState = newEditorState.getCurrentContent();
-      const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
-      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-      const CommentSelectionState = new SelectionState({
-        anchorKey,
-        anchorOffset,
-        focusKey,
-        focusOffset,
-        isBackward,
-        hasFocus
-      });
+      const username = data.User.username;
 
-      // New contentstate with comment entity attached
-      const contentStateWithComment = Modifier.applyEntity(
-        contentState,
-        CommentSelectionState,
-        entityKey
-      );
+      if (username === filterBy) {
+        const { anchorKey, anchorOffset, focusKey, focusOffset, isBackward, hasFocus } = data;
+        const contentState = newEditorState.getCurrentContent();
+        const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
+        const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+        const CommentSelectionState = new SelectionState({
+          anchorKey,
+          anchorOffset,
+          focusKey,
+          focusOffset,
+          isBackward,
+          hasFocus
+        });
 
-      // New editorstate with comment entity attached
-      newEditorState = EditorState.push(
-        newEditorState,
-        contentStateWithComment,
-        'apply-entity',
-      );
+        // New contentstate with comment entity attached
+        const contentStateWithComment = Modifier.applyEntity(
+          contentState,
+          CommentSelectionState,
+          entityKey
+        );
+
+        // New editorstate with comment entity attached
+        newEditorState = EditorState.push(
+          newEditorState,
+          contentStateWithComment,
+          'apply-entity',
+        );
+      }
     });
 
     const documentBody = documentData.body;
@@ -200,6 +208,7 @@ const DocumentContainer = React.createClass({
       hasFocus: true
     });
 
+    // Forces the cursor to the begining of the page
     newEditorState = EditorState.forceSelection(newEditorState, startSelectionState);
 
     this.setState({ editorState: newEditorState });
@@ -215,6 +224,7 @@ const DocumentContainer = React.createClass({
       }
     });
 
+    // Returns an object with all the reviewers
     return reviewers;
   },
   resolve(commentData, id) {
