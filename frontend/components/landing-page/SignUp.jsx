@@ -1,15 +1,37 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { createUserDataAsync } from '../../actions/user-actions';
 
-const SignUp = React.createClass({
+const SignUpContainer = React.createClass({
   getInitialState() {
-    return { showModal: false };
+    return {
+      username: '',
+      password: '',
+      email: '',
+      level: '',
+      showModal: false
+    };
+  },
+  handleSubmit() {
+    this.props.createUser({
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      level: this.state.level
+    });
   },
   handleSignupModal() {
     this.setState({ showModal: true });
   },
   handleCloseModal() {
     this.setState({ showModal: false });
+  },
+  handleChange(change, e) {
+    this.setState({
+      [change]: e.target.value
+    });
   },
   render() {
     return (
@@ -22,28 +44,24 @@ const SignUp = React.createClass({
         >
           <div className="sign-up">
             <div className="second-sign-up-div">
-            <i className="fa fa-window-close" onClick={this.handleCloseModal} />
-            <h1 className="sign-up-header">Hello! Let{"'"}s get to know you.</h1>
-            <form>
-              <input className="sign-up-input" type="text" placeholder="Pick a username" />
-              <input className="sign-up-input" type="email" placeholder="Your email" />
-              <input className="sign-up-input" type="password" placeholder="A password" />
-              <div className="student">
-                <p className="student-question" >Are you a student?</p>
-                <input type="radio" name="student" id="yes" value="yes" />
-                <label htmlFor="yes">Yes</label>
-                <input type="radio" name="student" id="no" value="no" />
-                <label htmlFor="no">No</label>
-                <select>
-                  <option value="middle">Middle school</option>
-                  <option value="high">High school</option>
-                  <option value="college">College</option>
-                  <option value="grad">Grad school</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <button className="sign-up-button" type="submit">Create</button>
-            </form>
+              <i className="fa fa-window-close" onClick={this.handleCloseModal} />
+              <h1 className="sign-up-header">Hello! Let{"'"}s get to know you.</h1>
+              <form>
+                <input className="sign-up-input" value={this.state.username} onChange={this.handleChange.bind(this, 'username') } type="text" placeholder="Pick a username" />
+                <input className="sign-up-input" value={this.state.email} onChange={this.handleChange.bind(this, 'email') } type="email" placeholder="Your email" />
+                <input className="sign-up-input" value={this.state.password} onChange={this.handleChange.bind(this, 'password') } type="password" placeholder="A password" />
+                <div className="student">
+                  <p className="student-question" >Are you a student?</p>
+                  <select>
+                    <option selected="true" disabled >choose one</option>
+                    <option value="middle_school">middle school</option>
+                    <option value="high_school">high school</option>
+                    <option value="college">college</option>
+                    <option value="other">other</option>
+                  </select>
+                </div>
+                <input className="sign-up-button" onSubmit={this.handleSubmit} value="create" type="submit" />
+              </form>
             </div>
           </div>
         </ReactModal>
@@ -52,4 +70,12 @@ const SignUp = React.createClass({
   }
 });
 
-export default SignUp;
+// const mapStateToProps = (state) => {
+//   return { user: state.user };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ createUser: createUserDataAsync });
+};
+
+export default connect(mapDispatchToProps)(SignUpContainer);
