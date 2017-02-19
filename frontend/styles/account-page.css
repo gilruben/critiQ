@@ -1,31 +1,46 @@
 /*account user info*/
-.account-page-div{
+.account-page-div {
 	display: flex;
 	flex-direction: column;
 }
 
-.account-section{
+.account-section {
 	display:flex;
 	flex-direction: row-reverse;
 	justify-content: space-around;
+	border-bottom: 1px solid black;
 }
 
 .account-user-info {
 	font-size: 18px;
 	display: flex;
-	flex-direction : column;
+	flex-direction: column;
 	width: 800px;
 	margin: 15px;
 }
 
-.account-user-info button{
+.account-user-info button {
 	width:50px;
 }
 
-#create-btn{
+#create-btn {
 	height:50px;
 	margin: 180px 150px 0px 0px;
 }
+
+.user-documents-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.active-doc, .inactive-doc {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-grow: all;
+
+}
+
 
 /*.true{
 	box-shadow: 10px 10px 5px #cecece;
