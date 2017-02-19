@@ -2,7 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createUserDataAsync } from '../../actions/user-actions';
+import { createUserAsync } from '../../actions/user-actions';
 
 const SignUpContainer = React.createClass({
   getInitialState() {
@@ -75,7 +75,7 @@ const SignUpContainer = React.createClass({
 // };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ createUser: createUserDataAsync });
+  return bindActionCreators({ createUser: createUserAsync });
 };
 
-export default connect(mapDispatchToProps)(SignUpContainer);
+export default connect(null, mapDispatchToProps)(SignUpContainer);
