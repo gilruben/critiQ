@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import readingTime from '../../utilities/ReadingTime';
+import deadline from '../../utilities/Deadline';
 
 const IndividualWork = React.createClass({
   handleClick() {
@@ -22,7 +23,7 @@ const IndividualWork = React.createClass({
         </div>
         <p className="snippet">{this.props.document.body.blocks[0].text}</p>
         <div className="dead-rev">
-          <p className="deadline">deadline: {this.props.document.deadline}</p>
+          <p className="deadline">deadline: { deadline(this.props.document.deadline) }</p>
           <p className="rev"># of reviewers</p>
         </div>
       </div>
