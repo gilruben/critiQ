@@ -273,7 +273,7 @@ const DocumentContainer = React.createClass({
   render() {
     const { title, comments, selectedReviewer } = this.props.document;
     const { isTextHighlighted } = this.state;
-    console.log('IS_HIGHLIGHTED:', isTextHighlighted);
+
     return (
       <div id="document-page">
         <div className="reviewer-list-div">
