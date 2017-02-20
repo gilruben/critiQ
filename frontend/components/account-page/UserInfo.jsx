@@ -7,9 +7,13 @@ const UserInfo = (props) => {
     <div>
       <div className="account-user-info">
         <h3><i className="fa fa-user" />{props.account.username}</h3>
-        {props.owner ?
-          <h3><i className="fa fa-envelope-o" />{props.account.email}</h3>:
-            false
+        {props.owner
+          ?
+            <h3>
+              <i className="fa fa-envelope-o" />
+              {props.account.email}
+            </h3>
+          : false
         }
         <h3>Level: {props.account.level}</h3>
         <h3>Rating: {props.account.rating}</h3>
