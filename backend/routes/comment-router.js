@@ -19,9 +19,9 @@ const updateComment = (req, res) => {
 
   Comment.update(commentInfo, {
     where: {
-      id: commentId,
+      id: commentId
     },
-    returning: true,
+    returning: true
   })
   .then((updatedComment) => {
     const updatedCommentArray = updatedComment[1];
@@ -39,11 +39,11 @@ const deleteComment = (req, res) => {
 
   Comment.destroy({
     where: {
-      id: commentId,
-    },
+      id: commentId
+    }
   })
   .then(() => {
-    res.send({ message: 'Comment successfully deleted.' });
+    res.sendStatus(200);
   })
   .catch((err) => {
     res.status(500).send(err);
