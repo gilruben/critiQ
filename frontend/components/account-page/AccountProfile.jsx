@@ -39,27 +39,36 @@ const AccountProfile = React.createClass({
     }
     return (
       <div className="account-user-info">
-        <form onSubmit={this.submitEdit}>
-          <h3>Username: <input value={this.state.account.username}
-            onChange={this.handleChange.bind(this, 'username')} />
-          </h3>
-          <h3>Email: <input value={this.state.account.email}
-            onChange={this.handleChange.bind(this, 'email')} /></h3>
-          <h3>Level: <select onChange={this.handleChange.bind(this, 'level')}>
-            <option value={this.state.account.level}>{this.state.account.level}</option>
-            <option value={'middle_school'}>middle school</option>
-            <option value={'high_school'}>high school</option>
-            <option value={'college'}>college</option>
-            <option value={'other'}>other</option>
-          </select>
-          </h3>
-          <h3>Rating: {this.state.account.rating}</h3>
-          <h3>Biography: <textarea rows="6" cols="80"
-            value={this.state.account.bio}
-            onChange={this.handleChange.bind(this, 'bio')}
+        <form className="profile-form-div" onSubmit={this.submitEdit}>
+          <h3>
+            <i className="fa fa-user" />
+            <input className="edit-profile-input" value={this.state.account.username}
+              onChange={this.handleChange.bind(this, 'username')}
             />
           </h3>
-          <input classname="account-edit-button" type="submit" value="Submit Changes"/>
+          <h3>
+            <i className="fa fa-envelope-o" />
+            <input className="edit-profile-input" value={this.state.account.email}
+              onChange={this.handleChange.bind(this, 'email')}
+            />
+          </h3>
+          <h3>Level:
+            <select onChange={this.handleChange.bind(this, 'level')}>
+              <option value={this.state.account.level}>{this.state.account.level}</option>
+              <option value={'middle_school'}>middle school</option>
+              <option value={'high_school'}>high school</option>
+              <option value={'college'}>college</option>
+              <option value={'other'}>other</option>
+            </select>
+          </h3>
+          <h3>Rating: {this.state.account.rating}</h3>
+          <h3>Bio:
+          <textarea className="edit-profile-input" rows="3" cols="30"
+            value={this.state.account.bio}
+            onChange={this.handleChange.bind(this, 'bio')}
+          />
+          </h3>
+          <input className="account-edit-button" type="submit" value="Submit Changes" />
         </form>
       </div>
     );
