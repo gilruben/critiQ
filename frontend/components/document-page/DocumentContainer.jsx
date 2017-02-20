@@ -1,14 +1,20 @@
+// Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
   SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
+// Actions
 import { getDocumentAsync, deleteCommentAsync, selectReviewer } from '../../actions/document-actions';
+// Components
 import SelectedText from './SelectedText';
+import AddComment from './AddComment';
 import ReviewerListContainer from './ReviewerListContainer';
 import CommentListContainer from './CommentListContainer';
+// CSS
 import '../../styles/text-editor.css';
 import '../../styles/document-page.css';
+
 
 const DocumentContainer = React.createClass({
   getInitialState() {
@@ -297,6 +303,10 @@ const DocumentContainer = React.createClass({
             selectedReviewer={selectedReviewer}
             resolver={this.resolve}
           />
+
+          <div>
+            <AddComment />
+          </div>
         </div>
       </div>
     );
