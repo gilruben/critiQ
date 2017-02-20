@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
   SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
 // Actions
-import { getDocumentAsync, deleteCommentAsync, selectReviewer } from '../../actions/document-actions';
+import { getDocumentAsync, deleteCommentAsync, selectReviewer }
+  from '../../actions/document-actions';
 // Components
 import SelectedText from './SelectedText';
 import AddComment from './AddComment';
@@ -19,17 +20,10 @@ import '../../styles/document-page.css';
 const DocumentContainer = React.createClass({
   getInitialState() {
     const decorator = this.getDecorator();
-    const document = this.props.document;
 
-    // Body of document in state
-    const { body } = document;
+    const editorState = EditorState.createEmpty(decorator);
 
-    // Create editorState with document body in state, if it exist, else
-    // create empty editorState
-    const editorState = body ? EditorState.createWithContent(convertFromRaw(body), decorator) :
-      EditorState.createEmpty(decorator);
-
-    return { editorState };
+    return { editorState, isTextHighlighted: false };
   },
   componentDidMount() {
     const id = this.props.params.id;
@@ -111,14 +105,14 @@ const DocumentContainer = React.createClass({
     const newContentState = Modifier.applyEntity(
       contentState,
       selectionState,
-      entityKey,
+      entityKey
     );
 
     // New editorstate with the entity removed
     const newEditorState = EditorState.push(
       editorState,
       newContentState,
-      'apply-entity',
+      'apply-entity'
     );
 
     this.setState({ editorState: newEditorState });
@@ -243,7 +237,16 @@ const DocumentContainer = React.createClass({
     return reviewers;
   },
   handleChange(editorState) {
-    this.setState({ editorState });
+    const selectionState = editorState.getSelection();
+    const anchorOffset = selectionState.getAnchorOffset();
+    const focusOffset = selectionState.getFocusOffset();
+    const difference = focusOffset - anchorOffset;
+
+    // Passes true or false value to the local state depending on whether or
+    // not the difference between anchorOffset and focusOffset is equal to 0.
+    // A difference of 0 means no text was highlighted. Any other number means
+    // text was highlighted.
+    this.setState({ editorState, isTextHighlighted: difference !== 0 });
   },
   resolve(id) {
     // let editorState = this.state.editorState;
@@ -269,7 +272,8 @@ const DocumentContainer = React.createClass({
   },
   render() {
     const { title, comments, selectedReviewer } = this.props.document;
-
+    const { isTextHighlighted } = this.state;
+    console.log('IS_HIGHLIGHTED:', isTextHighlighted);
     return (
       <div id="document-page">
         <div className="reviewer-list-div">
@@ -305,7 +309,7 @@ const DocumentContainer = React.createClass({
           />
 
           <div>
-            <AddComment />
+            <AddComment isTextHighlighted={isTextHighlighted} />
           </div>
         </div>
       </div>
