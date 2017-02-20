@@ -1,4 +1,4 @@
-import { GET_DOCUMENT, SELECT_REVIEWER } from '../actions/document-actions';
+import { GET_DOCUMENT, SELECT_REVIEWER, DELETE_COMMENT } from '../actions/document-actions';
 
 const defaultState = {
   title: '',
@@ -40,6 +40,12 @@ const reducer = (state = defaultState, action) => {
       const selectedReviewer = action.data;
 
       return Object.assign({}, state, { selectedReviewer });
+    case DELETE_COMMENT:
+      const deletedCommentId = action.data;
+
+      comments = state.comments.filter(comment => comment.id !== deletedCommentId);
+
+      return Object.assign({}, state, { comments });
     default:
       return state;
   }
