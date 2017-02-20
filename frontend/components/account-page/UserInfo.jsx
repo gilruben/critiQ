@@ -6,11 +6,14 @@ const UserInfo = (props) => {
   return (
     <div>
       <div className="account-user-info">
-        <h3>Username: {props.account.username}</h3>
-        {props.owner ? <h3>Email: {props.account.email}</h3> : false}
+        <h3><i className="fa fa-user" />{props.account.username}</h3>
+        {props.owner ?
+          <h3><i className="fa fa-envelope-o" />{props.account.email}</h3>:
+            false
+        }
         <h3>Level: {props.account.level}</h3>
         <h3>Rating: {props.account.rating}</h3>
-        <h3>Biography: {props.account.bio}</h3>
+        <h3>Bio: {props.account.bio}</h3>
         {props.owner
           ? <button className="account-edit-button"
               onClick={props.allowEdit}>
