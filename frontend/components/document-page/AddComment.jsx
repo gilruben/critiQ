@@ -24,7 +24,6 @@ const AddComment = React.createClass({
 
     this.setState({ showCommentBox });
   },
-
   render() {
     const { isTextHighlighted } = this.props;
     const { showCommentBox } = this.state;
