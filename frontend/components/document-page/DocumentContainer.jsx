@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
   SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
-import { getDocumentAsync, selectReviewer } from '../../actions/document-actions';
+import { getDocumentAsync, deleteCommentAsync, selectReviewer } from '../../actions/document-actions';
 import SelectedText from './SelectedText';
 import ReviewerListContainer from './ReviewerListContainer';
 import CommentListContainer from './CommentListContainer';
@@ -64,9 +64,6 @@ const DocumentContainer = React.createClass({
         component: SelectedText
       }
     ]);
-  },
-  handleChange(editorState) {
-    this.setState({ editorState });
   },
   createCommentEntity() {
     const editorState = this.state.editorState;
@@ -239,27 +236,30 @@ const DocumentContainer = React.createClass({
     // Returns an object with all the reviewers
     return reviewers;
   },
-  resolve(commentData, id) {
-    let editorState = this.state.editorState;
-    const contentState = editorState.getCurrentContent();
-    const selectionState = new SelectionState(commentData);
-    const entityKey = null;
-
-    // Removes a specific comment entity from the contentstate
-    const newContentState = Modifier.applyEntity(
-      contentState,
-      selectionState,
-      entityKey,
-    );
-
-    // New editorstate with the entity removed
-    editorState = EditorState.push(
-      editorState,
-      newContentState,
-      'apply-entity',
-    );
-
+  handleChange(editorState) {
     this.setState({ editorState });
+  },
+  resolve(id) {
+    // let editorState = this.state.editorState;
+    // const contentState = editorState.getCurrentContent();
+    // const selectionState = new SelectionState(commentData);
+    // const entityKey = null;
+    //
+    // // Removes a specific comment entity from the contentstate
+    // const newContentState = Modifier.applyEntity(
+    //   contentState,
+    //   selectionState,
+    //   entityKey,
+    // );
+    //
+    // // New editorstate with the entity removed
+    // editorState = EditorState.push(
+    //   editorState,
+    //   newContentState,
+    //   'apply-entity',
+    // );
+    this.props.deleteComment(id);
+    // this.setState({ editorState });
   },
   render() {
     const { title, comments, selectedReviewer } = this.props.document;
@@ -311,6 +311,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getDocument: getDocumentAsync,
+      deleteComment: deleteCommentAsync,
       selectReviewer
     },
     dispatch
