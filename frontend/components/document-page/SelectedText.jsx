@@ -1,5 +1,6 @@
 import React from 'react';
 
+// This component is used to highlight the selected text targeted for commenting
 const SelectedText = (props) => {
   const style = {
     backgroundColor: '#ffa593',
