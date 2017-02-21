@@ -34,7 +34,7 @@ const checkLoginStatus = (req, res) => {
       }
     });
   } else {
-    res.sendStatus(401).send('Verification failed.');
+    res.sendStatus(401);
   }
 };
 
