@@ -40,11 +40,15 @@ const AccountContainer = React.createClass({
           <div className="account-main-div">
             <AccountProfile
               account={this.props.user}
-              editUserData={this.props.editUserData} 
+              editUserData={this.props.editUserData}
             />
           </div>
         </div>
         <div className="user-documents-list">
+          { (activeList.length > 0)
+            ? <h1>Active Work</h1>
+            : false
+          }
           <div className="active-doc">
             {
               activeList.map((doc, idx) => {
@@ -57,18 +61,33 @@ const AccountContainer = React.createClass({
               })
             }
           </div>
-          <div className="inactive-doc">
-            {
+          { (inactiveList.length > 0) ? <h1>Inactive Work</h1> : false }
+          { (activeList.length <= 2)
+            ? <div className="inactive-doc">
+              {
+               inactiveList.map((doc, idx) => {
+                 return (
+                   <div className={doc.active} key={idx}>
+                     <button key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)}>Make Active </button>
+                     <IndividualWork document={doc} username={this.props.user.username} />
+                   </div>
+                 );
+               })
+              }
+            </div>
+           : <div className="inactive-doc">
+             <h3>(Two Active Document Limit)</h3>
+             {
              inactiveList.map((doc, idx) => {
                return (
                  <div className={doc.active} key={idx}>
-                   <button key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)}>Make Active </button>
                    <IndividualWork document={doc} username={this.props.user.username} />
                  </div>
                );
              })
             }
-          </div>
+           </div>
+           }
         </div>
       </div>
     );
