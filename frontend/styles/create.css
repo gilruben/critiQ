@@ -229,12 +229,11 @@
   font-size: .7em;
 }
 
-.indiv-blocktype-button-OL{
+.indiv-blocktype-button-list{
   font-size: 15px;
-}
-
-.indiv-blocktype-button-UL{
-  font-size: 15px;
+  margin-top: 5px;
+  color: #747474;
+  cursor: pointer;
 }
 
 .editor-container{
