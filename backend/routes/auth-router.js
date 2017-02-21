@@ -10,6 +10,7 @@ const userLogin = (req, res) => {
     if (user) {
       req.session.userId = user.id;
       req.session.save;
+      res.sendStatus(200);
     }
   })
   .catch(() => {
@@ -17,11 +18,10 @@ const userLogin = (req, res) => {
   });
 };
 
-//useraccount add session 
-
 const userLogout = (req, res) => {
   req.session.destroy();
   res.send('Logout successful.');
+  res.sendStatus(200);
 };
 
 const checkLoginStatus = (req, res) => {
@@ -39,7 +39,7 @@ const checkLoginStatus = (req, res) => {
 };
 
 router.route('/login')
-  .get(userLogin);
+  .post(userLogin);
 
 router.route('/logout')
   .post(userLogout);
