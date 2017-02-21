@@ -2,7 +2,8 @@ import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from '../store/store';
-import { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, SignUp, ProfilePage } from './index';
+import verification from '../utilities/Verification';
+import { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, ProfilePage } from './index';
 
 const Routes = () => (
   <Provider store={store}>
