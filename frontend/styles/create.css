@@ -40,7 +40,7 @@
   padding: 20px;
 }
 
-/*POP UP CONTAINER*/
+/*-----------------------POP UP CONTAINER-----------------------*/
 .form-container{
   display: flex;
   justify-content: center;
@@ -63,7 +63,7 @@
   flex-direction: column;
 }
 
-/*TITLE INPUTS*/
+/*-----------------------TITLE INPUTS-----------------------*/
 .innerForm-container h1{
   width: 400px;
   font-weight: 300;
@@ -167,7 +167,7 @@
   cursor: pointer;
 }
 
-/*EDITOR STYLING*/
+/*-----------------------EDITOR STYLING-----------------------*/
 .instyleButtons-container{
   display: flex;
   justify-content: space-around;
