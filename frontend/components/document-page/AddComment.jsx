@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddComment = React.createClass({
   getInitialState() {
-    return { showCommentBox: false };
+    return { showCommentBox: false, comment: '' };
   },
   componentWillReceiveProps(props) {
     const { isTextHighlighted } = props;
@@ -15,7 +15,7 @@ const AddComment = React.createClass({
     // first. After the add comment button is clicked, then the comment box should
     // be shown.
     if (!isTextHighlighted) {
-      this.setState({ showCommentBox: false });
+      this.setState({ showCommentBox: false, comment: '' });
     }
   },
   toggleCommentBox() {
@@ -24,8 +24,27 @@ const AddComment = React.createClass({
 
     this.setState({ showCommentBox });
   },
+  handleChange(e) {
+    const comment = e.target.value
+
+    this.setState({ comment });
+  },
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { comment } = this.state;
+    const { createComment, highlightedTextData, documentId } = this.props;
+
+    if (comment) {
+      // USERID IS TEMPORARY UNTIL LOGIN IS SETUP
+      const data = { comment, DocumentId: documentId, UserId: 1 };
+      const commentData = Object.assign({}, highlightedTextData, data);
+
+      createComment(commentData);
+    }
+  },
   render() {
-    const { isTextHighlighted } = this.props;
+    const { isTextHighlighted, highlightedTextData, createComment } = this.props;
     const { showCommentBox } = this.state;
 
     return (
@@ -40,12 +59,14 @@ const AddComment = React.createClass({
         {
           showCommentBox && isTextHighlighted ?
             <div>
-              <textarea className="comment-box" />
+              <form onSubmit={this.handleSubmit}>
+                <textarea className="comment-box" onChange={this.handleChange} />
 
-              <div>
-                <button>Comment</button>
-                <button>Cancel</button>
-              </div>
+                <div>
+                  <button type="Submit">Comment</button>
+                  <button>Cancel</button>
+                </div>
+              </form>
             </div> : null
         }
       </div>
