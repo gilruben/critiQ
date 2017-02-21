@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUp from './SignUp';
+import SignUpContainer from './SignUpContainer';
 
 const SignIn = React.createClass({
   getInitialState() {
@@ -15,7 +15,7 @@ const SignIn = React.createClass({
           <div className="sign-in-bottom">
             <div className="sign-up-div">
               <p>Don{"'"}t have an account?</p>
-              <SignUp />
+              <SignUpContainer />
             </div>
             <input className="sign-in-button" type="submit" />
           </div>
