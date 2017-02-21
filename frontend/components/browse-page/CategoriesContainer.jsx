@@ -10,7 +10,7 @@ const CategoryContainer = React.createClass({
   },
   handleCategory(e) {
     const category = e.target.innerHTML.toLowerCase().split(' ').join('_');
-    this.props.getDocuments(category)
+    this.props.getDocuments(category);
   },
   render() {
     const categories = ['Resumes', 'Cover letters', 'Upcoming Deadlines', 'Other writings'];
@@ -34,7 +34,7 @@ const CategoryContainer = React.createClass({
         </ul>
       </div>
     );
-  },
+  }
 });
 
 export default CategoryContainer;
