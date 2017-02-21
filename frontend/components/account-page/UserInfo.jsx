@@ -4,7 +4,7 @@ import '../../styles/account-page.css';
 const UserInfo = (props) => {
   // ternaries created to reuse component for account page and profile page views
   return (
-    <div>
+    <div className="account-section">
       <div className="account-user-info">
         <h3><i className="fa fa-user" />{props.account.username}</h3>
         {props.owner
