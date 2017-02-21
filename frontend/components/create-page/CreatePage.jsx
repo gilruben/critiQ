@@ -86,8 +86,8 @@ const CreatePage = React.createClass({
       { name: 'H4', style: 'header-four' },
       { name: 'H5', style: 'header-five' },
       { name: 'H6', style: 'header-six' },
-      { name: 'UL', style: 'unordered-list-item' },
-      { name: 'OL', style: 'ordered-list-item' }
+      { name: 'UL', style: 'unordered-list-item', fontName: 'fa fa-list-ul' },
+      { name: 'OL', style: 'ordered-list-item', fontName: 'fa fa-list-ol' }
     ];
     return (
       <div className="page-container">
@@ -165,6 +165,16 @@ const CreatePage = React.createClass({
             }
             {
               blockTypes.map((val) => {
+                if (val.style === 'ordered-list-item' || val.style === 'unordered-list-item') {
+                  return (
+                    <i
+                      key={val.name}
+                      className={`${val.fontName} indiv-blocktype-button-list`}
+                      onClick={this.onBlockTypeClick.bind(this, val.style)}
+                    />
+                  );
+                }
+
                 return (
                   <button
                     key={val.name}
