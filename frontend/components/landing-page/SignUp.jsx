@@ -16,7 +16,6 @@ const SignUpContainer = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.createUser({
       username: this.state.username,
       password: this.state.password,
