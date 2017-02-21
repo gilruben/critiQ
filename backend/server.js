@@ -3,6 +3,7 @@ const path = require('path');
 const db = require('./models');
 const router = require('./routes');
 const applyExpressMiddleware = require('./middleware');
+const authRouter = require('./routes/auth-router');
 
 const app = express();
 
@@ -15,7 +16,7 @@ db.sequelize.sync().then(() => {
   app.use('/api', router);
 
   // Authentication Route
-  app.use('/auth', router);
+  app.use('/auth', authRouter);
 
   // Front-End Route
   app.get('/*', (req, res) => {
