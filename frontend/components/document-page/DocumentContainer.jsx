@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, Modifier, CompositeDecorator,
   SelectionState, convertToRaw, convertFromRaw } from 'draft-js';
 // Actions
-import { getDocumentAsync, deleteCommentAsync, selectReviewer }
+import { getDocumentAsync, deleteCommentAsync, selectReviewer, createCommentAsync }
   from '../../actions/document-actions';
 // Components
 import SelectedText from './SelectedText';
@@ -23,7 +23,7 @@ const DocumentContainer = React.createClass({
 
     const editorState = EditorState.createEmpty(decorator);
 
-    return { editorState, isTextHighlighted: false };
+    return { editorState, isTextHighlighted: false, highlightedTextData: null };
   },
   componentDidMount() {
     const id = this.props.params.id;
@@ -64,58 +64,6 @@ const DocumentContainer = React.createClass({
         component: SelectedText
       }
     ]);
-  },
-  createCommentEntity() {
-    const editorState = this.state.editorState;
-    const selectionState = editorState.getSelection();
-    const contentState = editorState.getCurrentContent();
-    const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
-    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-
-    console.log('ANCHOR_KEY:', selectionState.getAnchorKey());
-    console.log('ANCHOR_OFFSET:', selectionState.getAnchorOffset());
-    console.log('FOCUS_KEY:', selectionState.getFocusKey());
-    console.log('FOCUS_OFFSET:', selectionState.getFocusOffset());
-    console.log('IS_BACKWARD:', selectionState.getIsBackward());
-    console.log('HAS_FOCUS', selectionState.getHasFocus());
-
-    // New contentstate with comment entity attached
-    const contentStateWithComment = Modifier.applyEntity(
-      contentState,
-      selectionState,
-      entityKey,
-    );
-
-    // New editorstate with comment entity attached
-    const newEditorState = EditorState.push(
-      editorState,
-      contentStateWithComment,
-      'apply-entity',
-    );
-
-    this.setState({ editorState: newEditorState });
-  },
-  resolveComment() {
-    const editorState = this.state.editorState;
-    const selectionState = editorState.getSelection();
-    const contentState = editorState.getCurrentContent();
-    const entityKey = null;
-
-    // Removes a specific comment entity from the contentstate
-    const newContentState = Modifier.applyEntity(
-      contentState,
-      selectionState,
-      entityKey
-    );
-
-    // New editorstate with the entity removed
-    const newEditorState = EditorState.push(
-      editorState,
-      newContentState,
-      'apply-entity'
-    );
-
-    this.setState({ editorState: newEditorState });
   },
   findCommentStrategy(contentBlock, callback, contentState) {
     contentBlock.findEntityRanges((character) => {
@@ -236,43 +184,41 @@ const DocumentContainer = React.createClass({
     // Returns an object with all the reviewers
     return reviewers;
   },
+  getSelectionData(selectionState) {
+    const anchorKey = selectionState.getAnchorKey();
+    const anchorOffset = selectionState.getAnchorOffset();
+    const focusKey = selectionState.getFocusKey();
+    const focusOffset = selectionState.getFocusOffset();
+    const isBackward = selectionState.getIsBackward();
+    const hasFocus = true;
+
+    return { anchorKey, anchorOffset, focusKey, focusOffset, isBackward, hasFocus };
+  },
   handleChange(editorState) {
     const selectionState = editorState.getSelection();
-    const anchorOffset = selectionState.getAnchorOffset();
-    const focusOffset = selectionState.getFocusOffset();
+    const selectionData = this.getSelectionData(selectionState);
+    const { focusOffset, anchorOffset } = selectionData;
     const difference = focusOffset - anchorOffset;
+    const isDiffNonZero = difference !== 0;
 
     // Passes true or false value to the local state depending on whether or
     // not the difference between anchorOffset and focusOffset is equal to 0.
     // A difference of 0 means no text was highlighted. Any other number means
     // text was highlighted.
-    this.setState({ editorState, isTextHighlighted: difference !== 0 });
+    this.setState({
+      editorState,
+      isTextHighlighted: isDiffNonZero,
+      highlightedTextData: isDiffNonZero ? selectionData : null
+    });
   },
   resolve(id) {
-    // let editorState = this.state.editorState;
-    // const contentState = editorState.getCurrentContent();
-    // const selectionState = new SelectionState(commentData);
-    // const entityKey = null;
-    //
-    // // Removes a specific comment entity from the contentstate
-    // const newContentState = Modifier.applyEntity(
-    //   contentState,
-    //   selectionState,
-    //   entityKey,
-    // );
-    //
-    // // New editorstate with the entity removed
-    // editorState = EditorState.push(
-    //   editorState,
-    //   newContentState,
-    //   'apply-entity',
-    // );
     this.props.deleteComment(id);
-    // this.setState({ editorState });
   },
   render() {
     const { title, comments, selectedReviewer } = this.props.document;
-    const { isTextHighlighted } = this.state;
+    const { isTextHighlighted, highlightedTextData } = this.state;
+    const { createComment } = this.props;
+    const { id } = this.props.params;
 
     return (
       <div id="document-page">
@@ -285,11 +231,6 @@ const DocumentContainer = React.createClass({
 
         <div id="editor-content">
           <h1>{title}</h1>
-
-          <div className="editor-buttons">
-            <button onClick={this.createCommentEntity}>Comment</button>
-            <button onClick={this.resolveComment}>Resolve</button>
-          </div>
 
           <div className="editor-view" onClick={this.focus}>
             <Editor
@@ -309,7 +250,12 @@ const DocumentContainer = React.createClass({
           />
 
           <div>
-            <AddComment isTextHighlighted={isTextHighlighted} />
+            <AddComment
+              isTextHighlighted={isTextHighlighted}
+              highlightedTextData={highlightedTextData}
+              createComment={createComment}
+              documentId={id}
+            />
           </div>
         </div>
       </div>
@@ -326,6 +272,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       getDocument: getDocumentAsync,
       deleteComment: deleteCommentAsync,
+      createComment: createCommentAsync,
       selectReviewer
     },
     dispatch
