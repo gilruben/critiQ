@@ -15,7 +15,6 @@ export const getUserDataAsync = username => (dispatch) => {
     data: username
   })
   .done((userData) => {
-    console.log(userData);
     dispatch(getUserData(userData));
     browserHistory.push('/');
   });
