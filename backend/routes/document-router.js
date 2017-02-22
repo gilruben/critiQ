@@ -43,6 +43,8 @@ const getAllDocuments = (req, res) => {
 
 const documentCreate = (req, res) => {
   const documentData = req.body;
+  const { userId } = req.session;
+  documentData.UserId = userId;
 
   Document.create(documentData)
   .then((doc) => {
