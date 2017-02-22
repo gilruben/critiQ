@@ -124,7 +124,9 @@ const DocumentContainer = React.createClass({
       if (username === filterBy) {
         const { anchorKey, anchorOffset, focusKey, focusOffset, isBackward, hasFocus } = data;
         const contentState = newEditorState.getCurrentContent();
-        const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE');
+        const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE', {
+          commentId: data.id
+        });
         const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
         const CommentSelectionState = new SelectionState({
           anchorKey,
