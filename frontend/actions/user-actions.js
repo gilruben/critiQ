@@ -7,10 +7,21 @@ const getUserData = payload => ({
   data: payload
 });
 
-export const getUserDataAsync = () => (dispatch) => {
+// export const getUserDataAsync = () => (dispatch) => {
+//   ajax({
+//     url: '/api/users/1',
+//     type: 'GET'
+//   })
+//   .done((userData) => {
+//     dispatch(getUserData(userData));
+//   });
+// };
+
+export const getUserDataAsync = username => (dispatch) => {
   ajax({
-    url: '/api/users/1',
-    type: 'GET'
+    url: '/auth/login/',
+    type: 'POST',
+    data: username
   })
   .done((userData) => {
     dispatch(getUserData(userData));
