@@ -4,13 +4,17 @@ const User = require('../models').User;
 const userLogin = (req, res) => {
   const userData = req.body;
   User.findOne({
-    where: userData
+    where: userData,
+    attributes: {
+      exclude: ['password']
+    }
   })
   .then((user) => {
+    console.log('RETRIEVE USER:', user);
     if (user) {
       req.session.userId = user.id;
       req.session.save;
-      res.sendStatus(200);
+      res.send(user);
     }
   })
   .catch(() => {
