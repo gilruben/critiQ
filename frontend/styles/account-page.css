@@ -1,8 +1,12 @@
 /*account user info*/
 
 .account-page-div {
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  overflow-y: scroll;
+  width: 100vw;
+  height: 93.5vh;
+  background-color: #f6f6f6;
+  
 }
 
 .account-section {
@@ -18,7 +22,6 @@
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  width: 500px;
   height: 300px;
   padding-top: 20px;
 }
@@ -46,10 +49,10 @@
 
 #create-btn {
   padding: 12px 0 15px 0;
-  width: 175px;
+  width: 300px;
   height: 100px;
   font-size: 1.75em;
-  font-weight: 300;
+  font-weight: 400;
   border-radius: 3px;
   color: white;
   background-color: #4ED99C;
