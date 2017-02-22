@@ -8,11 +8,11 @@ const getUserData = payload => ({
   data: payload
 });
 
-export const getUserDataAsync = username => (dispatch) => {
+export const getUserDataAsync = loginInfo => (dispatch) => {
   ajax({
     url: '/auth/login/',
     type: 'POST',
-    data: username
+    data: loginInfo
   })
   .done((userData) => {
     dispatch(getUserData(userData));
