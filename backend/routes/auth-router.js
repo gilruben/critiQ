@@ -10,7 +10,6 @@ const userLogin = (req, res) => {
     }
   })
   .then((user) => {
-    console.log('RETRIEVE USER:', user);
     if (user) {
       req.session.userId = user.id;
       req.session.save;
