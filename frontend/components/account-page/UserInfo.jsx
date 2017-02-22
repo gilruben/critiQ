@@ -15,9 +15,10 @@ const UserInfo = (props) => {
             </h3>
           : false
         }
-        <h3>Level: {props.account.level}</h3>
-        <h3>Rating: {props.account.rating}</h3>
-        <h3>Bio: {props.account.bio}</h3>
+        <h3>Education: {props.account.level}</h3>
+        <div className="bio-div">
+          <h3>Bio: {props.account.bio}</h3>
+        </div>
         {props.owner
           ? <button className="account-edit-button"
               onClick={props.allowEdit}>
