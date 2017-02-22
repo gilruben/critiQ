@@ -9,7 +9,7 @@ const Routes = () => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={LandingPage} path="/signin" />
-      <Route path="/" component={Navbar}>
+      <Route path="/" component={Navbar} onEnter={verification}>
         <IndexRoute component={BrowsePage} />
         <Route component={AccountPage} path="account" />
         <Route component={CreatePage} path="create" />

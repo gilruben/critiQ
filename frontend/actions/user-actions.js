@@ -1,4 +1,5 @@
 import { ajax } from 'jquery';
+import { browserHistory } from 'react-router';
 
 export const GET_USER_DATA = 'GET_USER_DATA';
 export const EDIT_USER_DATA = 'EDIT_USER_DATA';
@@ -42,5 +43,16 @@ export const editUserDataAsync = (data, id) => (dispatch) => {
   })
   .done((userData) => {
     dispatch(editUserData(userData));
+  });
+};
+
+export const logInAsync = loginInfo => (dispatch) => {
+  ajax({
+    url: '/auth/login/',
+    type: 'POST',
+    data: loginInfo
+  })
+  .done(() => {
+    browserHistory.push('/');
   });
 };

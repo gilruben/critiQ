@@ -1,12 +1,27 @@
 const router = require('express').Router();
 const Comment = require('../models').Comment;
+const User = require('../models').User;
 
 const postComment = (req, res) => {
-  const comment = req.body;
+  const newComment = req.body;
 
-  Comment.create(comment)
+  Comment.create(newComment)
   .then((postedComment) => {
-    res.send(postedComment);
+    const id = postedComment.id;
+
+    return Comment.findById(id, {
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ['password', 'email', 'level']
+          }
+        }
+      ]
+    });
+  })
+  .then((comment) => {
+    res.send(comment);
   })
   .catch((err) => {
     res.status(500).send(err);
@@ -19,9 +34,9 @@ const updateComment = (req, res) => {
 
   Comment.update(commentInfo, {
     where: {
-      id: commentId,
+      id: commentId
     },
-    returning: true,
+    returning: true
   })
   .then((updatedComment) => {
     const updatedCommentArray = updatedComment[1];
@@ -39,11 +54,11 @@ const deleteComment = (req, res) => {
 
   Comment.destroy({
     where: {
-      id: commentId,
-    },
+      id: commentId
+    }
   })
   .then(() => {
-    res.send({ message: 'Comment successfully deleted.' });
+    res.sendStatus(200);
   })
   .catch((err) => {
     res.status(500).send(err);
