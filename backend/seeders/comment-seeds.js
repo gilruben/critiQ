@@ -1,6 +1,6 @@
 const commentSeeds = [
   {
-    comment: 'Bruh! What does this mean? I think you need a title thatbetter suits the writing',
+    comment: 'Bruh! What does this mean? I think you need a title that better suits the writing',
     anchorKey: 'cqvfr',
     anchorOffset: 70,
     focusKey: 'cqvfr',
