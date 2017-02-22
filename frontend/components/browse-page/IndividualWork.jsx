@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import readingTime from '../../utilities/ReadingTime';
 import deadline from '../../utilities/Deadline';
+import characterCount from '../../utilities/CharacterCount';
 
 const IndividualWork = React.createClass({
   handleClick() {
@@ -21,7 +22,7 @@ const IndividualWork = React.createClass({
           <span>•</span>
           <p className="individual-work-name">{this.props.document.User.username}</p>
         </div>
-        <p className="snippet">{this.props.document.body.blocks[0].text}</p>
+        <p className="snippet">{characterCount(this.props.document) + "..."}</p>
         <div className="dead-rev">
           <p className="deadline">ends {deadline(this.props.document.deadline)}</p>
           <p className="rev"># <i className="fa fa-user" /></p>
