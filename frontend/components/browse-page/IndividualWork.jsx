@@ -25,7 +25,6 @@ const IndividualWork = React.createClass({
         <p className="snippet">{characterCount(this.props.document) + "..."}</p>
         <div className="dead-rev">
           <p className="deadline">ends {deadline(this.props.document.deadline)}</p>
-          <p className="rev"># <i className="fa fa-user" /></p>
         </div>
       </div>
     );
