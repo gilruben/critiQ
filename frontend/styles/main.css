@@ -333,10 +333,15 @@ nav ul li {
 
 .individual-work-name {
   font-weight: 300;
+  margin: 10px 0;
+}
+
+.individual-work-category {
+  margin: 10px 0;
 }
 
 .snippet {
-  height: 175px;
+  height: 180px;
   margin: 0;
   color: #747474;
   font-family: serif;
@@ -348,6 +353,7 @@ nav ul li {
   justify-content: space-between;
   height: 30px;
   border-top: 1px solid #efefef;
+  margin-top: 5px;
 }
 
 .dead-rev p {
