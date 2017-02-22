@@ -1,4 +1,5 @@
 import { ajax } from 'jquery';
+import { browserHistory } from 'react-router';
 
 export const GET_USER_DATA = 'GET_USER_DATA';
 
@@ -7,16 +8,6 @@ const getUserData = payload => ({
   data: payload
 });
 
-// export const getUserDataAsync = () => (dispatch) => {
-//   ajax({
-//     url: '/api/users/1',
-//     type: 'GET'
-//   })
-//   .done((userData) => {
-//     dispatch(getUserData(userData));
-//   });
-// };
-
 export const getUserDataAsync = username => (dispatch) => {
   ajax({
     url: '/auth/login/',
@@ -24,7 +15,9 @@ export const getUserDataAsync = username => (dispatch) => {
     data: username
   })
   .done((userData) => {
+    console.log(userData);
     dispatch(getUserData(userData));
+    browserHistory.push('/');
   });
 };
 
