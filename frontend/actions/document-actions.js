@@ -1,10 +1,22 @@
 import { ajax } from 'jquery';
 
 export const GET_DOCUMENT = 'GET_DOCUMENT';
+export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const SELECT_REVIEWER = 'SELECT_REVIEWER';
 
 const getDocument = payload => ({
   type: GET_DOCUMENT,
+  data: payload
+});
+
+const createComment = payload => ({
+  type: CREATE_COMMENT,
+  data: payload
+});
+
+const deleteComment = payload => ({
+  type: DELETE_COMMENT,
   data: payload
 });
 
@@ -20,5 +32,26 @@ export const getDocumentAsync = id => (dispatch) => {
   })
   .done((data) => {
     dispatch(getDocument(data));
+  });
+};
+
+export const createCommentAsync = commentData => (dispatch) => {
+  ajax({
+    url: '/api/comments',
+    type: 'POST',
+    data: commentData
+  })
+  .done((comment) => {
+    dispatch(createComment(comment));
+  });
+};
+
+export const deleteCommentAsync = id => (dispatch) => {
+  ajax({
+    url: `/api/comments/${id}`,
+    type: 'DELETE'
+  })
+  .done(() => {
+    dispatch(deleteComment(id));
   });
 };

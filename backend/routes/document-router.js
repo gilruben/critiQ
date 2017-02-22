@@ -69,8 +69,8 @@ const getSingleDocument = (req, res) => {
       }
     ]
   })
-  .then((user) => {
-    res.send(user);
+  .then((doc) => {
+    res.send(doc);
   })
   .catch((err) => {
     console.log(err.message);

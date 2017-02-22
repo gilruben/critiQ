@@ -1,4 +1,5 @@
-import { GET_DOCUMENT, SELECT_REVIEWER } from '../actions/document-actions';
+import { GET_DOCUMENT, SELECT_REVIEWER, DELETE_COMMENT,
+  CREATE_COMMENT } from '../actions/document-actions';
 
 const defaultState = {
   title: '',
@@ -18,7 +19,8 @@ const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case GET_DOCUMENT:
       const { title, body, category, privacy, deadline, active, createdAt } = action.data;
-      comments = action.data.Comments;
+
+      comments = action.data.Comments.sort((a, b) => a.id - b.id);
 
       // When contentState was originally converted to raw, entityMap was empty,
       // so the database omitted it.
@@ -40,6 +42,17 @@ const reducer = (state = defaultState, action) => {
       const selectedReviewer = action.data;
 
       return Object.assign({}, state, { selectedReviewer });
+    case DELETE_COMMENT:
+      const deletedCommentId = action.data;
+
+      comments = state.comments.filter(comment => comment.id !== deletedCommentId);
+
+      return Object.assign({}, state, { comments });
+    case CREATE_COMMENT:
+      const newComment = action.data;
+      comments = state.comments;
+
+      return Object.assign({}, state, { comments: [...comments, newComment] });
     default:
       return state;
   }
