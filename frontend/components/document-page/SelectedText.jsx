@@ -8,7 +8,9 @@ const SelectedText = (props) => {
     border: '#ffa593 solid 1px',
     borderRadius: '3px'
   };
-
+  const { contentState, entityKey } = props;
+  const entity = contentState.getEntity(entityKey);
+  // console.log(entity.getData());
   return <span style={style}>{props.children}</span>;
 };
 
