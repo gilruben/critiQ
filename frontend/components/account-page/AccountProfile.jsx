@@ -24,7 +24,7 @@ const AccountProfile = React.createClass({
     const accountState = this.state.account;
     const id = this.props.account.id;
 
-    this.props.editUserData(accountState, id);
+    this.props.editUserData(accountState);
     this.setState({ edit: false });
   },
   render() {

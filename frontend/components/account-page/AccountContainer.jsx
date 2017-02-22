@@ -14,7 +14,7 @@ import IndividualWork from '../browse-page/IndividualWork';
 
 const AccountContainer = React.createClass({
   componentDidMount() {
-    this.props.getUserData(3);
+    this.props.getUserData();
   },
   docActiveSwitch(doc) {
     const id = doc.id;

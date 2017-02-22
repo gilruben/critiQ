@@ -9,12 +9,13 @@ const getUserData = payload => ({
   data: payload
 });
 
-export const getUserDataAsync = id => (dispatch) => {
+export const getUserDataAsync = () => (dispatch) => {
   ajax({
-    url: `/api/users/${id}`,
+    url: '/api/users/individual',
     type: 'GET'
   })
   .done((userData) => {
+    console.log(userData);
     dispatch(getUserData(userData));
   });
 };
@@ -35,9 +36,9 @@ const editUserData = payload => ({
   data: payload
 });
 
-export const editUserDataAsync = (data, id) => (dispatch) => {
+export const editUserDataAsync = (data) => (dispatch) => {
   ajax({
-    url: `/api/users/${id}`,
+    url: '/api/users/individual',
     type: 'PUT',
     data
   })
