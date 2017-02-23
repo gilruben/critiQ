@@ -57,7 +57,7 @@ const AccountContainer = React.createClass({
                 return (
                   <div className={doc.active} key={idx}>
                     <IndividualWork document={doc} username={this.props.user.username}/>
-                    <button key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)}>Make Inactive</button>
+                    <img alt="bookmark" src="https://i.imgur.com/KgG8Gwv.png?1" key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)} />
                   </div>
                 );
               })
@@ -71,7 +71,7 @@ const AccountContainer = React.createClass({
                  return (
                    <div className={doc.active} key={idx}>
                      <IndividualWork document={doc} username={this.props.user.username} />
-                     <button key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)}>Make Active </button>
+                     <img alt="bookmark" src="https://i.imgur.com/PPHaMFr.png?1" key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)} />
                    </div>
                  );
                })
