@@ -36,17 +36,23 @@
 
 
 /*-------CommentListContainer--------*/
+
+.comment-list-div {
+  display: flex;
+  flex-direction: column;
+}
+
 .comment-list-ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 300px;
 }
 
-.comment-box {
+.comment-div {
   background-color: white;
   border: 1px solid #d9d8d8;
   border-radius: 4px;
+  margin-bottom: 15px;
 }
 
 .user-resolve-div {
@@ -78,6 +84,41 @@
 .comment-text {
   padding: 5px 5px;
   word-wrap: break-word;
+}
+
+.comment-box {
+  width: 175px;
+  height: 50px;
+  border: 1px solid #d9d8d8;
+}
+
+.comment-box:focus {
+  outline: none;
+}
+
+.comment-box-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.comment-submit-button {
+  width: 75px;
+  color: white;
+  font-weight: 700;
+  background-color: #4ED99C;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 0;
+}
+
+.comment-cancel-button {
+  width: 75px;
+  color: white;
+  font-weight: 700;
+  background-color: #e53232;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 0;
 }
 /*-------/CommentListContainer--------*/
 
