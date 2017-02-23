@@ -43,12 +43,21 @@
   background-color: #FFA593;
 }
 
-.user-resolve-div p {
+.user-resolve-div-selected {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0;
+  background-color: #FF7B60;
+}
+
+
+.user-resolve-div p, .user-resolve-div-selected p {
   margin: 0;
   color: white;
 }
 
-.user-resolve-div button {
+.user-resolve-div button, .user-resolve-div-selected button {
   padding: 5px 5px;
   border-radius: 3px;
   font-weight: 700;
@@ -57,7 +66,7 @@
   border: none;
 }
 
-.user-resolve-div button:hover {
+.user-resolve-div button:hover, .user-resolve-div-selected button:hover {
   background-color: #3ba476;
 }
 
