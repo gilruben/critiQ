@@ -441,12 +441,9 @@ nav ul li {
   color: white;
   background-color: #4ED99C;
   border: none;
-  /*-webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-   transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);*/
 }
 
 #add-comment-button:hover {
   background-color: #3aa476;
-  /*width: 43px;*/
 }
 /*-------/Add component--------*/
