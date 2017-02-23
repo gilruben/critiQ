@@ -231,6 +231,7 @@ const DocumentContainer = React.createClass({
           <ReviewerListContainer
             reviewers={this.getListOfReviewers(comments)}
             selectReviewer={this.props.selectReviewer}
+            selectedReviewer={selectedReviewer}
           />
         </div>
 
@@ -256,14 +257,12 @@ const DocumentContainer = React.createClass({
             selectComment={selectComment}
           />
 
-          <div>
-            <AddComment
-              isTextHighlighted={isTextHighlighted}
-              highlightedTextData={highlightedTextData}
-              createComment={createComment}
-              documentId={id}
-            />
-          </div>
+          <AddComment
+            isTextHighlighted={isTextHighlighted}
+            highlightedTextData={highlightedTextData}
+            createComment={createComment}
+            documentId={id}
+          />
         </div>
       </div>
     );

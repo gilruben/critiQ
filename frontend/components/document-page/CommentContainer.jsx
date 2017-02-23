@@ -10,7 +10,7 @@ const CommentContainer = (props) => {
   const commentData = { commentId: id };
 
   return (
-    <div className="comment-box" onClick={selectComment.bind(null, commentData)}>
+    <div className="comment-div" onClick={selectComment.bind(null, commentData)}>
       <div className={commentClass}>
         <p>{reviewer.username}</p>
         <button onClick={resolver.bind(null, id)}>resolve</button>
