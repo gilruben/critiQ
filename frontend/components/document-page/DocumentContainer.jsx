@@ -256,12 +256,12 @@ const DocumentContainer = React.createClass({
             selectedComment={selectedComment}
           />
 
-            <AddComment
-              isTextHighlighted={isTextHighlighted}
-              highlightedTextData={highlightedTextData}
-              createComment={createComment}
-              documentId={id}
-            />
+          <AddComment
+            isTextHighlighted={isTextHighlighted}
+            highlightedTextData={highlightedTextData}
+            createComment={createComment}
+            documentId={id}
+          />
         </div>
       </div>
     );
