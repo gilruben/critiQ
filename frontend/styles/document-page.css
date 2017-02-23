@@ -15,7 +15,21 @@
   background-color: white;
   border-radius: 4px;
   margin-bottom: 10px;
-  padding: 5px 0;
+  padding: 5px 0 5px 5px;
+  border: 1px solid #ddd8d8;
+}
+
+.reviewer:hover {
+  border: 1px solid #747474;
+}
+
+.selected-reviewer {
+  font-size: 1.1em;
+  color: white;
+  background-color: #FFA593;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 5px 0 5px 5px;
 }
 /*-------/ReviewerListContainer--------*/
 
