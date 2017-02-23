@@ -3,7 +3,9 @@ const Comment = require('../models').Comment;
 const User = require('../models').User;
 
 const postComment = (req, res) => {
+  const { userId } = req.session;
   const newComment = req.body;
+  newComment.UserId = userId;
 
   Comment.create(newComment)
   .then((postedComment) => {
@@ -29,12 +31,14 @@ const postComment = (req, res) => {
 };
 
 const updateComment = (req, res) => {
+  const { userId } = req.session;
   const commentId = req.params.id;
   const commentInfo = req.body;
 
   Comment.update(commentInfo, {
     where: {
-      id: commentId
+      id: commentId,
+      UserId: userId
     },
     returning: true
   })
