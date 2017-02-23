@@ -188,13 +188,11 @@ const CreatePage = React.createClass({
               })
             }
           </div>
-          <div className="draft-container">
-            <div className="editor">
-              <Editor
-                editorState={this.state.editorState}
-                onChange={this.onChange}
-              />
-            </div>
+          <div className="editor">
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.onChange}
+            />
           </div>
         </div>
       </div>
