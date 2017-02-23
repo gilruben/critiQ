@@ -3,6 +3,7 @@ import CreatePage from './create-page/CreatePage';
 import Navbar from './Navbar';
 import BrowsePage from './browse-page/BrowseContainer';
 import DocumentPage from './document-page/DocumentContainer';
+import AccountPage from './account-page/AccountContainer';
 import ProfilePage from './profile-page/ProfileContainer';
 
-export { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, ProfilePage };
+export { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, ProfilePage, AccountPage };

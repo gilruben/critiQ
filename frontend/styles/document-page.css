@@ -7,7 +7,15 @@
 /*-------ReviewerListContainer--------*/
 .reviewer-list-ul {
   width: 150px;
-  background-color: yellow;
+}
+
+.reviewer {
+  font-size: 1.1em;
+  color: #333;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 5px 0;
 }
 /*-------/ReviewerListContainer--------*/
 
@@ -21,9 +29,41 @@
   height: 300px;
 }
 
-.comment-list-ul li {
-  border: 1px solid black;
+.comment-box {
+  background-color: white;
+  border: 1px solid #d9d8d8;
+  border-radius: 4px;
+}
+
+.user-resolve-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0;
+  background-color: #FFA593;
+}
+
+.user-resolve-div p {
+  margin: 0;
+  color: white;
+}
+
+.user-resolve-div button {
+  padding: 5px 5px;
   border-radius: 3px;
+  font-weight: 700;
+  color: white;
+  background-color: #4ED99C;
+  border: none;
+}
+
+.user-resolve-div button:hover {
+  background-color: #3ba476;
+}
+
+.comment-text {
+  padding: 5px 5px;
+  word-wrap: break-word;
 }
 /*-------/CommentListContainer--------*/
 

@@ -6,12 +6,12 @@ const User = require('../backend/models').User;
 describe('user-api-test', () => {
   // Fake user data that we'll use for tests
   const users = [
-    { username: 'shakespeare_papi', email: 'cmart@gmail.com', password: 'password', bio: 'I\'m LIT!!!', rating: 350, level: 'other' },
-    { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'post-grad' },
-    { username: 'j.pushw', email: 'jwu@gmail.com', password: 'password', bio: 'Graduated state Penn', rating: 9001, level: 'other' },
+    { username: 'shakespeare_papi', email: 'cmart@gmail.com', password: 'password', bio: 'I\'m LIT!!!', rating: 350, level: 'high_school' },
+    { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'college' },
+    { username: 'j.pushw', email: 'jwu@gmail.com', password: 'password', bio: 'Graduated state Penn', rating: 9001, level: 'middle_school' }
   ];
 
-  let newUser = { username: 'nate_dogg', email: 'ndogg@gmail.com', password: 'password', bio: 'I love scooby snacks', rating: 3522, level: 'professional' };
+  let newUser = { username: 'nate_dogg', email: 'ndogg@gmail.com', password: 'password', bio: 'I love scooby snacks', rating: 3522, level: 'other' };
 
   before(() => User.sync({ force: true })
     .then(() => User.bulkCreate(users))
@@ -93,7 +93,7 @@ describe('user-api-test', () => {
 
   // Test to create a new user with invalid email and rating data
   it('\'/api/users\' should respond with an error', (done) => {
-    const newUser = { username: 'captain_crunch', email: 'captaincgmail.com', password: 'password', bio: 'Try my cereal, or else >:[', rating: -1, level: 'professional' };
+    const newUser = { username: 'captain_crunch', email: 'captaincgmail.com', password: 'password', bio: 'Try my cereal, or else >:[', rating: -1, level: 'middle_school' };
     supertest(server)
       .post('/api/users')
       .send(newUser)
@@ -109,7 +109,7 @@ describe('user-api-test', () => {
 
   // Test to create a new user with username and email that already exist
   it('\'/api/users\' should respond with an error', (done) => {
-    const newUser = { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'post-grad' };
+    const newUser = { username: 'edumacate', email: 'nhaque@gmail.com', password: 'password', bio: 'I have a phD in everythinG', rating: 2, level: 'other' };
 
     supertest(server)
       .post('/api/users')
