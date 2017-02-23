@@ -5,6 +5,7 @@ export const EDIT_DOCUMENT_STATUS = 'EDIT_DOCUMENT_STATUS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const SELECT_REVIEWER = 'SELECT_REVIEWER';
+export const SELECT_COMMENT = 'SELECT_COMMENT';
 
 const getDocument = payload => ({
   type: GET_DOCUMENT,
@@ -29,6 +30,11 @@ const deleteComment = payload => ({
 export const selectReviewer = reviewer => ({
   type: SELECT_REVIEWER,
   data: reviewer
+});
+
+export const selectComment = commentId => ({
+  type: SELECT_COMMENT,
+  data: commentId
 });
 
 export const getDocumentAsync = id => (dispatch) => {

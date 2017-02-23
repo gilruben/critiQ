@@ -3,7 +3,7 @@ import CommentContainer from './CommentContainer';
 
 const CommentListContainer = React.createClass({
   render() {
-    const { comments, selectedReviewer, resolver } = this.props;
+    const { comments, selectedReviewer, resolver, selectedComment, selectComment } = this.props;
 
     return (
       <ul className="comment-list-ul">
@@ -17,7 +17,12 @@ const CommentListContainer = React.createClass({
               return ([
                 ...filtrdComments,
                 (<li key={comment.id}>
-                  <CommentContainer comment={comment} resolver={resolver} />
+                  <CommentContainer
+                    comment={comment}
+                    resolver={resolver}
+                    selectedComment={selectedComment}
+                    selectComment={selectComment}
+                  />
                 </li>)
               ]);
             }

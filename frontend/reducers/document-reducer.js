@@ -1,5 +1,5 @@
 import { GET_DOCUMENT, SELECT_REVIEWER, DELETE_COMMENT,
-  CREATE_COMMENT } from '../actions/document-actions';
+  CREATE_COMMENT, SELECT_COMMENT } from '../actions/document-actions';
 
 const defaultState = {
   title: '',
@@ -10,7 +10,8 @@ const defaultState = {
   active: '',
   createdAt: new Date(),
   comments: [],
-  selectedReviewer: ''
+  selectedReviewer: '',
+  selectedComment: 0
 };
 
 const reducer = (state = defaultState, action) => {
@@ -53,6 +54,10 @@ const reducer = (state = defaultState, action) => {
       comments = state.comments;
 
       return Object.assign({}, state, { comments: [...comments, newComment] });
+    case SELECT_COMMENT:
+      const { commentId } = action.data;
+
+      return Object.assign({}, state, { selectedComment: commentId });
     default:
       return state;
   }

@@ -187,6 +187,7 @@ const CreatePage = React.createClass({
                 })
               }
             </div>
+
             <div className="draft-container">
               <div className="editor">
                 <Editor
