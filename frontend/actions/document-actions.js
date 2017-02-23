@@ -1,12 +1,18 @@
 import { ajax } from 'jquery';
 
 export const GET_DOCUMENT = 'GET_DOCUMENT';
+export const EDIT_DOCUMENT_STATUS = 'EDIT_DOCUMENT_STATUS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const SELECT_REVIEWER = 'SELECT_REVIEWER';
 
 const getDocument = payload => ({
   type: GET_DOCUMENT,
+  data: payload
+});
+
+const editDocumentStatus = payload => ({
+  type: EDIT_DOCUMENT_STATUS,
   data: payload
 });
 
@@ -32,6 +38,17 @@ export const getDocumentAsync = id => (dispatch) => {
   })
   .done((data) => {
     dispatch(getDocument(data));
+  });
+};
+
+export const editDocumentStatusAsync = (data, id) => (dispatch) => {
+  ajax({
+    url: `/api/documents/${id}`,
+    type: 'PUT',
+    data
+  })
+  .done((documentData) => {
+    dispatch(editDocumentStatus(documentData));
   });
 };
 

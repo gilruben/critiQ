@@ -47,12 +47,12 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Document.belongsTo(models.User, {
-          onDelete: "CASCADE",
+          onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false
           }
-        })
-        Document.hasMany(models.Comment)
+        });
+        Document.hasMany(models.Comment);
       }
     }
   });

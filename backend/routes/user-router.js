@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models').User;
+const Document = require('../models').Document;
 
 const getAllUsers = (req, res) => {
   User.findAll({
@@ -27,7 +28,8 @@ const getOneUser = (req, res) => {
   User.findById(userId, {
     attributes: {
       exclude: ['password']
-    }
+    },
+    include: [Document]
   })
   .then((user) => {
     res.send(user);
@@ -88,5 +90,6 @@ router.route('/individual')
   .get(getOneUser)
   .put(editUserData)
   .delete(deleteUser);
+
 
 module.exports = router;
