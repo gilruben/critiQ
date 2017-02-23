@@ -252,6 +252,7 @@ const DocumentContainer = React.createClass({
             comments={comments}
             selectedReviewer={selectedReviewer}
             resolver={this.resolve}
+            selectedComment={selectedComment}
           />
 
           <div>
