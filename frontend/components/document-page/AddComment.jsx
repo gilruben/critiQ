@@ -39,8 +39,7 @@ const AddComment = React.createClass({
     const { createComment, highlightedTextData, documentId } = this.props;
 
     if (comment) {
-      // USERID IS TEMPORARY UNTIL LOGIN IS SETUP
-      const data = { comment, DocumentId: documentId, UserId: 1 };
+      const data = { comment, DocumentId: documentId };
       const commentData = Object.assign({}, highlightedTextData, data);
 
       createComment(commentData);
