@@ -222,7 +222,7 @@ const DocumentContainer = React.createClass({
   render() {
     const { title, comments, selectedReviewer, selectedComment } = this.props.document;
     const { isTextHighlighted, highlightedTextData } = this.state;
-    const { createComment } = this.props;
+    const { createComment, selectComment } = this.props;
     const { id } = this.props.params;
 
     return (
@@ -253,6 +253,7 @@ const DocumentContainer = React.createClass({
             selectedReviewer={selectedReviewer}
             resolver={this.resolve}
             selectedComment={selectedComment}
+            selectComment={selectComment}
           />
 
           <div>
