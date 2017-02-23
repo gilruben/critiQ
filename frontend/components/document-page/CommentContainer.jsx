@@ -6,7 +6,7 @@ const CommentContainer = (props) => {
   const { id } = comment;
 
   return (
-    <div className="comment-box">
+    <div className="comment-div">
       <div className="user-resolve-div">
         <p>{reviewer.username}</p>
         <button onClick={resolver.bind(null, id)}>resolve</button>
