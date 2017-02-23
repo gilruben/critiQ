@@ -228,6 +228,7 @@ const DocumentContainer = React.createClass({
           <ReviewerListContainer
             reviewers={this.getListOfReviewers(comments)}
             selectReviewer={this.props.selectReviewer}
+            selectedReviewer={selectedReviewer}
           />
         </div>
 
