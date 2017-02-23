@@ -62,9 +62,9 @@ const AddComment = React.createClass({
               <form onSubmit={this.handleSubmit}>
                 <textarea className="comment-box" onChange={this.handleChange} />
 
-                <div>
-                  <button type="Submit">Comment</button>
-                  <button>Cancel</button>
+                <div className="comment-box-buttons">
+                  <button className="comment-submit-button" type="Submit">Comment</button>
+                  <button className="comment-cancel-button" >Cancel</button>
                 </div>
               </form>
             </div> : null
