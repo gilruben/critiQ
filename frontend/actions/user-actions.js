@@ -15,7 +15,6 @@ export const getUserDataAsync = () => (dispatch) => {
     type: 'GET'
   })
   .done((userData) => {
-    console.log(userData);
     dispatch(getUserData(userData));
   });
 };
