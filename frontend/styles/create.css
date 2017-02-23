@@ -256,13 +256,13 @@
 }
 
 /*-----------------------DRAFT CONTAINER-----------------------*/
-/*.draft-container {
+.draft-container {
   height: 93.5vh;
   overflow-y: scroll;
-}*/
+}
 
 /*-----------------------EDITOR CONTAINER-----------------------*/
-.editor{
+.editor {
   align-self: flex-end;
 	max-height: 1048px;
   overflow: auto;
