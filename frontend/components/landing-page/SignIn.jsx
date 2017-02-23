@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SignUpContainer from './SignUpContainer';
-import { getUserDataAsync } from '../../actions/user-actions';
+import { logInAsync } from '../../actions/user-actions';
 
 const SignIn = React.createClass({
   getInitialState() {
@@ -13,7 +13,7 @@ const SignIn = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault();
-    this.props.getUserLogin(this.state);
+    this.props.logIn(this.state);
   },
   render() {
     return (
@@ -36,7 +36,7 @@ const SignIn = React.createClass({
 });
 
 const mapDispatchToProps = dispatch => (
-   bindActionCreators({ getUserLogin: getUserDataAsync }, dispatch)
+   bindActionCreators({ logIn: logInAsync }, dispatch)
 );
 
 export default connect(null, mapDispatchToProps)(SignIn);

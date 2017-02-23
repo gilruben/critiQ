@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const User = require('../models').User;
+const Document = require('../models').Document;
 
 const getAllUsers = (req, res) => {
   User.findAll({
     attributes: {
-      exclude: ['password'],
-    },
+      exclude: ['password']
+    }
   })
   .then((users) => {
     res.send(users);
@@ -22,20 +23,24 @@ const createUser = (req, res) => {
 };
 
 const getOneUser = (req, res) => {
-  const id = req.params.id;
+  const { userId } = req.session;
 
-  User.findById(id, {
+  User.findById(userId, {
     attributes: {
-      exclude: ['password'],
+      exclude: ['password']
     },
+    include: [Document]
   })
   .then((user) => {
     res.send(user);
+  })
+  .catch(() => {
+    res.sendStatus(401);
   });
 };
 
 const editUserData = (req, res) => {
-  const userId = req.params.id;
+  const { userId } = req.session;
   const sentData = req.body;
   const dataUsedForUpdate = {};
 
@@ -50,9 +55,9 @@ const editUserData = (req, res) => {
 
   User.update(dataUsedForUpdate, {
     where: {
-      id: userId,
+      id: userId
     },
-    returning: true,
+    returning: true
   })
   .then((user) => {
     const userArray = user[1];
@@ -65,10 +70,12 @@ const editUserData = (req, res) => {
 };
 
 const deleteUser = (req, res) => {
+  const { userId } = req.session;
+
   User.destroy({
     where: {
-      id: req.params.id,
-    },
+      id: userId
+    }
   })
   .then((delUser) => {
     res.send({ usersDeleted: delUser });
@@ -79,9 +86,10 @@ router.route('/')
   .get(getAllUsers)
   .post(createUser);
 
-router.route('/:id')
+router.route('/individual')
   .get(getOneUser)
   .put(editUserData)
   .delete(deleteUser);
+
 
 module.exports = router;
