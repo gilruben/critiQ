@@ -24,8 +24,11 @@ const AddComment = React.createClass({
 
     this.setState({ showCommentBox });
   },
+  cancelAddComment() {
+    this.setState({ showCommentBox: false, comment: '' });
+  },
   handleChange(e) {
-    const comment = e.target.value
+    const comment = e.target.value;
 
     this.setState({ comment });
   },
@@ -64,7 +67,7 @@ const AddComment = React.createClass({
 
                 <div>
                   <button type="Submit">Comment</button>
-                  <button>Cancel</button>
+                  <button onClick={this.cancelAddComment}>Cancel</button>
                 </div>
               </form>
             </div> : null
