@@ -52,7 +52,7 @@ const AddComment = React.createClass({
         {
           isTextHighlighted && !showCommentBox ?
             <button id="add-comment-button" onClick={this.toggleCommentBox}>
-              +
+              <i className="fa fa-pencil" aria-hidden="true"></i>
             </button> : null
         }
 
