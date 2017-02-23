@@ -252,14 +252,12 @@ const DocumentContainer = React.createClass({
             resolver={this.resolve}
           />
 
-          <div>
             <AddComment
               isTextHighlighted={isTextHighlighted}
               highlightedTextData={highlightedTextData}
               createComment={createComment}
               documentId={id}
             />
-          </div>
         </div>
       </div>
     );
