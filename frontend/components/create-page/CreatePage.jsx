@@ -86,8 +86,8 @@ const CreatePage = React.createClass({
       { name: 'H4', style: 'header-four' },
       { name: 'H5', style: 'header-five' },
       { name: 'H6', style: 'header-six' },
-      { name: 'UL', style: 'unordered-list-item' },
-      { name: 'OL', style: 'ordered-list-item' }
+      { name: 'UL', style: 'unordered-list-item', fontName: 'fa fa-list-ul' },
+      { name: 'OL', style: 'ordered-list-item', fontName: 'fa fa-list-ol' }
     ];
     return (
       <div className="page-container">
@@ -100,45 +100,50 @@ const CreatePage = React.createClass({
           className="modal"
         >
           <div className="form-container">
-            <form>
-              <h3>Title</h3>
-              <input className="inputBox" type="text" placeholder="Enter a title" onChange={this.addUploadState.bind(this, 'title')} />
-              <h3>Privacy Setting</h3>
-              <select className="selectButton" onChange={this.addUploadState.bind(this, 'privacy')}>
-                {
-                  privacyLevels.map((val) => {
-                    return (
-                      <option
-                        key={val.value}
-                        value={val.value}
-                      >
-                        {val.value}
-                      </option>
-                    );
-                  })
-                }
-              </select>
-              <h3>Category</h3>
-              <select className="selectButton" onChange={this.addUploadState.bind(this, 'category')}>
-                {
-                  categories.map((val) => {
-                    return (
-                      <option
-                        key={val.value}
-                        value={val.value}
-                      >
-                        {val.value}
-                      </option>
-                    );
-                  })
-                }
-              </select>
-              <h3>Deadline</h3>
-              <input className="inputBox" name="date" type="date" onChange={this.addUploadState.bind(this, 'deadline')} />
-            </form>
-            <div className="formButton-container">
-              <button className="form-button" onClick={this.onClick}>Upload</button>
-              <button className="form-button" onClick={this.handleCloseModal}>Cancel</button>
+            <div className="innerForm-container">
+              <i className="cancel-button fa fa-window-close" onClick={this.handleCloseModal} />
+              <form>
+                <h1>Awesome! We just need a bit more information...</h1>
+                <input className="title-input-box" type="text" placeholder="Enter a title" onChange={this.addUploadState.bind(this, 'title')} />
+                <div className="privacy-container">
+                  <h3>Privacy Setting</h3>
+                  <select className="selectButton" onChange={this.addUploadState.bind(this, 'privacy')}>
+                    {
+                      privacyLevels.map((val) => {
+                        return (
+                          <option
+                            key={val.value}
+                            value={val.value}
+                          >
+                            {val.value}
+                          </option>
+                        );
+                      })
+                    }
+                  </select>
+                </div>
+                <div className="category-container"><h3>Category</h3>
+                  <select className="selectButton" onChange={this.addUploadState.bind(this, 'category')}>
+                    {
+                      categories.map((val) => {
+                        return (
+                          <option
+                            key={val.value}
+                            value={val.value}
+                          >
+                            {val.value}
+                          </option>
+                        );
+                      })
+                    }
+                  </select>
+                </div>
+                <div className="deadline-container">
+                  <h3>Deadline</h3>
+                  <input className="deadline-input-box" name="date" type="date" onChange={this.addUploadState.bind(this, 'deadline')} />
+                </div>
+              </form>
+              <button className="upload-button" onClick={this.onClick}>Upload</button>
             </div>
           </div>
         </ReactModal>
@@ -160,6 +165,16 @@ const CreatePage = React.createClass({
             }
             {
               blockTypes.map((val) => {
+                if (val.style === 'ordered-list-item' || val.style === 'unordered-list-item') {
+                  return (
+                    <i
+                      key={val.name}
+                      className={`${val.fontName} indiv-blocktype-button-list`}
+                      onClick={this.onBlockTypeClick.bind(this, val.style)}
+                    />
+                  );
+                }
+
                 return (
                   <button
                     key={val.name}

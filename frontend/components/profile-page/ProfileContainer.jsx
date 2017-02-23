@@ -14,7 +14,7 @@ const ProfileContainer = React.createClass({
   componentDidMount() {
     const id = this.props.params.id;
     ajax({
-      url: `/api/users/${id}`,
+      url: '/api/users/individual',
       type: 'GET'
     })
     .done((userData) => {

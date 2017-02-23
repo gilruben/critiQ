@@ -1,5 +1,42 @@
 #document-page {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
+  justify-content: space-around;
+  background-color: #f6f6f6;
 }
+
+/*-------ReviewerListContainer--------*/
+.reviewer-list-ul {
+  width: 150px;
+  background-color: yellow;
+}
+/*-------/ReviewerListContainer--------*/
+
+
+
+/*-------CommentListContainer--------*/
+.comment-list-ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.comment-list-ul li {
+  border: 1px solid black;
+  border-radius: 3px;
+}
+/*-------/CommentListContainer--------*/
+
+
+
+/*-------ReviewerListContainer & CommentListContainer--------*/
+.comment-list-ul, .reviewer-list-ul {
+  padding: 0px;
+}
+
+.comment-list-ul li, .reviewer-list-ul li {
+  list-style: none;
+  font-size: 14px;
+  width: 175px;
+}
+/*-------/ReviewerListContainer & CommentListContainer--------*/

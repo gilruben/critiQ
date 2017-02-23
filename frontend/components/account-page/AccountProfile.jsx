@@ -24,7 +24,7 @@ const AccountProfile = React.createClass({
     const accountState = this.state.account;
     const id = this.props.account.id;
 
-    this.props.editUserData(accountState, id);
+    this.props.editUserData(accountState);
     this.setState({ edit: false });
   },
   render() {
@@ -52,8 +52,8 @@ const AccountProfile = React.createClass({
               onChange={this.handleChange.bind(this, 'email')}
             />
           </h3>
-          <h3>Level:
-            <select onChange={this.handleChange.bind(this, 'level')}>
+          <h3>Education:
+            <select className="select" className="edit-profile-input" onChange={this.handleChange.bind(this, 'level')}>
               <option value={this.state.account.level}>{this.state.account.level}</option>
               <option value={'middle_school'}>middle school</option>
               <option value={'high_school'}>high school</option>
@@ -61,8 +61,7 @@ const AccountProfile = React.createClass({
               <option value={'other'}>other</option>
             </select>
           </h3>
-          <h3>Rating: {this.state.account.rating}</h3>
-          <h3>Bio:
+          <h3>Bio:<br />
           <textarea className="edit-profile-input" rows="3" cols="30"
             value={this.state.account.bio}
             onChange={this.handleChange.bind(this, 'bio')}

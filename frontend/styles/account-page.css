@@ -1,37 +1,34 @@
 /*account user info*/
 
-.user-documents-list {
-	display: flex;
-	flex-direction: column;
-}
-
-.active-doc, .inactive-doc {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex-grow: all;
-}
 .account-page-div {
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  overflow-y: scroll;
+  width: 100vw;
+  height: 93.5vh;
+  background-color: #f6f6f6;
+  
 }
 
 .account-section {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
   background-color: #F55D4B;
   color: white;
-  height: 350px;
-  line-height: .25;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .account-user-info {
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  width: 800px;
-  justify-content: flex-start;
+  height: 300px;
+  padding-top: 20px;
+}
+
+.account-user-info h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .account-user-info button {
@@ -42,24 +39,25 @@
   margin: 0px 10px 0px 0px;
 }
 
+.create-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 500px;
+}
+
 #create-btn {
   padding: 12px 0 15px 0;
-  width: 175px;
+  width: 300px;
   height: 100px;
   font-size: 1.75em;
-  font-weight: 300;
+  font-weight: 400;
   border-radius: 3px;
   color: white;
   background-color: #4ED99C;
   cursor: pointer;
-  margin: 100px 250px 0px 0px;
   border: none;
-}
-
-/*edit profile*/
-
-.profile-form-div {
-  line-height: .25;
 }
 
 .account-edit-button {
@@ -72,7 +70,7 @@
   background-color: #4ED99C;
   cursor: pointer;
   border: none;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 
@@ -80,7 +78,7 @@
   border: none;
   border-bottom: 3px solid #6D7982;
   background-color: #FAF3F2;
-  font-size: 1em;
+  font-size: 12px;
   color: #6D7982;
   transition-duration: .5s;
 }
@@ -95,22 +93,13 @@
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-}
-
-.user-documents-list h1 {
-  margin-bottom: 0px;
-}
-
-.user-documents-list h3 {
-  margin-top: 0px;
+  padding: 0 20px 20px 20px;
 }
 
 .active-doc, .inactive-doc {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 20px 0px 0px 20px;
 }
 
 .true button {

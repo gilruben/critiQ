@@ -6,6 +6,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 93.5vh;
+  overflow-y: scroll;
+  padding-bottom: 20px;
 }
 
 #editor-buttons {
@@ -16,8 +19,8 @@
 
 .editor-view .public-DraftEditor-content {
   min-height: 1048px;
-  /*overflow: auto;*/
   border: 1px solid grey;
   padding: 37px;
   width: 810px;
+  background-color: white;
 }

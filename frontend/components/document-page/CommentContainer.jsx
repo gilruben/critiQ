@@ -1,13 +1,19 @@
 import React from 'react';
 
-const CommentContainer = React.createClass({
-  render() {
-    return (
+const CommentContainer = (props) => {
+  const { comment, resolver } = props;
+  const reviewer = comment.User;
+  const { id } = comment;
+
+  return (
+    <div>
       <div>
-        {this.props.comment.comment}
+        {reviewer.username}
+        <button onClick={resolver.bind(null, id)}>resolve</button>
       </div>
-    );
-  }
-});
+      <div>{comment.comment}</div>
+    </div>
+  );
+};
 
 export default CommentContainer;
