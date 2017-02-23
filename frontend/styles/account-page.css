@@ -102,7 +102,7 @@
   justify-content: space-around;
 }
 
-.true button {
+/*.true button {
   width: 100px;
   height: 25px;
   font-size: 10px;
@@ -113,9 +113,20 @@
   cursor: pointer;
   border: none;
   margin-bottom: 5px;
+}*/
+
+.true img {
+  width: 90px;
+  cursor: pointer;
 }
 
-.false button {
+.false img{
+  width: 90px;
+  cursor: pointer;
+}
+
+
+/*.false button {
   width: 100px;
   height: 25px;
   font-size: 10px;
@@ -126,4 +137,4 @@
   cursor: pointer;
   border: none;
   margin-bottom: 5px;
-}
+}*/
