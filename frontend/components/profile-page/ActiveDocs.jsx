@@ -1,6 +1,7 @@
+// Dependancies
 import React from 'react';
 import IndividualWork from '../browse-page/IndividualWork';
-
+// CSS
 import '../../styles/account-page.css';
 
 const ActiveDocs = (props) => {
