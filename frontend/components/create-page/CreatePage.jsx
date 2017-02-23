@@ -188,6 +188,7 @@ const CreatePage = React.createClass({
               })
             }
           </div>
+
           <div className="editor">
             <Editor
               editorState={this.state.editorState}
