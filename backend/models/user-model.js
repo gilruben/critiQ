@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8,26]
+        len: [8, 26]
       }
     },
     email: {
@@ -38,8 +38,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        User.hasMany(models.Document)
-        User.hasMany(models.Comment)
+        User.hasMany(models.Document);
+        User.hasMany(models.Comment);
       }
     }
   });

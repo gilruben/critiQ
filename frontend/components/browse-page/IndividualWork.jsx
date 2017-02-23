@@ -20,7 +20,14 @@ const IndividualWork = React.createClass({
         <div className="cat-user">
           <p className="individual-work-category">{this.props.document.category}</p>
           <span>•</span>
-          <p className="individual-work-name">{this.props.document.User.username}</p>
+          <p className="individual-work-name">
+            {
+              // ternary for use in browse page (all users and all docs) and account page (one user with his docs)
+              this.props.document.User ?
+                this.props.document.User.username :
+                this.props.username
+            }
+          </p>
         </div>
         <p className="snippet">{characterCount(this.props.document) + "..."}</p>
         <div className="dead-rev">

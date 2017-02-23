@@ -2,14 +2,14 @@ import React from 'react';
 import Reviewer from './Reviewer';
 
 const ReviewerListContainer = React.createClass({
-  handleClick(reviewer, e) {
+  handleClick(reviewer) {
     this.props.selectReviewer(reviewer);
   },
   render() {
     const reviewers = Object.keys(this.props.reviewers);
 
     return (
-      <ul>
+      <ul className="reviewer-list-ul">
         {
           reviewers.map(reviewer => (
             <li key={reviewer} onClick={this.handleClick.bind(this, reviewer)}>

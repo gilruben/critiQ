@@ -43,6 +43,8 @@ const getAllDocuments = (req, res) => {
 
 const documentCreate = (req, res) => {
   const documentData = req.body;
+  const { userId } = req.session;
+  documentData.UserId = userId;
 
   Document.create(documentData)
   .then((doc) => {
@@ -69,8 +71,8 @@ const getSingleDocument = (req, res) => {
       }
     ]
   })
-  .then((user) => {
-    res.send(user);
+  .then((doc) => {
+    res.send(doc);
   })
   .catch((err) => {
     console.log(err.message);
@@ -89,7 +91,7 @@ const editSingleDocument = (req, res) => {
     const documentArray = documentBody[0];
     const documentData = documentArray.dataValues;
 
-    res.send(documentData.body);
+    res.send(documentData);
   })
   .catch((err) => {
     console.log(err.message);
