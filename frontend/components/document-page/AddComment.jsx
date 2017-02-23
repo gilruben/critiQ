@@ -24,8 +24,11 @@ const AddComment = React.createClass({
 
     this.setState({ showCommentBox });
   },
+  cancelAddComment() {
+    this.setState({ showCommentBox: false, comment: '' });
+  },
   handleChange(e) {
-    const comment = e.target.value
+    const comment = e.target.value;
 
     this.setState({ comment });
   },
@@ -36,8 +39,7 @@ const AddComment = React.createClass({
     const { createComment, highlightedTextData, documentId } = this.props;
 
     if (comment) {
-      // USERID IS TEMPORARY UNTIL LOGIN IS SETUP
-      const data = { comment, DocumentId: documentId, UserId: 1 };
+      const data = { comment, DocumentId: documentId };
       const commentData = Object.assign({}, highlightedTextData, data);
 
       createComment(commentData);
@@ -64,7 +66,7 @@ const AddComment = React.createClass({
 
                 <div className="comment-box-buttons">
                   <button className="comment-submit-button" type="Submit">Comment</button>
-                  <button className="comment-cancel-button" >Cancel</button>
+                  <button className="comment-cancel-button" onClick={this.cancelAddComment}>Cancel</button>
                 </div>
               </form>
             </div> : null
