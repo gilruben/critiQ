@@ -42,7 +42,7 @@ const CreatePage = React.createClass({
         active: this.state.active
       }
     });
-    this.props.router.push('/account');
+    this.props.router.push('/');
   },
   addUploadState(inputName, event) {
     // Document model requires underscore for categories.
