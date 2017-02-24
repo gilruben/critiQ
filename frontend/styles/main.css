@@ -447,3 +447,11 @@ nav ul li {
   background-color: #3aa476;
 }
 /*-------/Add component--------*/
+
+.upload-something-bro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  font-size: 2em;
+}
