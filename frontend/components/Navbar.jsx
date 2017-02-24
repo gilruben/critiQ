@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUserDataAsync } from '../actions/user-actions';
+import { getUserDataAsync, logoutAsync } from '../actions/user-actions';
 
 
 const Navbar = React.createClass({
@@ -12,6 +12,9 @@ const Navbar = React.createClass({
   handleClick(link) {
     this.props.router.push(link);
   },
+  handleLogout() {
+    this.props.logout();
+  },
   render() {
     return (
       <div>
@@ -20,6 +23,7 @@ const Navbar = React.createClass({
           <ul>
             <li onClick={this.handleClick.bind(this, '/browse')}>Browse</li>
             <li onClick={this.handleClick.bind(this, '/')}>Account</li>
+            <li onClick={this.handleLogout}>Logout</li>
           </ul>
         </nav>
         {this.props.children}
@@ -29,7 +33,10 @@ const Navbar = React.createClass({
 });
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ getUserData: getUserDataAsync }, dispatch)
+  bindActionCreators({
+    getUserData: getUserDataAsync,
+    logout: logoutAsync
+  }, dispatch)
 );
 
 export default connect(null, mapDispatchToProps)(withRouter(Navbar));
