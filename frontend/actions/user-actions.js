@@ -3,10 +3,15 @@ import { browserHistory } from 'react-router';
 
 export const GET_USER_DATA = 'GET_USER_DATA';
 export const EDIT_USER_DATA = 'EDIT_USER_DATA';
+export const LOGOUT = 'LOGOUT';
 
 const getUserData = payload => ({
   type: GET_USER_DATA,
   data: payload
+});
+
+const logout = () => ({
+  type: LOGOUT
 });
 
 export const getUserDataAsync = () => (dispatch) => {
@@ -46,7 +51,7 @@ export const editUserDataAsync = (data) => (dispatch) => {
   });
 };
 
-export const logInAsync = loginInfo => (dispatch) => {
+export const logInAsync = loginInfo => () => {
   ajax({
     url: '/auth/login/',
     type: 'POST',
@@ -56,3 +61,15 @@ export const logInAsync = loginInfo => (dispatch) => {
     browserHistory.push('/');
   });
 };
+
+export const logoutAsync = () => (dispatch) => {
+  ajax({
+    url: '/auth/logout',
+    type: 'POST'
+  })
+  .done(() => {
+    dispatch(logout());
+    browserHistory.push('/signin');
+  });
+};
+
