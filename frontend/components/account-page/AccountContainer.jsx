@@ -74,32 +74,18 @@ const AccountContainer = React.createClass({
             }
           </div>
           { (inactiveList.length > 0) ? <h1>Inactive Work</h1> : null }
-          { (activeList.length <= 2)
-            ? <div className="inactive-doc">
-              {
-               inactiveList.map((doc, idx) => {
-                 return (
-                   <div className={doc.active} key={idx}>
-                     <IndividualWork document={doc} username={this.props.user.username} />
-                     <img alt="bookmark" src="https://i.imgur.com/PPHaMFr.png?1" key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)} />
-                   </div>
-                 );
-               })
-              }
-            </div>
-           : <div className="inactive-doc">
-             <h3>(Two Active Document Limit)</h3>
-             {
-             inactiveList.map((doc, idx) => {
-               return (
-                 <div className={doc.active} key={idx}>
-                   <IndividualWork document={doc} username={this.props.user.username} />
-                 </div>
-               );
-             })
+          { <div className="inactive-doc">
+            {
+              inactiveList.map((doc, idx) => {
+                return (
+                  <div className={doc.active} key={idx}>
+                    <IndividualWork document={doc} username={this.props.user.username} />
+                    <img alt="bookmark" src="https://i.imgur.com/PPHaMFr.png?1" key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)} />
+                  </div>
+                );
+              })
             }
-           </div>
-           }
+          </div> }
         </div>
       </div>
     );
