@@ -13,9 +13,6 @@ import AccountProfile from './AccountProfile';
 import IndividualWork from '../browse-page/IndividualWork';
 
 const AccountContainer = React.createClass({
-  componentDidMount() {
-    this.props.getUserData();
-  },
   docActiveSwitch(doc) {
     const id = doc.id;
     const newStatus = doc.active ? { active: false } : { active: true };
