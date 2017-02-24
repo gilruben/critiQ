@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from '../store/store';
 import verification from '../utilities/Verification';
-import { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, ProfilePage, AccountPage } from './index';
+import { LandingPage, Navbar, BrowsePage, CreatePage, DocumentPage, ProfilePage, AccountPage, ErrorPage } from './index';
 
 const Routes = () => (
   <Provider store={store}>
@@ -16,6 +16,7 @@ const Routes = () => (
         <Route component={DocumentPage} path="document/:id" />
         <Route component={ProfilePage} path="profile/:id" />
       </Route>
+      <Route component={ErrorPage} path="/*" />
     </Router>
   </Provider>
 );

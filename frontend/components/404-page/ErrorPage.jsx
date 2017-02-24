@@ -2,7 +2,10 @@ import React from 'react';
 
 const ErrorPage = () => {
   return (
-    <h1>404 Page bub</h1>
+    <div className="error-page">
+      <h1>404 Page</h1>
+      <h3>You seem lost. Hoo are you looking for?</h3>
+    </div>
   );
 };
 
