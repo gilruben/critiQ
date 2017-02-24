@@ -23,4 +23,9 @@
   padding: 37px;
   width: 810px;
   background-color: white;
+  border: none;
+}
+
+.editor-view {
+  box-shadow: 10px 10px 5px #cecece;
 }
