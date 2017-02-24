@@ -8,7 +8,7 @@ const CreatePage = React.createClass({
   getInitialState() {
     // Today's date in the format required for the document model. (YYYY-MM-DD)
     const dateToday = new Date().toJSON().slice(0, 10);
-    return { title: '', category: 'essay', privacy: 'public', deadline: dateToday, userId: 1, active: true, editorState: EditorState.createEmpty(), showModal: false };
+    return { title: '', category: 'essay', privacy: 'public', deadline: dateToday, active: true, editorState: EditorState.createEmpty(), showModal: false };
   },
   onChange(editorState) {
     return this.setState({ editorState });
@@ -39,11 +39,10 @@ const CreatePage = React.createClass({
         category: this.state.category,
         privacy: this.state.privacy,
         deadline: this.state.deadline,
-        UserId: this.state.userId,
         active: this.state.active
       }
     });
-    this.props.router.push('/account');
+    this.props.router.push('/');
   },
   addUploadState(inputName, event) {
     // Document model requires underscore for categories.
@@ -147,55 +146,57 @@ const CreatePage = React.createClass({
             </div>
           </div>
         </ReactModal>
-        <div className="editor-container">
-          <div className="instyleButtons-container">
-            {
-              inlineStyles.map((val) => {
-                return (
-                  <button
-                    key={val.name}
-                    id="instyleButton"
-                    className={`indiv-instyle-button-${val.name}`}
-                    onClick={this.onInlineStyleClick.bind(this, val.style)}
-                  >
-                    {val.name}
-                  </button>
-                );
-              })
-            }
-            {
-              blockTypes.map((val) => {
-                if (val.style === 'ordered-list-item' || val.style === 'unordered-list-item') {
+          <div className="editor-container">
+            <div className="instyleButtons-container">
+              {
+                inlineStyles.map((val) => {
                   return (
-                    <i
+                    <button
                       key={val.name}
-                      className={`${val.fontName} indiv-blocktype-button-list`}
-                      onClick={this.onBlockTypeClick.bind(this, val.style)}
-                    />
+                      id="instyleButton"
+                      className={`indiv-instyle-button-${val.name}`}
+                      onClick={this.onInlineStyleClick.bind(this, val.style)}
+                    >
+                      {val.name}
+                    </button>
                   );
-                }
+                })
+              }
+              {
+                blockTypes.map((val) => {
+                  if (val.style === 'ordered-list-item' || val.style === 'unordered-list-item') {
+                    return (
+                      <i
+                        key={val.name}
+                        className={`${val.fontName} indiv-blocktype-button-list`}
+                        onClick={this.onBlockTypeClick.bind(this, val.style)}
+                      />
+                    );
+                  }
 
-                return (
-                  <button
-                    key={val.name}
-                    id="instyleButton"
-                    className={`indiv-blocktype-button-${val.name}`}
-                    onClick={this.onBlockTypeClick.bind(this, val.style)}
-                  >
-                    {val.name}
-                  </button>
-                );
-              })
-            }
-          </div>
+                  return (
+                    <button
+                      key={val.name}
+                      id="instyleButton"
+                      className={`indiv-blocktype-button-${val.name}`}
+                      onClick={this.onBlockTypeClick.bind(this, val.style)}
+                    >
+                      {val.name}
+                    </button>
+                  );
+                })
+              }
+            </div>
 
-          <div className="editor">
-            <Editor
-              editorState={this.state.editorState}
-              onChange={this.onChange}
-            />
+            <div className="draft-container">
+              <div className="editor">
+                <Editor
+                  editorState={this.state.editorState}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
           </div>
-        </div>
       </div>
     );
   }

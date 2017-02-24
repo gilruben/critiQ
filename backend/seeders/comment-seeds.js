@@ -154,7 +154,72 @@ const commentSeeds = [
     updatedAt: new Date(),
     UserId: 1,
     DocumentId: 1
+  },
+  {
+    comment: "It's spelled catch.",
+    anchorKey: 'e41v3',
+    anchorOffset: 218,
+    focusKey: 'e41v3',
+    focusOffset: 223,
+    isBackward: false,
+    hasFocus: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    UserId: 2,
+    DocumentId: 5
+  },
+  {
+    comment: "It's spelled memory.",
+    anchorKey: '308a8',
+    anchorOffset: 384,
+    focusKey: '308a8',
+    focusOffset: 389,
+    isBackward: false,
+    hasFocus: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    UserId: 2,
+    DocumentId: 5
+  },
+  {
+    comment: 'This is not a good transition.',
+    anchorKey: '8mqeh',
+    anchorOffset: 123,
+    focusKey: '8mqeh',
+    focusOffset: 149,
+    isBackward: false,
+    hasFocus: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    UserId: 2,
+    DocumentId: 5
+  },
+  {
+    comment: 'Maybe you can reference the lyrics without literally including them? ',
+    anchorKey: 'cmrm7',
+    anchorOffset: 0,
+    focusKey: 'cmrm7',
+    focusOffset: 24,
+    isBackward: false,
+    hasFocus: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    UserId: 1,
+    DocumentId: 5
+  },
+  {
+    comment: 'What is poke-legacy? Please elaborate more.',
+    anchorKey: 'e41v3',
+    anchorOffset: 185,
+    focusKey: 'e41v3',
+    focusOffset: 196,
+    isBackward: false,
+    hasFocus: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    UserId: 1,
+    DocumentId: 5
   }
-]
+];
 
 module.exports = commentSeeds;

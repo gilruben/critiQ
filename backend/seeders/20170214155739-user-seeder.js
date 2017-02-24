@@ -52,6 +52,16 @@ module.exports = {
         level: 'middle_school',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        username: 'hawaiin_charles',
+        email: 'pikachu@gmail.com',
+        password: 'password',
+        bio: 'I love beating people at monopoly deal and typing really fast.',
+        rating: 0,
+        level: 'college',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },

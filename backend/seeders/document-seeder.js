@@ -37,6 +37,15 @@ const documents = [
     active: true,
     deadline: new Date('2017-04-19').toISOString().slice(0, 10),
     UserId: 3
+  },
+  {
+    title: 'Globalization of Pokemon',
+    body: documentSeeds[4],
+    category: 'essay',
+    privacy: 'public',
+    active: true,
+    deadline: new Date('2017-03-01').toISOString().slice(0, 10),
+    UserId: 6
   }
 ];
 
