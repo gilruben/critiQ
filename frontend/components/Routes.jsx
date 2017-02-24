@@ -10,8 +10,8 @@ const Routes = () => (
     <Router history={browserHistory}>
       <Route component={LandingPage} path="/signin" />
       <Route path="/" component={Navbar} onEnter={verification}>
-        <IndexRoute component={BrowsePage} />
-        <Route component={AccountPage} path="account" />
+        <IndexRoute component={AccountPage} />
+        <Route component={BrowsePage} path="/browse" />
         <Route component={CreatePage} path="create" />
         <Route component={DocumentPage} path="document/:id" />
         <Route component={ProfilePage} path="profile/:id" />

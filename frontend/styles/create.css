@@ -1,11 +1,14 @@
+/*-----------------------OUTERMOST CONTAINER-----------------------*/
 .page-container{
 	display: flex;
 	flex-direction: row-reverse;
-	padding-top: 50px;
   background-color: #efefef;
+  padding-top: 50px;
   padding-bottom: 50px;
+  height: 100vh;
 }
 
+/*-----------------------UPLOAD CONTAINER-----------------------*/
 .upload-container{
   display: flex;
   flex-direction: row;
@@ -19,28 +22,29 @@
 
 .upload-container button{
   font-size: 1.75em;
-  border: none;
-  border-radius: 3px;
-  background-color: #4ED99C;
   color: white;
+  background-color: #4ED99C;
   height: 60px;
   width: 115px;
+  border: none;
+  border-radius: 3px;
   cursor: pointer;
 }
 
+/*-----------------------MODAL CSS-----------------------*/
 .modal{
   position: absolute;
   height: 100%;
   width: 100%;
-  border: 1px solid #ccc;
   overflow: auto;
-  WebkitOverflowScrolling: touch;
-  border-radius: 4px;
-  outline: none;
   padding: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  WebkitOverflowScrolling: touch;
+  outline: none;
 }
 
-/*-----------------------POP UP CONTAINER-----------------------*/
+/*-----------------------MODAL CONTAINER-----------------------*/
 .form-container{
   display: flex;
   justify-content: center;
@@ -72,8 +76,8 @@
 
 .cancel-button{
   align-self: flex-end;
-  font-size: 1.7em;
   color: #e53232;
+  font-size: 1.7em;
   cursor: pointer;
 }
 
@@ -93,6 +97,7 @@
   border-bottom: 3px solid #4ED99C;
 }
 
+/*-----------------------DEADLINE INPUTS-----------------------*/
 .deadline-input-box{
   background-color: white;
   font-size: 1.3em;
@@ -106,6 +111,7 @@
   outline: none;
 }
 
+/*-----------------------PRIVACY CONTAINER-----------------------*/
 .privacy-container h3{
   font-size: 1.3em;
   color: #6d7982;
@@ -118,6 +124,7 @@
   margin: 20px 0;
 }
 
+/*-----------------------CATEGORY CONTAINER-----------------------*/
 .category-container h3{
   font-size: 1.3em;
   color: #6d7982;
@@ -130,6 +137,7 @@
   margin: 20px 0;
 }
 
+/*-----------------------DEADLINE CONTAINER-----------------------*/
 .deadline-container h3{
   font-size: 1.3em;
   color: #6d7982;
@@ -143,6 +151,7 @@
   align-items: center;
 }
 
+/*-----------------------SELECT BUTTON-----------------------*/
 .selectButton{
   background-color: white;
   width: 100px;
@@ -155,6 +164,7 @@
   outline: none;
 }
 
+/*-----------------------UPLOAD BUTTON-----------------------*/
 .upload-button{
   align-self: flex-end;
   font-size: 1.75em;
@@ -167,7 +177,7 @@
   cursor: pointer;
 }
 
-/*-----------------------EDITOR STYLING-----------------------*/
+/*-----------------------INSTYLE BUTTON CONTAINER-----------------------*/
 .instyleButtons-container{
   display: flex;
   justify-content: space-around;
@@ -179,6 +189,7 @@
   padding: 10px 0 10px 0;
 }
 
+/*-----------------------INSTYLE BUTTON-----------------------*/
 #instyleButton{
   outline: none;
   background-color: #fafafa;
@@ -190,6 +201,7 @@
   cursor: pointer;
 }
 
+/*-----------------------INDIVIDUAL INSTYLE BUTTON-----------------------*/
 .indiv-instyle-button-Bold{
   font-weight: 700;
   font-size: 15px;
@@ -236,6 +248,7 @@
   cursor: pointer;
 }
 
+/*-----------------------EDITOR CONTAINER-----------------------*/
 .editor-container{
 	display: flex;
 	flex-direction: column;
@@ -243,12 +256,19 @@
   margin: 0 auto;
 }
 
-.editor{
+/*-----------------------DRAFT CONTAINER-----------------------*/
+.draft-container {
+  box-shadow: 10px 10px 5px #cecece;
+  height: 93.5vh;
+  overflow-y: scroll;
+}
+
+/*-----------------------EDITOR CSS-----------------------*/
+.editor {
   align-self: flex-end;
 	max-height: 1048px;
   overflow: auto;
   background-color: white;
-  box-shadow: 10px 10px 5px #cecece;
   padding: 37px;
   width: 810px;
   height: 1048px;
