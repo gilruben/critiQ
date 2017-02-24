@@ -47,9 +47,19 @@ const AccountContainer = React.createClass({
           </div>
         </div>
         <div className="user-documents-list">
+          {/* Checks to see if logged in user has zero documents. If so, displays text.*/}
+          {
+            this.props.user.documents.length === 0 ?
+              <div className="upload-something-bro">
+                <div>
+                  <p>It looks kind of empty here <i className="fa fa-frown-o" aria-hidden="true"></i></p>
+                  <p>Start uploading work now to get feedback! <i className="fa fa-smile-o" aria-hidden="true"></i></p>
+                </div>
+              </div> : null
+          }
           { (activeList.length > 0)
             ? <h1>Active Work</h1>
-            : false
+            : null
           }
           <div className="active-doc">
             {
@@ -63,7 +73,7 @@ const AccountContainer = React.createClass({
               })
             }
           </div>
-          { (inactiveList.length > 0) ? <h1>Inactive Work</h1> : false }
+          { (inactiveList.length > 0) ? <h1>Inactive Work</h1> : null }
           { (activeList.length <= 2)
             ? <div className="inactive-doc">
               {
