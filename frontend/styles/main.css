@@ -23,6 +23,7 @@ nav {
   font-weight: 700;
   padding-bottom: 8px;
   margin-left: 100px;
+  cursor: pointer;
 }
 
 nav ul {
@@ -36,6 +37,8 @@ nav ul {
 nav ul li {
   list-style: none;
   font-size: 1.2em;
+  cursor: pointer;
+  padding-right: 18px;
 }
 
 /*-------/Navbar--------*/
@@ -146,6 +149,7 @@ nav ul li {
   border: none;
   font-size: 1.5em;
   border-bottom-right-radius: 3px;
+  cursor: pointer;
 }
 
 .sign-in-bottom .sign-in-button:focus {
@@ -410,11 +414,16 @@ nav ul li {
     z-index: 1;
 }
 
+.indiv-category {
+  cursor: pointer;
+}
+
 .dropdown-content .level-div {
     color: black;
     padding: 10px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
 }
 
 .dropdown-content .level-div:hover {
