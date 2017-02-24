@@ -149,6 +149,7 @@ nav ul li {
   border: none;
   font-size: 1.5em;
   border-bottom-right-radius: 3px;
+  cursor: pointer;
 }
 
 .sign-in-bottom .sign-in-button:focus {
