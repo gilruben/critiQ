@@ -1,4 +1,4 @@
-import { GET_USER_DATA, EDIT_USER_DATA } from '../actions/user-actions';
+import { GET_USER_DATA, EDIT_USER_DATA, LOGOUT } from '../actions/user-actions';
 import { EDIT_DOCUMENT_STATUS } from '../actions/document-actions';
 
 const defaultState = { username: '', email: '', bio: '', rating: 0, level: '', documents: [] };
@@ -27,6 +27,8 @@ const reducer = (state = defaultState, action) => {
       ));
 
       return Object.assign({}, state, { documents: newDocs });
+    case LOGOUT:
+      return defaultState;
     default:
       return state;
   }

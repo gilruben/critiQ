@@ -23,7 +23,6 @@ const userLogin = (req, res) => {
 
 const userLogout = (req, res) => {
   req.session.destroy();
-  res.send('Logout successful.');
   res.sendStatus(200);
 };
 
