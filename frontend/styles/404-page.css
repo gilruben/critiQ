@@ -1,0 +1,21 @@
+.error {
+  color: #F55D4B;
+  display: flex;
+}
+
+.error-text {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.error-title {
+  font-size: 5em;
+  font-weight: 900;
+  flex-direction: center;
+}
+
+.error-msg {
+  font-size: 2em;
+  flex-direction: center;
+}

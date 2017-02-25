@@ -58,14 +58,14 @@ export const editDocumentStatusAsync = (data, id) => (dispatch) => {
   });
 };
 
-export const createCommentAsync = commentData => (dispatch) => {
+export const createCommentAsync = (commentData, username) => (dispatch) => {
   ajax({
     url: '/api/comments',
     type: 'POST',
     data: commentData
   })
   .done((comment) => {
-    dispatch(createComment(comment));
+    dispatch(createComment({ comment, username }));
   });
 };
 

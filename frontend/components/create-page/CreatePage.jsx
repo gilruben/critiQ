@@ -1,7 +1,9 @@
 import React from 'react';
-import { ajax } from 'jquery';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import ReactModal from 'react-modal';
+import { createDocumentAsync } from '../../actions/user-actions';
 import '../../styles/create.css';
 
 const CreatePage = React.createClass({
@@ -30,19 +32,15 @@ const CreatePage = React.createClass({
   onClick() {
     const savedContent = this.state.editorState.getCurrentContent();
     const documentBody = convertToRaw(savedContent);
-    ajax({
-      url: '/api/documents/',
-      type: 'POST',
-      data: {
-        title: this.state.title,
-        body: documentBody,
-        category: this.state.category,
-        privacy: this.state.privacy,
-        deadline: this.state.deadline,
-        active: this.state.active
-      }
+
+    this.props.createDocument({
+      title: this.state.title,
+      body: documentBody,
+      category: this.state.category,
+      privacy: this.state.privacy,
+      deadline: this.state.deadline,
+      active: this.state.active
     });
-    this.props.router.push('/');
   },
   addUploadState(inputName, event) {
     // Document model requires underscore for categories.
@@ -202,4 +200,8 @@ const CreatePage = React.createClass({
   }
 });
 
-export default CreatePage;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ createDocument: createDocumentAsync }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(CreatePage);

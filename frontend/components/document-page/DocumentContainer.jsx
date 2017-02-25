@@ -32,7 +32,7 @@ const DocumentContainer = React.createClass({
     this.props.getDocument(id);
   },
   componentWillReceiveProps(props) {
-    const { document } = props;
+    const { document, user } = props;
     const { title, body, comments, selectedReviewer, selectedComment } = document;
 
     if (document.body) {
@@ -40,14 +40,16 @@ const DocumentContainer = React.createClass({
       const contentState = convertFromRaw(body);
       const editorState = EditorState.createWithContent(contentState, decorator);
       const { selectReviewer } = this.props;
+      // Username of logged in user
+      const { username } = props.user;
 
       // If there are comments and a reviewer has not been selected, use the
       // first comments owner as the default selected reviewer.
       // Else if comments exist, apply them to the text editor(this assumes a
       // reviewer has been selected)
       // Else set the state of the editor with not comments applied
-      if (comments.length && !selectedReviewer) {
-        selectReviewer(comments[0].User.username);
+      if (comments.length && !selectedReviewer && username) {
+        selectReviewer(username);
       } else if (comments.length || selectedComment) {
         this.applyEntities(document, editorState, selectedComment);
       } else {
@@ -114,8 +116,7 @@ const DocumentContainer = React.createClass({
     let newEditorState = editorState;
     const entityData = documentData.comments;
     const { selectedReviewer } = documentData;
-    const firstReviewer = entityData[0].User.username;
-    const filterBy = selectedReviewer || firstReviewer;
+    const filterBy = selectedReviewer;
 
     // Add all the comments, that belong to the selected user, to the new editor
     // state
@@ -221,8 +222,11 @@ const DocumentContainer = React.createClass({
   },
   render() {
     const { title, comments, selectedReviewer, selectedComment } = this.props.document;
+    // Username of currently logged in user
+    const { username } = this.props.user;
     const { isTextHighlighted, highlightedTextData } = this.state;
     const { createComment, selectComment } = this.props;
+    // Id of document currently being viewed
     const { id } = this.props.params;
 
     return (
@@ -232,6 +236,7 @@ const DocumentContainer = React.createClass({
             reviewers={this.getListOfReviewers(comments)}
             selectReviewer={this.props.selectReviewer}
             selectedReviewer={selectedReviewer}
+            loggedInUser={username}
           />
         </div>
 
@@ -262,6 +267,7 @@ const DocumentContainer = React.createClass({
             highlightedTextData={highlightedTextData}
             createComment={createComment}
             documentId={id}
+            loggedInUser={username}
           />
         </div>
       </div>
@@ -270,7 +276,8 @@ const DocumentContainer = React.createClass({
 });
 
 const mapStateToProps = state => ({
-  document: state.document
+  document: state.document,
+  user: state.user
 });
 
 const mapDispatchToProps = (dispatch) => {
