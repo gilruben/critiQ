@@ -2,11 +2,17 @@ import { ajax } from 'jquery';
 import { browserHistory } from 'react-router';
 
 export const GET_USER_DATA = 'GET_USER_DATA';
+export const CREATE_DOCUMENT = 'CREATE_DOCUMENT';
 export const EDIT_USER_DATA = 'EDIT_USER_DATA';
 export const LOGOUT = 'LOGOUT';
 
 const getUserData = payload => ({
   type: GET_USER_DATA,
+  data: payload
+});
+
+const createDocument = payload => ({
+  type: CREATE_DOCUMENT,
   data: payload
 });
 
@@ -51,6 +57,18 @@ export const editUserDataAsync = (data) => (dispatch) => {
   });
 };
 
+export const createDocumentAsync = documentData => (dispatch) => {
+  ajax({
+    url: '/api/documents/',
+    type: 'POST',
+    data: documentData
+  })
+  .done((document) => {
+    dispatch(createDocument(document));
+    browserHistory.push('/');
+  });
+};
+
 export const logInAsync = loginInfo => () => {
   ajax({
     url: '/auth/login/',
@@ -72,4 +90,3 @@ export const logoutAsync = () => (dispatch) => {
     browserHistory.push('/signin');
   });
 };
-

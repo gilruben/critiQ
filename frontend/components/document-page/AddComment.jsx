@@ -36,13 +36,13 @@ const AddComment = React.createClass({
     e.preventDefault();
 
     const { comment } = this.state;
-    const { createComment, highlightedTextData, documentId } = this.props;
+    const { createComment, highlightedTextData, documentId, loggedInUser } = this.props;
 
     if (comment) {
       const data = { comment, DocumentId: documentId };
       const commentData = Object.assign({}, highlightedTextData, data);
 
-      createComment(commentData);
+      createComment(commentData, loggedInUser);
     }
   },
   render() {
