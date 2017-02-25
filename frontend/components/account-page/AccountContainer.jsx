@@ -46,9 +46,10 @@ const AccountContainer = React.createClass({
             />
           </div>
         </div>
+
         <div className="user-documents-list">
-          {/* Checks to see if logged in user has zero documents. If so, displays text.*/}
           {
+            /* Checks to see if logged in user has zero documents. If so, displays text.*/
             this.props.user.documents.length === 0 ?
               <div className="upload-something-bro">
                 <div>
@@ -57,10 +58,12 @@ const AccountContainer = React.createClass({
                 </div>
               </div> : null
           }
+
           { (activeList.length > 0)
             ? <h1>Active Work</h1>
             : null
           }
+
           <div className="active-doc">
             {
               activeList.map((doc, idx) => {
@@ -73,8 +76,10 @@ const AccountContainer = React.createClass({
               })
             }
           </div>
+
           { (inactiveList.length > 0) ? <h1>Inactive Work</h1> : null }
-          { <div className="inactive-doc">
+
+          <div className="inactive-doc">
             {
               inactiveList.map((doc, idx) => {
                 return (
@@ -85,7 +90,7 @@ const AccountContainer = React.createClass({
                 );
               })
             }
-          </div> }
+          </div>
         </div>
       </div>
     );
