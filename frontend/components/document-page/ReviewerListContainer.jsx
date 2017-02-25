@@ -7,16 +7,22 @@ const ReviewerListContainer = React.createClass({
   },
   render() {
     const reviewers = Object.keys(this.props.reviewers);
-    const { selectedReviewer } = this.props;
+    const { selectedReviewer, loggedInUser } = this.props;
+    let reviewerList = [];
+
+    reviewerList = reviewers.reduce((list, reviewer) => {
+      const listItem = (
+        <li key={reviewer} onClick={this.handleClick.bind(this, reviewer)}>
+          <Reviewer username={reviewer} selectedReviewer={selectedReviewer} />
+        </li>
+      );
+
+      return reviewer !== loggedInUser ? [...list, listItem] : [listItem, ...list];
+    }, []);
+
     return (
       <ul className="reviewer-list-ul">
-        {
-          reviewers.map(reviewer => (
-            <li key={reviewer} onClick={this.handleClick.bind(this, reviewer)}>
-              <Reviewer username={reviewer} selectedReviewer={selectedReviewer} />
-            </li>
-          ))
-        }
+        {reviewerList}
       </ul>
     );
   }
