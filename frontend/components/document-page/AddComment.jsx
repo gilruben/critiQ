@@ -50,7 +50,7 @@ const AddComment = React.createClass({
     const { showCommentBox } = this.state;
 
     return (
-      <div>
+      <div className="add-comment-div">
         {
           isTextHighlighted && !showCommentBox ?
             <button id="add-comment-button" onClick={this.toggleCommentBox}>

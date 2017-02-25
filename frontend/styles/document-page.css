@@ -42,6 +42,19 @@
   flex-direction: column;
 }
 
+@keyframes commentFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.comment-list-div li {
+  animation: commentFadeIn 1s ease-in;
+}
+
 .comment-list-ul {
   display: flex;
   flex-direction: column;
@@ -128,6 +141,32 @@
   border: none;
   border-radius: 4px;
   padding: 5px 0;
+}
+
+#add-comment-button {
+  outline: none;
+}
+
+.add-comment-div #add-comment-button {
+  animation: bubbleButt .3s ease-in;
+}
+
+@keyframes bubbleButt {
+  0% {
+    transform: scale(.3);
+  }
+  25% {
+    transform: scaleY(.6) scaleX(.6);
+  }
+  50% {
+    transform: scaleY(.9) scaleX(.9);
+  }
+  75% {
+    transform: scaleY(1.20) scaleX(1.20);
+  }
+  97%, 100% {
+    transform: scale(1);
+  }
 }
 /*-------/CommentListContainer--------*/
 
