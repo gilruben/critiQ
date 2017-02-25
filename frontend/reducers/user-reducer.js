@@ -1,4 +1,4 @@
-import { GET_USER_DATA, EDIT_USER_DATA, LOGOUT } from '../actions/user-actions';
+import { GET_USER_DATA, CREATE_DOCUMENT, EDIT_USER_DATA, LOGOUT } from '../actions/user-actions';
 import { EDIT_DOCUMENT_STATUS } from '../actions/document-actions';
 
 const defaultState = { username: '', email: '', bio: '', rating: 0, level: '', documents: [] };
@@ -11,6 +11,11 @@ const reducer = (state = defaultState, action) => {
       let documents = action.data.Documents;
 
       return Object.assign({}, state, { username, email, bio, rating, level, documents });
+    case CREATE_DOCUMENT:
+      const newDocument = action.data;
+      documents = state.documents;
+
+      return Object.assign({}, state, { documents: [...documents, newDocument] });
     case EDIT_USER_DATA:
       username = action.data.username;
       email = action.data.email;
