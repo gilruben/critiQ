@@ -46,9 +46,10 @@ const AccountContainer = React.createClass({
             />
           </div>
         </div>
+
         <div className="user-documents-list">
-          {/* Checks to see if logged in user has zero documents. If so, displays text.*/}
           {
+            /* Checks to see if logged in user has zero documents. If so, displays text.*/
             this.props.user.documents.length === 0 ?
               <div className="upload-something-bro">
                 <div>
@@ -57,10 +58,12 @@ const AccountContainer = React.createClass({
                 </div>
               </div> : null
           }
+
           { (activeList.length > 0)
             ? <h1>Active Work</h1>
             : null
           }
+
           <div className="active-doc">
             {
               activeList.map((doc, idx) => {
@@ -73,33 +76,21 @@ const AccountContainer = React.createClass({
               })
             }
           </div>
+
           { (inactiveList.length > 0) ? <h1>Inactive Work</h1> : null }
-          { (activeList.length <= 2)
-            ? <div className="inactive-doc">
-              {
-               inactiveList.map((doc, idx) => {
-                 return (
-                   <div className={doc.active} key={idx}>
-                     <IndividualWork document={doc} username={this.props.user.username} />
-                     <img alt="bookmark" src="https://i.imgur.com/PPHaMFr.png?1" key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)} />
-                   </div>
-                 );
-               })
-              }
-            </div>
-           : <div className="inactive-doc">
-             <h3>(Two Active Document Limit)</h3>
-             {
-             inactiveList.map((doc, idx) => {
-               return (
-                 <div className={doc.active} key={idx}>
-                   <IndividualWork document={doc} username={this.props.user.username} />
-                 </div>
-               );
-             })
+
+          <div className="inactive-doc">
+            {
+              inactiveList.map((doc, idx) => {
+                return (
+                  <div className={doc.active} key={idx}>
+                    <IndividualWork document={doc} username={this.props.user.username} />
+                    <img alt="bookmark" src="https://i.imgur.com/PPHaMFr.png?1" key={doc.id} onClick={this.docActiveSwitch.bind(this, doc)} />
+                  </div>
+                );
+              })
             }
-           </div>
-           }
+          </div>
         </div>
       </div>
     );
