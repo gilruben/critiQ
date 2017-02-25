@@ -49,7 +49,7 @@ const reducer = (state = defaultState, action) => {
 
       return Object.assign({}, state, { comments });
     case CREATE_COMMENT:
-      const { username } = action.data
+      const { username } = action.data;
       const newComment = action.data.comment;
       comments = state.comments;
 
