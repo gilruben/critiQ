@@ -45,7 +45,6 @@ const reducer = (state = defaultState, action) => {
       return Object.assign({}, state, { selectedReviewer });
     case DELETE_COMMENT:
       const deletedCommentId = action.data;
-
       comments = state.comments.filter(comment => comment.id !== deletedCommentId);
 
       return Object.assign({}, state, { comments });
