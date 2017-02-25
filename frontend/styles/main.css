@@ -450,7 +450,7 @@ nav ul li {
   color: white;
   background-color: #4ED99C;
   border: none;
-  transition-duration: .
+  transition:
 }
 
 #add-comment-button:hover {
