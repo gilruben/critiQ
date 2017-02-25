@@ -47,13 +47,15 @@ const reducer = (state = defaultState, action) => {
       const deletedCommentId = action.data;
 
       comments = state.comments.filter(comment => comment.id !== deletedCommentId);
-
+      console.log(comments);
       return Object.assign({}, state, { comments });
     case CREATE_COMMENT:
-      const newComment = action.data;
+      const { username } = action.data
+      const newComment = action.data.comment;
       comments = state.comments;
 
-      return Object.assign({}, state, { comments: [...comments, newComment] });
+      return Object.assign({}, state, { comments: [...comments, newComment],
+        selectedReviewer: username });
     case SELECT_COMMENT:
       const { commentId } = action.data;
 
