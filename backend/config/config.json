@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "ruben",
+    "password": null,
+    "database": "critiq",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "ruben",
+    "password": null,
+    "database": "critiq",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ruben",
+    "password": null,
+    "database": "critiq",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "use_env_variable": "DATABASE_URL"
+  }
+}
