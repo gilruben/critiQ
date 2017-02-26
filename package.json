@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch & nodemon ./backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "bash seed.sh"
+    "seed": "bash seed.sh"
   },
   "keywords": [],
   "author": "",
