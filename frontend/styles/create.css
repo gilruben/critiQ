@@ -38,6 +38,7 @@
   width: 100%;
   overflow: auto;
   padding: 20px;
+  background-color: rgba(255, 255, 255, .9);
   border-radius: 4px;
   border: 1px solid #ccc;
   WebkitOverflowScrolling: touch;
