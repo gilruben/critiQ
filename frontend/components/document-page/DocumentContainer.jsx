@@ -221,7 +221,7 @@ const DocumentContainer = React.createClass({
     this.props.deleteComment(id);
   },
   render() {
-    const { title, comments, selectedReviewer, selectedComment } = this.props.document;
+    const { title, comments, selectedReviewer, selectedComment, documentOwner } = this.props.document;
     // Username of currently logged in user
     const { username } = this.props.user;
     const { isTextHighlighted, highlightedTextData } = this.state;
@@ -260,6 +260,8 @@ const DocumentContainer = React.createClass({
             resolver={this.resolve}
             selectedComment={selectedComment}
             selectComment={selectComment}
+            loggedInUser={username}
+            documentOwner={documentOwner}
           />
 
           <AddComment
