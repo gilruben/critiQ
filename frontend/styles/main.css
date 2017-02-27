@@ -277,7 +277,8 @@ nav ul li {
 /*-------Browse page--------*/
 .browse-container {
   background-color: #F6F6F6;
-  height: 100vh;
+  height: 93.5vh;
+  overflow-y: scroll;
 }
 
 .documents-list-div {
@@ -285,6 +286,10 @@ nav ul li {
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 0 175px;
+}
+
+.browse-item {
+  margin-top: 3vh;
 }
 
 .individual-work {
@@ -382,7 +387,7 @@ nav ul li {
   display: flex;
   justify-content: center;
   background-color: #efefef;
-  margin: 0 0 50px 0;
+  margin: 0;
 }
 
 .categories ul {
