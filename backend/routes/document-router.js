@@ -68,6 +68,12 @@ const getSingleDocument = (req, res) => {
             exclude: ['password', 'email', 'level']
           }
         }
+      },
+      {
+        model: User,
+        attributes: {
+          exclude: ['password', 'email', 'level']
+        }
       }
     ]
   })

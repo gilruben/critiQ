@@ -1,5 +1,6 @@
 import { GET_DOCUMENT, SELECT_REVIEWER, DELETE_COMMENT,
   CREATE_COMMENT, SELECT_COMMENT } from '../actions/document-actions';
+import { LOGOUT } from '../actions/user-actions';
 
 const defaultState = {
   title: '',
@@ -10,6 +11,7 @@ const defaultState = {
   active: '',
   createdAt: new Date(),
   comments: [],
+  documentOwner: '',
   selectedReviewer: '',
   selectedComment: 0
 };
@@ -20,7 +22,8 @@ const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case GET_DOCUMENT:
       const { title, body, category, privacy, deadline, active, createdAt } = action.data;
-
+      const documentOwner = action.data.User.username;
+      console.log(action.data);
       comments = action.data.Comments.sort((a, b) => a.id - b.id);
 
       // When contentState was originally converted to raw, entityMap was empty,
@@ -37,7 +40,8 @@ const reducer = (state = defaultState, action) => {
         deadline,
         active,
         createdAt,
-        comments
+        comments,
+        documentOwner
       });
     case SELECT_REVIEWER:
       const selectedReviewer = action.data;
@@ -59,6 +63,8 @@ const reducer = (state = defaultState, action) => {
       const { commentId } = action.data;
 
       return Object.assign({}, state, { selectedComment: commentId });
+    case LOGOUT:
+      return defaultState;
     default:
       return state;
   }
