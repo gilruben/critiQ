@@ -17,7 +17,7 @@ const BrowseContainer = React.createClass({
           {
             this.props.browse.documents.map((docs, idx) => {
               return (
-                <div key={idx}>
+                <div className="browse-item" key={idx}>
                   <IndividualWork document={docs} />
                 </div>
               );

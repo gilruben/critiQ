@@ -22,3 +22,6 @@ After you complete the database Setup
 
 First: `npm install`
 To start: `npm start`
+
+## Seeding
+To seed, run the command `npm run seed`
