@@ -34,7 +34,7 @@ To seed, run the command `npm run seed`
 
 ## Team
 
-[![Jonathan Wu](https://avatars3.githubusercontent.com/u/17504157?v=3&s=460)](https://github.com/jondubya86) | [![Ruben Gil](https://avatars1.githubusercontent.com/u/14048713?v=3&s=400)](https://github.com/gilruben) | [![Nasita Haque](https://avatars1.githubusercontent.com/u/20376434?v=3&s=400)](https://github.com/Nasita-Haque) | [![Carlos Martinez](https://s.gravatar.com/avatar/949c0d86071eb09267cd4b89a32c769c?s=80)](https://github.com/Ceejaymar)
+[![Jonathan Wu](https://avatars3.githubusercontent.com/u/17504157?v=3&s=460)](https://github.com/jondubya86) | [![Ruben Gil](https://avatars1.githubusercontent.com/u/14048713?v=3&s=400)](https://github.com/gilruben) | [![Nasita Haque](https://avatars1.githubusercontent.com/u/20376434?v=3&s=400)](https://github.com/Nasita-Haque) | [![Carlos Martinez](https://avatars1.githubusercontent.com/u/15444519?v=3&s=460)](https://github.com/Ceejaymar)
 ---|---|---|---
 [Jonathan Wu](https://github.com/jondubya86) | [Ruben Gil](https://github.com/gilruben) | [Nasita Haque](https://github.com/Nasita-Haque) | [Carlos Martinez](https://github.com/Ceejaymar)
 
