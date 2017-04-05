@@ -4,6 +4,7 @@ const db = require('./models');
 const router = require('./routes');
 const applyExpressMiddleware = require('./middleware');
 const authRouter = require('./routes/auth-router');
+const deadlineChecker = require('./utilities/deadline-checker');
 
 const app = express();
 
@@ -28,6 +29,10 @@ db.sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
+
+  // Checks for documents that have reached their deadline and sets their active
+  // column to false
+  deadlineChecker.start();
 });
 
 module.exports = app;
