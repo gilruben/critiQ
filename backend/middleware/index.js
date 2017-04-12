@@ -23,7 +23,8 @@ const applyExpressMiddleware = (app) => {
       httpOnly: true,
       secure: true,
       maxAge: 1000 * 60 * 60 * 24 * 90 // 90 days
-    }
+    },
+    ephemeral: true
   }));
 
   passportConfig(app);
