@@ -16,7 +16,7 @@ const applyExpressMiddleware = (app) => {
       conString: 'postgres://ruben@localhost:5432/critiq'
     }),
     secret: 'English Master Manipulator',
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
