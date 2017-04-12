@@ -11,13 +11,12 @@ const applyExpressMiddleware = (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use(express.static(path.join(__dirname, '../../frontend/bundle')));
-  app.use(cookieParser());
   app.use(session({
     store: new PgSimpleSessionStore({
       conString: 'postgres://ruben@localhost:5432/critiq'
     }),
     secret: 'English Master Manipulator',
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
