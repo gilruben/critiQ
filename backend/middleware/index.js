@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const PgSimpleSessionStore = require('connect-pg-simple')(session);
 const passportConfig = require('../passport/passport');
@@ -20,7 +19,6 @@ const applyExpressMiddleware = (app) => {
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
       maxAge: 1000 * 60 * 60 * 24 * 90 // 90 days
     },
     ephemeral: true
