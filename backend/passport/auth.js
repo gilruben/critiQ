@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-const tokenFuncs = () => {
+const authFuncs = () => {
   const sign = (payload) => {
     const secret = 'English Master Manipulator';
     const options = {
@@ -34,4 +34,4 @@ const tokenFuncs = () => {
   return { sign, authenticate };
 };
 
-module.exports = tokenFuncs();
+module.exports = authFuncs();
