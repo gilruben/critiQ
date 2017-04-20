@@ -1,6 +1,5 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const User = require('../../models').User;
 
 const strategy = (passport) => {
   const extractor = (req) => {
@@ -19,14 +18,12 @@ const strategy = (passport) => {
   options.issuer = 'critiq';
   options.audience = 'litclub.herokuapp.com';
 
-  passport.serializeUser((user, done) => {
-    console.log(user);
-    done(null, user);
-  });
-
   passport.use(new JwtStrategy(options, (jwtPayload, done) => {
-    console.log('PAYLOAD:', jwtPayload);
-    done(null, { id: jwtPayload.id });
+    if (jwtPayload) {
+      done(null, { id: jwtPayload.id });
+    } else {
+      done(null, false);
+    }
   }));
 };
 
