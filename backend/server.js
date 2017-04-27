@@ -11,19 +11,19 @@ const app = express();
 // Adds middleware to express
 applyExpressMiddleware(app);
 
+// API route
+app.use('/api', router);
+
+// Authentication Route
+app.use('/auth', authRouter);
+
+// Front-End Route
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'frontend/index.html'));
+});
+
 
 db.sequelize.sync().then(() => {
-  // API route
-  app.use('/api', router);
-
-  // Authentication Route
-  app.use('/auth', authRouter);
-
-  // Front-End Route
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'frontend/index.html'));
-  });
-
   const port = process.env.PORT || 5555;
 
   app.listen(port, () => {
