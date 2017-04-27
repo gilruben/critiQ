@@ -1,8 +1,12 @@
 const router = require('express').Router();
 const User = require('../models').User;
+const authFuncs = require('../passport/auth.js');
+const authenticate = require('../passport/auth.js').authenticate('jwt', { session: false });
 
 const userLogin = (req, res) => {
-  const userData = req.body;
+  const { email, password } = req.body;
+  const userData = { email, password };
+
   User.findOne({
     where: userData,
     attributes: {
@@ -11,15 +15,23 @@ const userLogin = (req, res) => {
   })
   .then((user) => {
     if (user) {
-      req.session.userId = user.id;
-      req.session.save;
+      const signToken = authFuncs.sign;
+
+      req.session.jwt = signToken({ id: user.id });
+      req.session.save((err) => {
+        if (err) console.log('ERROR:', err);
+      });
+
       res.send(user);
+    } else {
+      res.sendStatus(401);
     }
   })
   .catch(() => {
-    res.status(401).send('Login Failed!');
+    res.sendStatus(401);
   });
 };
+
 
 const userLogout = (req, res) => {
   req.session.destroy();
@@ -28,12 +40,11 @@ const userLogout = (req, res) => {
 
 const checkLoginStatus = (req, res) => {
   const userId = req.session.userId;
+
   if (userId) {
     User.findById(userId)
     .then((user) => {
-      if (user) {
-        res.sendStatus(200);
-      }
+      if (user) res.sendStatus(200);
     });
   } else {
     res.sendStatus(401);
@@ -44,7 +55,7 @@ router.route('/login')
   .post(userLogin);
 
 router.route('/logout')
-  .post(userLogout);
+  .post(authenticate, userLogout);
 
 router.route('/verify')
   .get(checkLoginStatus);
