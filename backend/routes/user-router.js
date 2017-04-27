@@ -85,6 +85,7 @@ const userRouter = () => {
       }
     })
     .then((delUser) => {
+      req.session.destroy();
       res.send({ usersDeleted: delUser });
     });
   };

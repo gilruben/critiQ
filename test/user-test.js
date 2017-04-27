@@ -2,7 +2,6 @@ const expect = require('chai').expect;
 const supertest = require('supertest');
 const server = require('../backend/server');
 const agent = supertest.agent(server);
-const User = require('../backend/models').User;
 
 describe('user-api-test', () => {
   let newUser = { username: 'nate_dogg', email: 'ndogg@gmail.com', password: 'password', level: 'other' };
