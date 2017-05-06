@@ -29,6 +29,9 @@ const translateErrors = (errorArr) => {
         }
 
         break;
+      case 'body must be a JSON object':
+        newMessage = 'The body field must be a JSON object';
+        break;
       default:
         break;
     }
