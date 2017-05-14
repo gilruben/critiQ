@@ -109,7 +109,7 @@ describe('document-api-test', () => {
 
 
   // Test to create a new document with incorrect type on body field.
-  it('\'/api/documents\' should respond with an array with an error message', (done) => {
+  it('\'/api/documents\' should respond with an object with an array containing an error message', (done) => {
     const newDocument = { title: 'That Time I NPMed No-Demon', body: 'foobar', category: 'essay', privacy: 'public', deadline, active: true };
 
     agent
@@ -125,7 +125,7 @@ describe('document-api-test', () => {
 
 
   // Test to create a new document with invalid value on privacy field.
-  it('\'/api/documents\' should respond with an array with an error message', (done) => {
+  it('\'/api/documents\' should respond with an object with an array containing an error message', (done) => {
     const newDocument = { title: 'That Time I NPMed No-Demon', body: documentSeeds[2], category: 'essay', privacy: 'secret', deadline, active: true };
 
     agent
