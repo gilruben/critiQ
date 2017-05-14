@@ -1,60 +1,130 @@
 const expect = require('chai').expect;
 const supertest = require('supertest');
 const server = require('../backend/server');
+const agent = supertest.agent(server);
 const Comment = require('../backend/models').Comment;
 
 describe('comment-api-test', () => {
-  const comments = [
-    { comment: 'Check your grammar.', textLocation: { 24: 'CRITIQ IS LITT' }, UserId: 1, DocumentId: 1 },
-    { comment: "I'm confused. What does this mean?", textLocation: { 24: 'I love mocha, java and coffeescript. Best drinks ever!' }, UserId: 2, DocumentId: 1 },
-  ];
+  const newComment = {
+    comment: 'This doesn\'t need to be in bold',
+    anchorKey: 'e5u27',
+    anchorOffset: '128',
+    focusKey: 'e5u27',
+    focusOffset: '135',
+    isBackward: false,
+    hasFocus: true,
+    UserId: 2,
+    DocumentId: 4
+  };
+  let commentId;
 
-  before(() => Comment.sync({ force: true })
-    .then(() => Comment.bulkCreate(comments))
-    .catch(err => console.log('DB Err!', err)));
 
-// Test to create a new comment
-  it('/api/comments should respond with new data', (done) => {
-  const postComment = { comment: 'This is an awkwardly phrased sentence.', textLocation: { 24: 'Eat chocolate like how chocolate should be eaten.' }, UserId: 2, DocumentId: 1 };
-
-    supertest(server)
-      .post('/api/comments/')
-      .send(postComment)
-      .end((err, res) => {
-        expect(res.body).to.be.a('object');
-        expect(res.body.comment).equal(postComment.comment);
-        expect(res.body.textLocation).eql(postComment.textLocation);
-        expect(res.body.UserId).equal(postComment.UserId);
-        expect(res.body.DocumentId).equal(postComment.DocumentId);
-
-        done();
-      });
+  // Logs in user
+  it('\'/auth/login\' will log in the user', (done) => {
+    agent
+    .post('/auth/login')
+    .send({ email: 'nhaque@gmail.com', password: 'password' })
+    .end((err, res) => {
+      done();
+    });
   });
 
-// Test to update comment
-  it('/api/comments should respond with updated comments', (done) => {
-    const updatedComment = { comment: "The 'b' shouldn't be capitalized here and that isn't an actual word." };
+
+  // Test to create a new comment
+  it('\'/api/comments\' should respond with the comment created', (done) => {
+    agent
+    .post('/api/comments')
+    .send(newComment)
+    .end((err, res) => {
+      expect(res.body).to.be.a('object');
+      expect(res.body.comment).equal(newComment.comment);
+      expect(res.body.textLocation).eql(newComment.textLocation);
+      expect(res.body.UserId).equal(newComment.UserId);
+      expect(res.body.DocumentId).equal(newComment.DocumentId);
+
+      commentId = res.body.id;
+
+      done();
+    });
+  });
+
+
+  // Test to have an unauthenticated user create a new comment
+  it('\'/api/comments\' should respond with the comment created', (done) => {
+    supertest(server)
+    .post('/api/comments')
+    .send(newComment)
+    .end((err, res) => {
+      expect(res.status).equal(401);
+
+      done();
+    });
+  });
+
+
+  // Test to update comment
+  it('\'/api/comments/:id\' should respond with an updated comment', (done) => {
+    const updatedComment = { comment: "This isn't an actual word." };
+
+    agent
+    .put(`/api/comments/${commentId}`)
+    .send(updatedComment)
+    .end((err, res) => {
+      expect(res.body).to.be.a('object');
+      expect(res.body.comment).equal(updatedComment.comment);
+
+      done();
+    });
+  });
+
+
+  // Test to have an unauthenticated user update comment
+  it('\'/api/comments/:id\' should respond with status 401', (done) => {
+    const updatedComment = { comment: "This isn't an actual word." };
 
     supertest(server)
-      .put('/api/comments/1')
-      .send(updatedComment)
-      .end((err, res) => {
-        expect(res.body).to.be.a('object');
-        expect(res.body.comment).equal(updatedComment.comment);
+    .put(`/api/comments/${commentId}`)
+    .send(updatedComment)
+    .end((err, res) => {
+      expect(res.status).equal(401);
 
-        done();
-      });
+      done();
+    });
   });
+
 
   // Test to delete comment
-  it('/api/comments should respond with a deletion message', (done) => {
+  it('\'/api/comments/:id\' should respond with status 200', (done) => {
+    agent
+    .delete(`/api/comments/${commentId}`)
+    .end((err, res) => {
+      expect(res.status).equal(200);
 
+      done();
+    });
+  });
+
+
+  // Test to have an unauthenticated user delete a comment
+  it('\'/api/comments/:id\' should respond with status 401', (done) => {
     supertest(server)
-      .delete('/api/comments/1')
-      .end((err, res) => {
-        expect(res.body).to.eql({ message: 'Comment successfully deleted.' });
+    .delete(`/api/comments/${commentId}`)
+    .end((err, res) => {
+      expect(res.status).equal(401);
 
-        done();
-      });
+      done();
+    });
+  });
+
+
+  // Test to delete a nonexistent comment
+  it('\'/api/comments/:id\' should respond with status 500', (done) => {
+    agent
+    .delete(`/api/comments/${321425}`)
+    .end((err, res) => {
+      expect(res.status).equal(500);
+
+      done();
+    });
   });
 });
