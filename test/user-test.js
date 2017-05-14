@@ -20,6 +20,7 @@ describe('user-api-test', () => {
     });
   });
 
+
   // Logs in user
   it('\'/auth/login\' will log in the user', (done) => {
     agent
@@ -29,6 +30,7 @@ describe('user-api-test', () => {
       done();
     });
   });
+
 
   // Test to get all users
   it('\'/api/users\' should respond with all users', (done) => {
@@ -44,6 +46,7 @@ describe('user-api-test', () => {
       });
   });
 
+
   // Test to have an unauthenticated user get all users
   it('\'/api/users\' should respond with a 401 status code', (done) => {
     supertest(server)
@@ -54,6 +57,7 @@ describe('user-api-test', () => {
       done();
       });
   });
+
 
   // Test to get the logged in user's data
   it('\'/api/users/individual\' should respond with logged in user\'s data', (done) => {
@@ -67,6 +71,7 @@ describe('user-api-test', () => {
     });
   });
 
+
   // Test to attempt to get an unauthenticated user's data
   it('\'/api/users/individual\' should respond with a 401 status code', (done) => {
     supertest(server)
@@ -77,6 +82,7 @@ describe('user-api-test', () => {
       done();
     });
   });
+
 
   // Test to edit a user's data
   it('\'/api/users/individual\' should respond with new user data', (done) => {
@@ -94,6 +100,7 @@ describe('user-api-test', () => {
       done();
     });
   });
+
 
   // Test to edit an unauthenticated user's info
   it('\'/api/users/individual\' should respond with a 401 status code', (done) => {
@@ -123,6 +130,7 @@ describe('user-api-test', () => {
     });
   });
 
+
   // Test to delete an unauthenticated user
   it('\'/api/users/individual\' should respond with a 401 status code', (done) => {
     supertest(server)
@@ -133,6 +141,7 @@ describe('user-api-test', () => {
       done();
     });
   });
+
 
   // Test to create a new user with invalid email
   it('\'/api/users\' should respond with an array with an error message', (done) => {
@@ -148,6 +157,7 @@ describe('user-api-test', () => {
     });
   });
 
+
   // Test to create a new user with username that already exist
   it('\'/api/users\' should respond with an array with an error message', (done) => {
     const newUser = { username: 'edumacate', email: 'hawk@gmail.com', password: 'password', level: 'other' };
@@ -162,6 +172,7 @@ describe('user-api-test', () => {
     });
   });
 
+
   // Test to create a new user with email that already exist
   it('\'/api/users\' should respond with an array with an error message', (done) => {
     const newUser = { username: 'trix_rabbit', email: 'nhaque@gmail.com', password: 'password', level: 'other' };
@@ -175,6 +186,7 @@ describe('user-api-test', () => {
       done();
     });
   });
+
 
   // Test to create a new user with password that is too short
   it('\'/api/users\' should respond with an array with an error message', (done) => {
