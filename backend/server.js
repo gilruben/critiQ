@@ -32,7 +32,7 @@ db.sequelize.sync().then(() => {
 
   // Checks for documents that have reached their deadline and sets their active
   // column to false
-  deadlineChecker.start();
+  deadlineChecker('00 00 00 * * 0-6');
 });
 
 module.exports = app;
