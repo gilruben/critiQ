@@ -2,9 +2,9 @@
 * Translates an array of error messages into an array of messages that can be
 * displayed on the front end
 *
-* @param {Object}[Array] errorArr - Array of objects with error information
+* @param {Object[]} errorArr - Array of objects with error information
 *
-* @return {Object}[Array]  Array of strings with error messages tailored for
+* @returns {Object[]}  Array of strings with error messages tailored for
 *                          front end display
 */
 const translateErrors = (errorArr) => {
@@ -31,6 +31,9 @@ const translateErrors = (errorArr) => {
         break;
       case 'body must be a JSON object':
         newMessage = 'The body field must be a JSON object';
+        break;
+      case 'Validation isIn failed':
+        newMessage = `Invalid value passed to ${attribute} field`;
         break;
       default:
         break;
