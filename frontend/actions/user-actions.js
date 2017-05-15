@@ -27,6 +27,9 @@ export const getUserDataAsync = () => (dispatch) => {
   })
   .done((userData) => {
     dispatch(getUserData(userData));
+  })
+  .fail(() => {
+    browserHistory.push('/signin');
   });
 };
 
@@ -36,8 +39,8 @@ export const createUserAsync = userInfo => (dispatch) => {
     type: 'POST',
     data: userInfo
   })
-  .done((userData) => {
-    dispatch(getUserData(userData));
+  .done(() => {
+    browserHistory.push('/');
   });
 };
 
