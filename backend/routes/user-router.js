@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models').User;
 const Document = require('../models').Document;
+const authFuncs = require('../passport/auth');
 const authenticate = require('../passport/auth.js').authenticate('jwt', { session: false });
 const translateErrors = require('../utilities/error-translator');
 
@@ -22,6 +23,11 @@ const userRouter = () => {
 
     User.create(userData)
     .then((user) => {
+      const signToken = authFuncs.sign;
+
+      req.session.jwt = signToken({ id: user.id });
+      req.session.save();
+
       res.send(user);
     })
     .catch((err) => {
