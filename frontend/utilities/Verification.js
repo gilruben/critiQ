@@ -1,20 +1,13 @@
-import { ajax } from 'jquery';
+import { dispatch } from '../store/store';
+import { getUserDataAsync } from '../actions/user-actions';
 
-// AJAX to check user login status on every page clicked.
-// If user fails, redirect to signin page otherwise continue to selected page.
-// Because callback is declared in params, cb must be included in promises to end function call.
+// This function is meant to be used on the onEnter hook of the route containing
+// the Navbar component. It will attempt to retrieve a user's data by
+// dispatching the getUserDataAsync action. If the user is logged in, the data
+// will be retrieved and the user will be allowed to access the requested route.
+// If the user was not logged in, they will be redirected to the signin page.
 const verification = (nextstate, replace, cb) => {
-  ajax({
-    url: '/auth/verify',
-    type: 'GET'
-  })
-  .done(() => {
-    cb();
-  })
-  .fail(() => {
-    replace('/signin');
-    cb();
-  });
+  dispatch(getUserDataAsync(replace, cb));
 };
 
 export default verification;
