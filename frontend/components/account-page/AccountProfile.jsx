@@ -22,7 +22,6 @@ const AccountProfile = React.createClass({
     event.preventDefault();
 
     const accountState = this.state.account;
-    const id = this.props.account.id;
 
     this.props.editUserData(accountState);
     this.setState({ edit: false });
@@ -61,11 +60,11 @@ const AccountProfile = React.createClass({
               <option value={'other'}>other</option>
             </select>
           </h3>
-          <h3>Bio:<br />
-          <textarea className="edit-profile-input" rows="3" cols="30"
-            value={this.state.account.bio}
-            onChange={this.handleChange.bind(this, 'bio')}
-          />
+          <h3>Bio:
+            <textarea className="edit-profile-input" rows="3" cols="30"
+              value={this.state.account.bio}
+              onChange={this.handleChange.bind(this, 'bio')}
+            />
           </h3>
           <input className="account-edit-button" type="submit" value="Submit Changes" />
         </form>
@@ -75,4 +74,3 @@ const AccountProfile = React.createClass({
 });
 
 export default AccountProfile;
-
