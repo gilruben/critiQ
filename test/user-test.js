@@ -84,6 +84,31 @@ describe('user-api-test', () => {
   });
 
 
+  // Test to get another user's data
+  it('\'/api/users/individual/champagne_papi\' should respond with logged in user\'s data', (done) => {
+    agent
+    .get('/api/users/individual/champagne_papi')
+    .end((err, res) => {
+      expect(res.body.username).equal('champagne_papi');
+      expect(res.body.email).equal('carmar@gmail.com');
+
+      done();
+    });
+  });
+
+
+  // Test to have an unauthenticated user retrieve another user's data
+  it('\'/api/users/individual/champagne_papi\' should respond with a 401 status code', (done) => {
+    supertest(server)
+    .get('/api/users/individual/champagne_papi')
+    .end((err, res) => {
+      expect(res.status).equal(401);
+
+      done();
+    });
+  });
+
+
   // Test to edit a user's data
   it('\'/api/users/individual\' should respond with new user data', (done) => {
     const newData =  { username: 'ndogg', bio: 'I love scooby snacks' };
