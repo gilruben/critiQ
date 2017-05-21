@@ -109,6 +109,18 @@ describe('user-api-test', () => {
   });
 
 
+  // Test to get the data of a nonexistent user
+  it('\'/api/users/individual/fakeuser\' should respond with logged in user\'s data', (done) => {
+    agent
+    .get('/api/users/individual/fakeuser')
+    .end((err, res) => {
+      expect(res.body.errorMessages[0]).equal('fakeuser is not a user');
+
+      done();
+    });
+  });
+
+
   // Test to edit a user's data
   it('\'/api/users/individual\' should respond with new user data', (done) => {
     const newData =  { username: 'ndogg', bio: 'I love scooby snacks' };
