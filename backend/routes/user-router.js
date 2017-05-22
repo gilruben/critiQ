@@ -40,16 +40,45 @@ const userRouter = () => {
 
   const getOneUser = (req, res) => {
     const userId = req.user.id;
+    const username = req.params.username;
 
-    User.findById(userId, {
-      attributes: {
-        exclude: ['password']
-      },
-      include: [Document]
-    })
-    .then((user) => {
-      res.send(user);
-    });
+    // If a username was supplied, get that users data. Else, get the data of
+    // the user making the request.
+    if (username) {
+      User.findOne({
+        where: { username },
+        attributes: {
+          exclude: ['password']
+        },
+        include: {
+          model: Document,
+          where: {
+            privacy: 'public',
+            active: true
+          },
+          required: false
+        }
+      })
+      .then((user) => {
+        console.log(user);
+        // If user exists, send user data. Else send error message.
+        if (user) {
+          res.send(user);
+        } else {
+          res.status(500).send({ errorMessages: [`${username} is not a user`] });
+        }
+      });
+    } else {
+      User.findById(userId, {
+        attributes: {
+          exclude: ['password']
+        },
+        include: [Document]
+      })
+      .then((user) => {
+        res.send(user);
+      });
+    }
   };
 
   const editUserData = (req, res) => {
@@ -100,7 +129,7 @@ const userRouter = () => {
     .get(authenticate, getAllUsers)
     .post(createUser);
 
-  router.route('/individual')
+  router.route('/individual/:username?')
     .all(authenticate)
     .get(getOneUser)
     .put(editUserData)
