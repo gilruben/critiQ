@@ -23,7 +23,7 @@ const reducer = (state = defaultState, action) => {
     case GET_DOCUMENT:
       const { title, body, category, privacy, deadline, active, createdAt } = action.data;
       const documentOwner = action.data.User.username;
-      console.log(action.data);
+
       comments = action.data.Comments.sort((a, b) => a.id - b.id);
 
       // When contentState was originally converted to raw, entityMap was empty,
