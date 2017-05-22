@@ -36,9 +36,6 @@ describe('deadline-checker-test', () => {
 
   let testDocumentId;
 
-  console.log(dateTimeNow.second());
-  console.log(checkSecs);
-
   // Logs in user
   it('Will log in the user', (done) => {
     agent
