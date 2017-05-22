@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const User = require('../models').User;
 const authFuncs = require('../passport/auth');
-const authenticate = require('../passport/auth.js').authenticate('jwt', { session: false });
+
+const authenticate = authFuncs.authenticate('jwt', { session: false });
 
 const userLogin = (req, res) => {
   const { email, password } = req.body;
@@ -36,17 +37,7 @@ const userLogout = (req, res) => {
 };
 
 const checkLoginStatus = (req, res) => {
-  const userId = req.session.userId;
-  if (userId) {
-    User.findById(userId)
-    .then((user) => {
-      if (user) {
-        res.sendStatus(200);
-      }
-    });
-  } else {
-    res.sendStatus(401);
-  }
+  res.send(200);
 };
 
 router.route('/login')
@@ -56,6 +47,6 @@ router.route('/logout')
   .post(authenticate, userLogout);
 
 router.route('/verify')
-  .get(checkLoginStatus);
+  .get(authenticate, checkLoginStatus);
 
 module.exports = router;
