@@ -2,8 +2,9 @@ const router = require('express').Router();
 const User = require('../models').User;
 const Document = require('../models').Document;
 const authFuncs = require('../passport/auth');
-const authenticate = require('../passport/auth.js').authenticate('jwt', { session: false });
 const translateErrors = require('../utilities/error-translator');
+
+const authenticate = authFuncs.authenticate('jwt', { session: false });
 
 const userRouter = () => {
   const getAllUsers = (req, res) => {
