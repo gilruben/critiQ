@@ -60,7 +60,6 @@ const userRouter = () => {
         }
       })
       .then((user) => {
-        console.log(user);
         // If user exists, send user data. Else send error message.
         if (user) {
           res.send(user);
