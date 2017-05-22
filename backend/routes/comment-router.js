@@ -28,7 +28,7 @@ const commentRouter = () => {
       res.send(comment);
     })
     .catch(() => {
-      res.status(500);
+      res.sendStatus(500);
     });
   };
 
@@ -51,7 +51,7 @@ const commentRouter = () => {
       res.send(commentData);
     })
     .catch(() => {
-      res.status(500);
+      res.sendStatus(500);
     });
   };
 

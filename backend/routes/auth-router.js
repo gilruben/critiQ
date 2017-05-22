@@ -37,7 +37,7 @@ const userLogout = (req, res) => {
 };
 
 const checkLoginStatus = (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 };
 
 router.route('/login')
