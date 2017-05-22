@@ -16,6 +16,19 @@ describe('auth-api-test', () => {
     });
   });
 
+
+  // Test to see if authenticated user is logged in
+  it('\'/auth/verify\' should respond with status 200', (done) => {
+    agent
+    .get('/auth/verify')
+    .end((err, res) => {
+      expect(res.status).equal(200);
+
+      done();
+    });
+  });
+
+
   // Test to see if user can logout
   it('\'/auth/login\' should respond with status 200', (done) => {
     agent
@@ -26,6 +39,19 @@ describe('auth-api-test', () => {
       done();
     });
   });
+
+
+  // Test to see if unauthenticated user is logged in
+  it('\'/auth/verify\' should respond with status 401', (done) => {
+    agent
+    .get('/auth/verify')
+    .end((err, res) => {
+      expect(res.status).equal(401);
+
+      done();
+    });
+  });
+
 
   // Test to see if user with incorrect login credentials can log in
   it('\'/auth/login\' should respond with status 401', (done) => {
