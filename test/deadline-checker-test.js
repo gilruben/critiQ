@@ -102,4 +102,16 @@ describe('deadline-checker-test', () => {
       done();
     });
   });
+
+
+  // Logs user out
+  it('\'/auth/login\' should respond with status 200', (done) => {
+    agent
+    .post('/auth/logout')
+    .end((err, res) => {
+      expect(res.status).equal(200);
+
+      done();
+    });
+  });
 })
