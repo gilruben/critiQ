@@ -3,10 +3,10 @@ const passport = require('passport');
 
 const authFuncs = () => {
   const sign = (payload) => {
-    const secret = 'English Master Manipulator';
+    const secret = process.env.SECRET || 'English Master Manipulator';
     const options = {
-      audience: 'litclub.herokuapp.com',
-      issuer: 'critiq',
+      audience: process.env.AUDIENCE || 'litclub.herokuapp.com',
+      issuer: process.env.ISSUER || 'litclub.herokuapp.com',
       expiresIn: '90 days'
     };
 

@@ -14,9 +14,9 @@ const strategy = (passport) => {
 
   const options = {};
   options.jwtFromRequest = ExtractJwt.fromExtractors([extractor]);
-  options.secretOrKey = 'English Master Manipulator';
-  options.issuer = 'critiq';
-  options.audience = 'litclub.herokuapp.com';
+  options.secretOrKey = process.env.SECRET || 'English Master Manipulator';
+  options.issuer = process.env.ISSUER || 'litclub.herokuapp.com';
+  options.audience = process.env.AUDIENCE || 'litclub.herokuapp.com';
 
   passport.use(new JwtStrategy(options, (jwtPayload, done) => {
     if (jwtPayload) {
