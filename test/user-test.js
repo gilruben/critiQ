@@ -8,7 +8,7 @@ describe('user-api-test', () => {
 
   // Test to create a new user
   it('\'/api/users\' should respond with the user created', (done) => {
-    supertest(server)
+    agent
     .post('/api/users')
     .send(newUser)
     .end((err, res) => {
@@ -16,7 +16,14 @@ describe('user-api-test', () => {
       expect(res.body.email).equal(newUser.email);
       expect(res.body.password).equal(newUser.password);
 
-      done();
+      // Log out newly created user
+      agent
+      .post('/auth/logout')
+      .end((err, res) => {
+        expect(res.status).equal(200);
+
+        done();
+      });
     });
   });
 
