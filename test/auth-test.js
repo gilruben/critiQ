@@ -30,7 +30,7 @@ describe('auth-api-test', () => {
 
 
   // Test to see if user can logout
-  it('\'/auth/login\' should respond with status 200', (done) => {
+  it('\'/auth/logout\' should respond with status 200', (done) => {
     agent
     .post('/auth/logout')
     .end((err, res) => {
