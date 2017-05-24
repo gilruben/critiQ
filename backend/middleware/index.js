@@ -9,10 +9,9 @@ const dbConfig = require('../config/config');
 
 // Function for adding middleware
 const applyExpressMiddleware = (app) => {
-  const username = dbConfig.development.username;
-  const database = dbConfig.development.database;
+  const { username, database, host } = dbConfig.development;
 
-  const dbString = `postgres://${username}@localhost:5432/${database}`;
+  const dbString = `postgres://${username}@${host}:5432/${database}`;
   const conString = process.env.DATABASE_URL || dbString;
   const secret = process.env.SECRET || 'English Master Manipulator';
 
