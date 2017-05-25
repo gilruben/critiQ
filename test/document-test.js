@@ -25,7 +25,11 @@ describe('document-api-test', () => {
     agent
     .get('/api/documents')
     .end((err, res) => {
-      expect(res.body.length).equal(5);
+      expect(res.body.length).above(0);
+      expect(res.body[0]).all.keys('User', 'title', 'active', 'body', 'category',
+        'createdAt', 'deadline', 'id', 'privacy', 'title', 'updatedAt');
+      expect(res.body[0].privacy).equal('public');
+      expect(res.body[0].active).equal(true);
 
       done();
     });
