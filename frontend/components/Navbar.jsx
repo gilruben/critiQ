@@ -6,9 +6,6 @@ import { getUserDataAsync, logoutAsync } from '../actions/user-actions';
 
 
 const Navbar = React.createClass({
-  componentDidMount() {
-    this.props.getUserData();
-  },
   handleClick(link) {
     this.props.router.push(link);
   },

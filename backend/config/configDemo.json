@@ -1,20 +1,20 @@
 {
   "development": {
-    "username": "Your name goes here",
+    "username": "Your username goes here",
     "password": null,
     "database": "critiq",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "Your name goes here",
+    "username": "Your username goes here",
     "password": null,
     "database": "critiq",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "Your name goes here",
+    "username": "Your username goes here",
     "password": null,
     "database": "critiq",
     "host": "127.0.0.1",

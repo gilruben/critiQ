@@ -14,7 +14,12 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         isObject: (val) => {
           if (typeof val !== 'object' || Array.isArray(val)) {
-            throw new TypeError('body field must be an object!');
+            const ValidationError = sequelize.ValidationError;
+            const ValidationErrorItem = sequelize.ValidationErrorItem;
+
+            throw new ValidationError('Incorrect type', [
+              new ValidationErrorItem('body must be a JSON object', 'type violation','body', val)
+            ]);
           }
         }
       }
