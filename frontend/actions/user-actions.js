@@ -20,24 +20,36 @@ const logout = () => ({
   type: LOGOUT
 });
 
-export const getUserDataAsync = () => (dispatch) => {
+// Get logged in user's data. Meant to be used by the the verification function on
+// onEnter
+export const getUserDataAsync = (replace, cb) => (dispatch) => {
   ajax({
     url: '/api/users/individual',
     type: 'GET'
   })
   .done((userData) => {
     dispatch(getUserData(userData));
+
+    if (cb) cb();
+  })
+  .fail(() => {
+    if (replace) {
+      replace('/signin');
+      if (cb) cb();
+    } else {
+      browserHistory.push('/signin');
+    }
   });
 };
 
-export const createUserAsync = userInfo => (dispatch) => {
+export const createUserAsync = userInfo => () => {
   ajax({
     url: '/api/users',
     type: 'POST',
     data: userInfo
   })
-  .done((userData) => {
-    dispatch(getUserData(userData));
+  .done(() => {
+    browserHistory.push('/');
   });
 };
 
@@ -46,7 +58,7 @@ const editUserData = payload => ({
   data: payload
 });
 
-export const editUserDataAsync = (data) => (dispatch) => {
+export const editUserDataAsync = data => (dispatch) => {
   ajax({
     url: '/api/users/individual',
     type: 'PUT',

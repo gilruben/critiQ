@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router';
 // css
 import '../../styles/account-page.css';
 // actions
@@ -25,7 +24,7 @@ const AccountContainer = React.createClass({
     // Separate active and inactive documents to map over active/inactive divs
     const activeList = [];
     const inactiveList = [];
-    this.props.user.documents.forEach(docs=> {
+    this.props.user.documents.forEach((docs) => {
       docs.active ? activeList.push(docs) : inactiveList.push(docs);
     });
     return (

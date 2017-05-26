@@ -5,8 +5,7 @@ body, html {
   overflow: hidden;
 }
 
-/*-------Navbar--------*/
-
+/*-----------Navbar--------*/
 nav {
   display: flex;
   align-items: center;
@@ -40,13 +39,11 @@ nav ul li {
   cursor: pointer;
   padding-right: 18px;
 }
-
-/*-------/Navbar--------*/
+/*----------/Navbar--------*/
 
 
 
 /*-------Landing page--------*/
-
 .landing-page {
   display: flex;
   justify-content: space-around;
@@ -155,7 +152,6 @@ nav ul li {
 .sign-in-bottom .sign-in-button:focus {
   outline: none;
 }
-
 /*-------Landing page--------*/
 
 
@@ -372,17 +368,14 @@ nav ul li {
   margin: 0;
 }
 
-
 .rev {
   border-left: 1px solid #efefef;
 }
-
 /*-------/Browse page--------*/
 
 
 
 /*-------Category component--------*/
-
 .categories {
   display: flex;
   justify-content: center;
@@ -462,10 +455,15 @@ nav ul li {
 }
 /*-------/Add component--------*/
 
+
+
+/*--------Account page----------*/
 .upload-something-bro {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 500px;
   font-size: 2em;
+  color: #747474;
 }
+/*--------/Account page----------*/

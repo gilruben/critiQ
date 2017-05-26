@@ -12,8 +12,10 @@ const ProfileContainer = React.createClass({
     return ({ account: null });
   },
   componentDidMount() {
+    const { username } = this.props.params;
+
     ajax({
-      url: '/api/users/individual',
+      url: `/api/users/individual/${username}`,
       type: 'GET'
     })
     .done((userData) => {
