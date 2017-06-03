@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch & psql critiq < node_modules/connect-pg-simple/table.sql & nodemon ./backend/server.js",
+    "start": "psql critiq < node_modules/connect-pg-simple/table.sql & nodemon ./backend/server.js",
     "test": "./node_modules/mocha/bin/mocha",
-    "seed": "bash seed.sh"
+    "seed": "bash seed.sh",
+    "heroku-postbuild": "webpack"
   },
   "keywords": [],
   "author": "",
