@@ -54,6 +54,7 @@ const SignUpContainer = React.createClass({
                 <input className="sign-up-input" value={this.state.username} onChange={this.handleChange.bind(this, 'username')} type="text" placeholder="Pick a username" />
                 <input className="sign-up-input" value={this.state.email} onChange={this.handleChange.bind(this, 'email')} type="email" placeholder="Your email" />
                 <input className="sign-up-input" value={this.state.password} onChange={this.handleChange.bind(this, 'password')} type="password" placeholder="A password" />
+
                 <div className="student">
                   <p className="student-question" >Are you a student?</p>
                   <select value={this.state.level} onChange={this.handleChange.bind(this, "level")}>
@@ -63,10 +64,12 @@ const SignUpContainer = React.createClass({
                     <option value="college">college</option>
                   </select>
                 </div>
+
+                <ErrorsDisplay errorMsgs={errorMsgs} />
+
                 <input className="sign-up-button" value="create" type="submit" />
               </form>
 
-              <ErrorsDisplay errorMsgs={errorMsgs} />
             </div>
           </div>
         </ReactModal>
