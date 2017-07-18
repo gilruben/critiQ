@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createUserAsync } from '../../actions/user-actions';
+import ErrorsDisplay from '../ErrorsDisplay';
 
 const SignUpContainer = React.createClass({
   getInitialState() {
@@ -35,6 +36,8 @@ const SignUpContainer = React.createClass({
     });
   },
   render() {
+    const { errorMsgs } = this.props;
+
     return (
       <div className="main-sign-up-div">
         <p className="sign-up-link" onClick={this.handleSignupModal}>Sign up</p>
@@ -62,6 +65,8 @@ const SignUpContainer = React.createClass({
                 </div>
                 <input className="sign-up-button" value="create" type="submit" />
               </form>
+
+              <ErrorsDisplay errorMsgs={errorMsgs} />
             </div>
           </div>
         </ReactModal>
@@ -70,8 +75,12 @@ const SignUpContainer = React.createClass({
   }
 });
 
+const mapStateToProps = (state) => {
+  return { errorMsgs: state.user.errorMsgs };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ createUser: createUserAsync }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(SignUpContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer);
