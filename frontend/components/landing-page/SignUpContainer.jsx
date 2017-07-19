@@ -67,7 +67,9 @@ const SignUpContainer = React.createClass({
 
                 <ErrorsDisplay errorMsgs={errorMsgs} />
 
-                <input className="sign-up-button" value="create" type="submit" />
+                <div className="sign-up-button-container">
+                  <input className="sign-up-button" value="create" type="submit" />
+                </div>
               </form>
 
             </div>
