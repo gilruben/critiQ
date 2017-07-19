@@ -262,6 +262,11 @@ nav ul li {
   color: #505a61;
 }
 
+.sign-up .sign-up-button-container {
+  display: flex;
+  justify-content: center;
+}
+
 .sign-up select:focus {
   outline: none;
 }
