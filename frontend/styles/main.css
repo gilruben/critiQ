@@ -154,7 +154,21 @@ nav ul li {
 }
 /*-------Landing page--------*/
 
+/*-------Error Messages------*/
+.error-list {
+  display: flex;
+  justify-content: center;
+  padding: 1px 3px 1px 3px;
+  margin-top: 0px;
+}
 
+.error-list-item {
+  list-style: none;
+  background-color: #FFBABA;
+  font-size: 20px;
+  border: 1px solid #FFBABA;
+  border-radius: 3px;
+}
 
 /*-------Signup page--------*/
 .main-sign-up-div .sign-up-link {
@@ -201,8 +215,8 @@ nav ul li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 400px;
-  width: 400px;
+  height: 600px;
+  width: 500px;
   margin-top: 30px;
 }
 
@@ -211,7 +225,7 @@ nav ul li {
   border-bottom: 3px solid #6D7982;
   background-color: #FAF3F2;
   padding-bottom: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 1.75em;
   font-weight: 300;
   color: #6D7982;
