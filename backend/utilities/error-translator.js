@@ -26,6 +26,8 @@ const translateErrors = (errorArr) => {
       case 'Validation len failed':
         if (attribute === 'password') {
           newMessage = 'Password must be between 8 and 26 characters';
+        } else if (attribute === 'username') {
+          newMessage = 'Username must be between 3 and 20 characters';
         }
 
         break;
