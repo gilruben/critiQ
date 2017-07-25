@@ -5,6 +5,7 @@ export const GET_USER_DATA = 'GET_USER_DATA';
 export const CREATE_DOCUMENT = 'CREATE_DOCUMENT';
 export const EDIT_USER_DATA = 'EDIT_USER_DATA';
 export const LOGOUT = 'LOGOUT';
+export const SET_ERROR_MSGS = 'SET_ERROR_MSGS';
 
 const getUserData = payload => ({
   type: GET_USER_DATA,
@@ -18,6 +19,11 @@ const createDocument = payload => ({
 
 const logout = () => ({
   type: LOGOUT
+});
+
+const setErrorMsgs = payload => ({
+  type: SET_ERROR_MSGS,
+  data: payload
 });
 
 // Get logged in user's data. Meant to be used by the the verification function on
@@ -42,7 +48,7 @@ export const getUserDataAsync = (replace, cb) => (dispatch) => {
   });
 };
 
-export const createUserAsync = userInfo => () => {
+export const createUserAsync = userInfo => (dispatch) => {
   ajax({
     url: '/api/users',
     type: 'POST',
@@ -50,6 +56,11 @@ export const createUserAsync = userInfo => () => {
   })
   .done(() => {
     browserHistory.push('/');
+  })
+  .fail((err) => {
+    const errorMsgs = err.responseJSON.errorMessages;
+
+    dispatch(setErrorMsgs({ errorMsgs }));
   });
 };
 

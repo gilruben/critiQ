@@ -1,7 +1,16 @@
-import { GET_USER_DATA, CREATE_DOCUMENT, EDIT_USER_DATA, LOGOUT } from '../actions/user-actions';
+import { GET_USER_DATA, CREATE_DOCUMENT, EDIT_USER_DATA, LOGOUT, SET_ERROR_MSGS }
+  from '../actions/user-actions';
 import { EDIT_DOCUMENT_STATUS } from '../actions/document-actions';
 
-const defaultState = { username: '', email: '', bio: '', rating: 0, level: '', documents: [] };
+const defaultState = {
+  username: '',
+  email: '',
+  bio: '',
+  rating: 0,
+  level: '',
+  documents: [],
+  errorMsgs: []
+};
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -34,6 +43,10 @@ const reducer = (state = defaultState, action) => {
       return Object.assign({}, state, { documents: newDocs });
     case LOGOUT:
       return defaultState;
+    case SET_ERROR_MSGS:
+      const { errorMsgs } = action.data;
+
+      return Object.assign({}, state, { errorMsgs });
     default:
       return state;
   }

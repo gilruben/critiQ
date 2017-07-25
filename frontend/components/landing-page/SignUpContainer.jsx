@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createUserAsync } from '../../actions/user-actions';
+import ErrorsDisplay from '../ErrorsDisplay';
 
 const SignUpContainer = React.createClass({
   getInitialState() {
@@ -35,6 +36,8 @@ const SignUpContainer = React.createClass({
     });
   },
   render() {
+    const { errorMsgs } = this.props;
+
     return (
       <div className="main-sign-up-div">
         <p className="sign-up-link" onClick={this.handleSignupModal}>Sign up</p>
@@ -51,6 +54,7 @@ const SignUpContainer = React.createClass({
                 <input className="sign-up-input" value={this.state.username} onChange={this.handleChange.bind(this, 'username')} type="text" placeholder="Pick a username" />
                 <input className="sign-up-input" value={this.state.email} onChange={this.handleChange.bind(this, 'email')} type="email" placeholder="Your email" />
                 <input className="sign-up-input" value={this.state.password} onChange={this.handleChange.bind(this, 'password')} type="password" placeholder="A password" />
+
                 <div className="student">
                   <p className="student-question" >Are you a student?</p>
                   <select value={this.state.level} onChange={this.handleChange.bind(this, "level")}>
@@ -60,8 +64,14 @@ const SignUpContainer = React.createClass({
                     <option value="college">college</option>
                   </select>
                 </div>
-                <input className="sign-up-button" value="create" type="submit" />
+
+                <ErrorsDisplay errorMsgs={errorMsgs} />
+
+                <div className="sign-up-button-container">
+                  <input className="sign-up-button" value="create" type="submit" />
+                </div>
               </form>
+
             </div>
           </div>
         </ReactModal>
@@ -70,8 +80,12 @@ const SignUpContainer = React.createClass({
   }
 });
 
+const mapStateToProps = (state) => {
+  return { errorMsgs: state.user.errorMsgs };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ createUser: createUserAsync }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(SignUpContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer);

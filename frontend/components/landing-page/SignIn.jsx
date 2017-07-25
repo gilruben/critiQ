@@ -20,14 +20,14 @@ const SignIn = React.createClass({
       <div className="sign-in">
         <h1>Welcome. <span className="please-login">Please login.</span></h1>
         <form onSubmit={this.handleSubmit}>
-          <input className="sign-in-input" type="email" placeholder="Email" onChange={this.handleChange.bind(this, 'email')}/>
-          <input className="sign-in-input" type="password" placeholder="Password" onChange={this.handleChange.bind(this, 'password')}/>
+          <input className="sign-in-input" type="email" placeholder="Email" onChange={this.handleChange.bind(this, 'email')} />
+          <input className="sign-in-input" type="password" placeholder="Password" onChange={this.handleChange.bind(this, 'password')} />
           <div className="sign-in-bottom">
             <div className="sign-up-div">
               <p>Don{"'"}t have an account?</p>
               <SignUpContainer />
             </div>
-            <input className="sign-in-button" type="submit" />
+            <input className="sign-in-button" type="submit" value="Submit" />
           </div>
         </form>
       </div>

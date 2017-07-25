@@ -10,6 +10,7 @@ module.exports = {
       "no-console": "off",
       "react/prefer-es6-class": 0,
       "comma-dangle": ["error", "never"],
-      "react/jsx-no-bind": 0
+      "react/jsx-no-bind": 0,
+      "arrow-body-style": ["error", "as-needed"]
     }
 };
